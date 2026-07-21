@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{font-family:'Quicksand',system-ui,sans-serif;font-weight:300;background:#ffffff;color:#0f1a2e;-webkit-font-smoothing:antialiased}
+  a{color:var(--accent,#1a4bff);text-decoration:none}
+  a:hover{opacity:.82}
+  @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+  @keyframes modalIn{from{opacity:0;transform:scale(.93) translateY(14px)}to{opacity:1;transform:none}}
+  input[type=range].om-slider{-webkit-appearance:none;appearance:none;width:100%;height:4px;border-radius:4px;background:#e2e7f0;outline:none;margin:0}
+  input[type=range].om-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:22px;height:22px;border-radius:50%;background:var(--accent,#1a4bff);cursor:pointer;box-shadow:0 4px 12px rgba(26,75,255,.45);border:3px solid #fff}
+  input[type=range].om-slider::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--accent,#1a4bff);cursor:pointer;border:3px solid #fff}
+  .cf-input,.cf-select{width:100%;border:none;border-bottom:1px solid #d6dce6;background:transparent;padding:9px 2px;font-family:'Quicksand',sans-serif;font-size:15px;font-weight:400;color:#0f1a2e;outline:none;transition:border-color .25s ease}
+  .cf-input:focus,.cf-select:focus{border-bottom-color:var(--accent,#1a4bff)}
+  .cf-input::placeholder,.cf-area::placeholder{color:#aab2c0;font-weight:300}
+  .cf-select{-webkit-appearance:none;appearance:none;cursor:pointer;padding-right:22px}
+  .cf-area{width:100%;border:1px solid #e0e5ee;border-radius:14px;background:#fff;padding:14px;font-family:'Quicksand',sans-serif;font-size:15px;font-weight:400;color:#0f1a2e;outline:none;resize:vertical;min-height:104px;transition:border-color .25s ease}
+  .cf-area:focus{border-color:var(--accent,#1a4bff)}
+</style>
+</helmet>
+<div ref="{{ rootRef }}" style="display:flex;min-height:100vh;background:#ffffff">
+
+  <aside style="flex:0 0 184px;background:#ffffff;border-right:1px solid #e6eaf1;padding:26px 24px;display:flex;flex-direction:column;gap:40px;position:sticky;top:0;height:100vh">
+    <div style="display:flex;align-items:center;gap:10px">
+      <div style="width:32px;height:32px;position:relative">
+        <div style="position:absolute;width:17px;height:17px;background:#0f1a2e;transform:rotate(45deg);top:0;left:7px;border-radius:3px"></div>
+        <div style="position:absolute;width:17px;height:17px;background:var(--accent,#1a4bff);transform:rotate(45deg);top:8px;left:7px;border-radius:3px;opacity:.9"></div>
+      </div>
+    </div>
+    <nav ref="{{ navRef }}" onMouseMove="{{ onNavMove }}" onMouseLeave="{{ onNavLeave }}" style="display:flex;flex-direction:column;gap:16px;perspective:620px;transform-style:preserve-3d">
+      <sc-for list="{{ navItems }}" as="item" hint-placeholder-count="6">
+        <a href="{{ item.href }}" style="{{ item.style }}">
+          <sc-if value="{{ item.active }}" hint-placeholder-val="{{ true }}"><span style="width:6px;height:6px;border-radius:50%;background:var(--accent,#1a4bff);display:inline-block;flex:0 0 auto"></span></sc-if>{{ item.label }}
+        </a>
+      </sc-for>
+    </nav>
+  </aside>
+
+  <main style="flex:1;min-width:0;padding:0;display:flex;flex-direction:column">
+    <section id="services" style="min-height:100vh;background:#ffffff;padding:64px;display:flex;flex-direction:column;justify-content:center">
+      <header style="text-align:center;margin-bottom:52px">
+        <div style="font-family:'Quicksand',sans-serif;font-weight:400;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent,#1a4bff);margin-bottom:18px">What we build</div>
+        <h1 style="margin:0 auto;max-width:640px;font-size:36px;line-height:1.12;font-weight:400;letter-spacing:-.025em;color:#0f1a2e;text-wrap:pretty">
+          Technology that moves your <span style="color:var(--accent,#1a4bff)">business forward</span>
+        </h1>
+      </header>
+
+      <div style="display:flex;gap:14px;height:378px">
+        <sc-for list="{{ cards }}" as="card" hint-placeholder-count="5">
+          <div onClick="{{ card.open }}" style="flex:1 1 0;min-width:0;position:relative;border:1px solid #e6eaf1;border-radius:18px;background:#f5f7fa;padding:20px 18px;display:flex;flex-direction:column;cursor:pointer;overflow:hidden;filter:grayscale(1);opacity:.82;transform:translateY(0);transition:flex-grow .5s cubic-bezier(.4,0,.2,1),filter .4s ease,opacity .4s ease,box-shadow .4s ease,border-color .4s ease,transform .4s ease" style-hover="flex-grow:2.4;filter:none;opacity:1;background:#ffffff;border-color:var(--accent,#1a4bff);box-shadow:0 26px 55px -22px rgba(26,75,255,.42);transform:translateY(-8px)">
+            <span style="font-size:15px;font-weight:400;color:#3a4459;letter-spacing:.01em;line-height:1.25">{{ card.title }}</span>
+            <div style="margin-top:16px;flex:1;border-radius:12px;background:repeating-linear-gradient(45deg,#eef1f6 0,#eef1f6 9px,#e4e9f1 9px,#e4e9f1 18px);display:flex;align-items:flex-end;justify-content:center;padding:10px">
+              <span style="font-family:'Quicksand',sans-serif;font-size:9.5px;letter-spacing:.09em;color:#9aa4b5;background:rgba(255,255,255,.72);padding:3px 7px;border-radius:6px;text-transform:uppercase">illustration</span>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <section id="about" style="background:#ffffff;padding:80px 64px;display:flex;align-items:center;gap:52px;overflow:hidden;border-top:1px solid #eef1f5">
+      <div style="flex:1;max-width:440px;text-align:center">
+        <div style="font-family:'Quicksand',sans-serif;font-weight:400;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent,#1a4bff);margin-bottom:22px">About Us</div>
+        <p style="margin:0;font-size:19px;line-height:1.62;color:#4a5262;font-weight:300;letter-spacing:-.01em;text-wrap:pretty">We're <span style="color:var(--accent,#1a4bff);font-weight:500">Nyxo Agency</span>, an AI and technology consulting firm helping ambitious organizations put the right platforms to work. Our team combines AI strategy, CRM, cloud, and enterprise systems expertise to deliver solutions that are practical, secure, and built to last.</p>
+      </div>
+      <div style="flex:1;min-width:0;display:flex;justify-content:center">
+        <div style="width:100%;max-width:440px;aspect-ratio:16/10;border-radius:14px;background:repeating-linear-gradient(45deg,#eef1f6 0,#eef1f6 12px,#e4e9f1 12px,#e4e9f1 24px);display:flex;align-items:flex-end;justify-content:center;padding:14px;box-shadow:0 24px 50px -24px rgba(15,26,46,.18)">
+          <span style="font-family:'Quicksand',sans-serif;font-size:10px;letter-spacing:.09em;color:#9aa4b5;background:rgba(255,255,255,.75);padding:4px 9px;border-radius:6px;text-transform:uppercase">device / product shot</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="industries" style="background:#ffffff;padding:40px 64px 80px;overflow:hidden;border-top:1px solid #eef1f5">
+      <header style="text-align:center;max-width:620px;margin:0 auto">
+        <div style="font-family:'Quicksand',sans-serif;font-weight:400;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent,#1a4bff);margin-bottom:16px">Industries</div>
+        <h2 style="margin:0 0 16px;font-size:36px;line-height:1.12;font-weight:400;letter-spacing:-.025em;color:#0f1a2e;text-wrap:pretty">Built for the industries you operate in</h2>
+        <p style="margin:0;font-size:16px;line-height:1.6;color:#586074;text-wrap:pretty">From regulated enterprises to fast‑moving startups, we tailor every engagement to the realities of your sector.</p>
+      </header>
+      <div style="perspective:1200px;height:432px;position:relative;margin-top:30px">
+        <div style="position:absolute;inset:0;transform-style:preserve-3d">
+          <sc-for list="{{ cardsView }}" as="card" hint-placeholder-count="5">
+            <div onClick="{{ card.go }}" style="{{ card.style }}">
+              <div style="height:296px;border-radius:16px;overflow:hidden;cursor:pointer;box-shadow:0 22px 44px -18px rgba(15,26,46,.45);background:#e7ebf1">
+                <img data-src="{{ card.img }}" alt="{{ card.name }}" data-name="{{ card.name }}" style="width:100%;height:100%;object-fit:cover;display:block" />
+              </div>
+              <div style="text-align:center;margin-top:14px;opacity:{{ card.capOpacity }};transition:opacity .3s ease">
+                <span style="font-family:'Quicksand',sans-serif;color:var(--accent,#1a4bff);font-size:12px;letter-spacing:.1em">{{ card.num }}</span>
+                <div style="font-size:13px;font-weight:400;color:#0f1a2e;margin-top:5px">{{ card.name }}</div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      <div style="max-width:420px;margin:8px auto 0">
+        <input type="range" class="om-slider" min="0" max="{{ maxCenter }}" step="0.02" value="{{ center }}" onInput="{{ onSlide }}">
+      </div>
+    </section>
+
+    <section id="process" ref="{{ procRef }}" style="position:relative;height:270vh;background:#ffffff;border-top:1px solid #eef1f5">
+      <div style="position:sticky;top:0;height:100vh;overflow:hidden;display:flex;flex-direction:column;justify-content:center;padding:0 64px">
+        <header style="max-width:600px;margin:0 auto 12px;text-align:center">
+          <div style="font-family:'Quicksand',sans-serif;font-weight:400;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent,#1a4bff);margin-bottom:16px">Process</div>
+          <h2 style="margin:0;font-size:36px;line-height:1.12;font-weight:400;letter-spacing:-.025em;color:#0f1a2e;text-wrap:pretty">A clear process, start to finish</h2>
+          <p style="margin:14px 0 0;font-size:15px;font-weight:300;color:#586074">Scroll to move through every step of how we work.</p>
+        </header>
+        <div ref="{{ contRef }}" style="width:100%">
+          <div ref="{{ trackRef }}" style="display:flex;gap:28px;transform:{{ trackTf }};will-change:transform;padding:60px 0">
+
+            <div style="flex:0 0 auto;transition:transform .1s linear;transform:{{ tf0 }}">
+              <div style="width:236px;height:300px;border-radius:20px;padding:24px;display:flex;flex-direction:column;justify-content:space-between;background:#ffffff;color:#0f1a2e;border:2px solid var(--accent,#1a4bff);box-shadow:0 18px 40px -24px rgba(26,75,255,.35)">
+                <span style="align-self:flex-start;font-size:14px;font-weight:400;color:#0f1a2e;letter-spacing:.02em">01</span>
+                <div><span style="width:9px;height:9px;border-radius:50%;background:var(--accent,#1a4bff);display:block;margin-bottom:14px"></span><div style="font-size:19px;font-weight:400;line-height:1.25;letter-spacing:-.01em">Discovery</div><div style="font-size:12.5px;font-weight:300;line-height:1.5;margin-top:8px;color:#586074">We learn your goals, challenges, users, and current systems before recommending anything.</div></div>
+              </div>
+            </div>
+
+            <div style="flex:0 0 auto;transition:transform .1s linear;transform:{{ tf1 }}">
+              <div style="width:236px;height:300px;border-radius:20px;padding:24px;display:flex;flex-direction:column;justify-content:space-between;background:#ffffff;color:#0f1a2e;border:2px solid var(--accent,#1a4bff);box-shadow:0 18px 40px -24px rgba(26,75,255,.35)">
+                <span style="align-self:flex-start;font-size:14px;font-weight:400;color:#0f1a2e;letter-spacing:.02em">02</span>
+                <div><span style="width:9px;height:9px;border-radius:50%;background:var(--accent,#1a4bff);display:block;margin-bottom:14px"></span><div style="font-size:19px;font-weight:400;line-height:1.25;letter-spacing:-.01em">Strategy</div><div style="font-size:12.5px;font-weight:300;line-height:1.5;margin-top:8px;color:#586074">We map the platforms, integrations, and roadmap that fit your business.</div></div>
+              </div>
+            </div>
+
+            <div style="flex:0 0 auto;transition:transform .1s linear;transform:{{ tf2 }}">
+              <div style="width:236px;height:300px;border-radius:20px;padding:24px;display:flex;flex-direction:column;justify-content:space-between;background:#ffffff;color:#0f1a2e;border:2px solid var(--accent,#1a4bff);box-shadow:0 18px 40px -24px rgba(26,75,255,.35)">
+                <span style="align-self:flex-start;font-size:14px;font-weight:400;color:#0f1a2e;letter-spacing:.02em">03</span>
+                <div><span style="width:9px;height:9px;border-radius:50%;background:var(--accent,#1a4bff);display:block;margin-bottom:14px"></span><div style="font-size:19px;font-weight:400;line-height:1.25;letter-spacing:-.01em">Design</div><div style="font-size:12.5px;font-weight:300;line-height:1.5;margin-top:8px;color:#586074">We design the workflows, data models, and experience behind the solution.</div></div>
+              </div>
+            </div>
+
+            <div style="flex:0 0 auto;transition:transform .1s linear;transform:{{ tf3 }}">
+              <div style="width:236px;height:300px;border-radius:20px;padding:24px;display:flex;flex-direction:column;justify-content:space-between;background:#ffffff;color:#0f1a2e;border:2px solid var(--accent,#1a4bff);box-shadow:0 18px 40px -24px rgba(26,75,255,.35)">
+                <span style="align-self:flex-start;font-size:14px;font-weight:400;color:#0f1a2e;letter-spacing:.02em">04</span>
+                <div><span style="width:9px;height:9px;border-radius:50%;background:var(--accent,#1a4bff);display:block;margin-bottom:14px"></span><div style="font-size:19px;font-weight:400;line-height:1.25;letter-spacing:-.01em">Implementation</div><div style="font-size:12.5px;font-weight:300;line-height:1.5;margin-top:8px;color:#586074">We build and configure the platforms, automations, and integrations.</div></div>
+              </div>
+            </div>
+
+            <div style="flex:0 0 auto;transition:transform .1s linear;transform:{{ tf4 }}">
+              <div style="width:236px;height:300px;border-radius:20px;padding:24px;display:flex;flex-direction:column;justify-content:space-between;background:#ffffff;color:#0f1a2e;border:2px solid var(--accent,#1a4bff);box-shadow:0 18px 40px -24px rgba(26,75,255,.35)">
+                <span style="align-self:flex-start;font-size:14px;font-weight:400;color:#0f1a2e;letter-spacing:.02em">05</span>
+                <div><span style="width:9px;height:9px;border-radius:50%;background:var(--accent,#1a4bff);display:block;margin-bottom:14px"></span><div style="font-size:19px;font-weight:400;line-height:1.25;letter-spacing:-.01em">Testing</div><div style="font-size:12.5px;font-weight:300;line-height:1.5;margin-top:8px;color:#586074">We validate functionality, security, and performance before go-live.</div></div>
+              </div>
+            </div>
+
+            <div style="flex:0 0 auto;transition:transform .1s linear;transform:{{ tf5 }}">
+              <div style="width:236px;height:300px;border-radius:20px;padding:24px;display:flex;flex-direction:column;justify-content:space-between;background:#ffffff;color:#0f1a2e;border:2px solid var(--accent,#1a4bff);box-shadow:0 18px 40px -24px rgba(26,75,255,.35)">
+                <span style="align-self:flex-start;font-size:14px;font-weight:400;color:#0f1a2e;letter-spacing:.02em">06</span>
+                <div><span style="width:9px;height:9px;border-radius:50%;background:var(--accent,#1a4bff);display:block;margin-bottom:14px"></span><div style="font-size:19px;font-weight:400;line-height:1.25;letter-spacing:-.01em">Launch</div><div style="font-size:12.5px;font-weight:300;line-height:1.5;margin-top:8px;color:#586074">We deploy the solution and support your team through go-live.</div></div>
+              </div>
+            </div>
+
+            <div style="flex:0 0 auto;transition:transform .1s linear;transform:{{ tf6 }}">
+              <div style="width:236px;height:300px;border-radius:20px;padding:24px;display:flex;flex-direction:column;justify-content:space-between;background:#ffffff;color:#0f1a2e;border:2px solid var(--accent,#1a4bff);box-shadow:0 18px 40px -24px rgba(26,75,255,.35)">
+                <span style="align-self:flex-start;font-size:14px;font-weight:400;color:#0f1a2e;letter-spacing:.02em">07</span>
+                <div><span style="width:9px;height:9px;border-radius:50%;background:var(--accent,#1a4bff);display:block;margin-bottom:14px"></span><div style="font-size:19px;font-weight:400;line-height:1.25;letter-spacing:-.01em">Support</div><div style="font-size:12.5px;font-weight:300;line-height:1.5;margin-top:8px;color:#586074">We provide ongoing administration, optimization, and Managed Support.</div></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section style="background:#ffffff;padding:80px 64px 96px;overflow:hidden;border-top:1px solid #eef1f5">
+      <div style="max-width:1120px;margin:0 auto">
+        <header style="max-width:520px;margin:0 auto 20px;text-align:center">
+          <div style="font-family:'Quicksand',sans-serif;font-weight:400;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent,#1a4bff);margin-bottom:16px">Why us</div>
+          <h2 style="margin:0;font-size:36px;line-height:1.1;font-weight:400;letter-spacing:-.03em;color:#0f1a2e;text-wrap:pretty">Built around<br>your business</h2>
+          <a href="#" style="display:inline-flex;align-items:center;gap:9px;margin-top:24px;font-size:15px;font-weight:500;color:var(--accent,#1a4bff)">Work with us <span style="font-size:17px">→</span></a>
+        </header>
+
+        <div style="position:relative;width:1120px;height:660px;max-width:100%;margin:24px auto 0">
+          <svg viewBox="0 0 1120 660" width="1120" height="660" fill="none" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none">
+            <path d="M747,112 C 600,30 320,150 198,208 C 60,272 120,410 728,462 C 900,475 640,520 198,558" stroke="var(--accent,#1a4bff)" stroke-width="1.5" stroke-dasharray="5 6" stroke-linecap="round"></path>
+          </svg>
+
+          <sc-for list="{{ whyCards }}" as="c" hint-placeholder-count="4">
+            <div style="{{ c.pos }}">
+              <div style="position:relative;width:300px;border:1px solid #e6eaf1;border-radius:20px;background:#ffffff;padding:26px 26px 28px;box-shadow:0 20px 46px -26px rgba(15,26,46,.28);transition:transform .35s cubic-bezier(.4,0,.2,1),box-shadow .35s ease,border-color .35s ease" style-hover="transform:translateY(-8px);box-shadow:0 30px 60px -24px rgba(26,75,255,.32);border-color:var(--accent,#1a4bff)">
+                <span style="font-family:'Quicksand',sans-serif;font-size:13px;font-weight:500;color:var(--accent,#1a4bff);letter-spacing:.04em">({{ c.num }})</span>
+                <div style="font-size:20px;font-weight:400;line-height:1.22;letter-spacing:-.015em;color:#0f1a2e;margin-top:12px">{{ c.title }}</div>
+                <p style="margin:12px 0 0;font-size:13.5px;font-weight:300;line-height:1.6;color:#586074;text-wrap:pretty">{{ c.body }}</p>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+
+
+    <dc-import name="Footer" hint-size="100%,640px"></dc-import>
+  </main>
+
+  <sc-if value="{{ isOpen }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ close }}" style="position:fixed;inset:0;z-index:60;display:flex;align-items:center;justify-content:center;padding:28px;background:rgba(238,241,245,.55);backdrop-filter:var(--blur,blur(8px));-webkit-backdrop-filter:var(--blur,blur(8px));animation:fadeIn .2s ease">
+      <div onClick="{{ stop }}" style="position:relative;width:840px;max-width:94vw;background:#ffffff;border:1px solid #e6eaf1;border-radius:26px;box-shadow:0 44px 100px -34px rgba(15,26,46,.5);display:flex;overflow:hidden;animation:modalIn .34s cubic-bezier(.2,.8,.2,1)">
+        <div style="flex:0 0 44%;min-height:380px;background:repeating-linear-gradient(45deg,#eef1f6 0,#eef1f6 11px,#e4e9f1 11px,#e4e9f1 22px);display:flex;align-items:flex-end;justify-content:center;padding:16px">
+          <span style="font-family:'Quicksand',sans-serif;font-size:10px;letter-spacing:.09em;color:#9aa4b5;background:rgba(255,255,255,.75);padding:4px 9px;border-radius:6px;text-transform:uppercase">illustration</span>
+        </div>
+        <div style="flex:1;padding:46px 46px 40px;display:flex;flex-direction:column">
+          <div style="font-family:'Quicksand',sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent,#1a4bff);margin-bottom:14px">Service</div>
+          <h2 style="margin:0 0 16px;font-size:36px;font-weight:400;line-height:1.15;letter-spacing:-.02em;color:#0f1a2e">{{ selectedCard.title }}</h2>
+          <p style="margin:0;font-size:16px;line-height:1.62;color:#586074;text-wrap:pretty">{{ selectedCard.blurb }}</p>
+          <div style="flex:1"></div>
+          <a href="#" onClick="{{ stop }}" style="margin-top:30px;font-size:15px;font-weight:400;color:var(--accent,#1a4bff);display:inline-flex;align-items:center;gap:8px">Take a look <span style="font-size:17px">→</span></a>
+        </div>
+        <button onClick="{{ close }}" style="position:absolute;top:16px;right:16px;width:38px;height:38px;border-radius:50%;border:1px solid #e6eaf1;background:#fff;color:#586074;font-size:18px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center">×</button>
+      </div>
+    </div>
+  </sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:700},&quot;accentColor&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#2f6bff&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#1a4bff&quot;,&quot;#2f6bff&quot;,&quot;#0066ff&quot;,&quot;#3b5bdb&quot;]},&quot;backdropBlur&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:3,&quot;min&quot;:0,&quot;max&quot;:20,&quot;step&quot;:1,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;}}">
+class Component extends DCLogic {
+  rootRef = React.createRef();
+  procRef = React.createRef();
+  trackRef = React.createRef();
+  navRef = React.createRef();
+  contRef = React.createRef();
+  state = { selected: null, center: 3.5, p: 0, maxShift: 0, navHover: null };
+
+  updateProgress() {
+    const sec = this.procRef.current, track = this.trackRef.current, cont = this.contRef.current;
+    if (!sec || !track || !cont) return;
+    const total = sec.offsetHeight - window.innerHeight;
+    const p = total > 0 ? Math.min(1, Math.max(0, -sec.getBoundingClientRect().top / total)) : 0;
+    const maxShift = Math.max(0, track.scrollWidth - cont.clientWidth);
+    if (p !== this.state.p || maxShift !== this.state.maxShift) this.setState({ p, maxShift });
+  }
+
+  applyVars() {
+    const el = this.rootRef.current;
+    if (!el) return;
+    el.style.setProperty('--accent', this.props.accentColor ?? '#1a4bff');
+    el.style.setProperty('--blur', `blur(${this.props.backdropBlur ?? 8}px)`);
+  }
+  syncImages() {
+    const el = this.rootRef.current;
+    if (!el) return;
+    el.querySelectorAll('img[data-src]').forEach((im) => {
+      const u = im.getAttribute('data-src');
+      if (u && u.indexOf('{{') === -1 && im.getAttribute('src') !== u) im.setAttribute('src', u);
+    });
+  }
+  componentDidMount() {
+    this.applyVars();
+    this.syncImages();
+    this._esc = (e) => { if (e.key === 'Escape') this.setState({ selected: null }); };
+    window.addEventListener('keydown', this._esc);
+    this._scroll = () => { if (this._raf) return; this._raf = requestAnimationFrame(() => { this._raf = null; this.updateProgress(); }); };
+    window.addEventListener('scroll', this._scroll, { passive: true });
+    window.addEventListener('resize', this._scroll);
+    this.updateProgress();
+  }
+  componentDidUpdate() { this.applyVars(); this.syncImages(); }
+  componentWillUnmount() { window.removeEventListener('keydown', this._esc); window.removeEventListener('scroll', this._scroll); window.removeEventListener('resize', this._scroll); }
+
+  renderVals() {
+    const data = [
+      { title: 'AI & Automation', blurb: 'Deploy intelligent agents and workflow automation that take on the repetitive work, freeing your team to focus on the decisions that actually move revenue.' },
+      { title: 'CRM & Marketing', blurb: 'Unify your customer data and automate campaigns across every channel, so more conversations turn into closed, repeatable revenue.' },
+      { title: 'Cloud', blurb: 'Migrate, scale, and secure your infrastructure on modern cloud platforms engineered for speed, resilience, and predictable cost.' },
+      { title: 'Financial Systems', blurb: 'Connect billing, accounting, and reporting into a single source of truth, so finance runs on clean, real-time numbers.' },
+      { title: 'Managed Services & Integrations', blurb: 'Keep everything running and connected with proactive support and custom integrations across your entire stack.' },
+    ];
+    const cards = data.map((c, i) => ({ ...c, open: () => this.setState({ selected: i }) }));
+
+    const navRaw = [
+      { label: 'Services', href: '#services', active: true },
+      { label: 'Industries', href: '#industries' },
+      { label: 'Process', href: '#process' },
+      { label: 'Case Studies', href: 'Case Studies Cube.dc.html' },
+      { label: 'About Us', href: '#about' },
+      { label: 'Contact', href: 'Contact.dc.html' },
+    ];
+    const nh = this.state.navHover;
+    const navItems = navRaw.map((it, i) => {
+      const active = !!it.active;
+      let rotX = 0, tz = 0, sc = 1, op = 1;
+      if (nh !== null) {
+        const d = i - nh, ad = Math.abs(d);
+        rotX = Math.max(-34, Math.min(34, d * 15));
+        tz = ad === 0 ? 14 : -ad * 5;
+        sc = ad === 0 ? 1.1 : Math.max(0.93, 1 - ad * 0.025);
+        op = ad === 0 ? 1 : Math.max(0.72, 1 - ad * 0.09);
+      }
+      const color = ad => active || (nh !== null && nh === i) ? '#0f1a2e' : '#7b8494';
+      const isHover = nh === i;
+      const style = `transform-origin:left center;transform:rotateX(${rotX.toFixed(1)}deg) translateZ(${tz.toFixed(1)}px) scale(${sc.toFixed(3)});opacity:${op.toFixed(2)};transition:transform .42s cubic-bezier(.22,.61,.36,1),opacity .42s ease,color .25s ease;font-size:14px;font-weight:${(active || isHover) ? 500 : 400};color:${(active || isHover) ? '#0f1a2e' : '#7b8494'};text-decoration:none;padding-left:${active ? 0 : 15}px;display:flex;align-items:center;gap:9px;will-change:transform;backface-visibility:hidden`;
+      return { label: it.label, href: it.href, active, style };
+    });
+    const sel = this.state.selected;
+
+    const inds = [
+      { name: 'Associations', img: 'https://images.pexels.com/photos/1181406/pexels-photo-1181406.jpeg?auto=compress&cs=tinysrgb&w=700' },
+      { name: 'Nonprofits', img: 'https://images.pexels.com/photos/6646917/pexels-photo-6646917.jpeg?auto=compress&cs=tinysrgb&w=700' },
+      { name: 'Professional', img: 'https://images.pexels.com/photos/30004365/pexels-photo-30004365.jpeg?auto=compress&cs=tinysrgb&w=700' },
+      { name: 'Healthcare', img: 'https://images.pexels.com/photos/6129507/pexels-photo-6129507.jpeg?auto=compress&cs=tinysrgb&w=700' },
+      { name: 'Real Estate', img: 'https://images.pexels.com/photos/1974596/pexels-photo-1974596.jpeg?auto=compress&cs=tinysrgb&w=700' },
+      { name: 'Financial Services', img: 'https://images.pexels.com/photos/31650949/pexels-photo-31650949.jpeg?auto=compress&cs=tinysrgb&w=700' },
+      { name: 'Education', img: 'https://images.pexels.com/photos/8197534/pexels-photo-8197534.jpeg?auto=compress&cs=tinysrgb&w=700' },
+      { name: 'Manufacturing', img: 'https://images.pexels.com/photos/1108101/pexels-photo-1108101.jpeg?auto=compress&cs=tinysrgb&w=700' },
+    ];
+    const center = this.state.center;
+    const step = 18, R = 360;
+    const cardsView = inds.map((it, i) => {
+      const name = it.name;
+      const d = i - center, ad = Math.abs(d);
+      const rad = d * step * Math.PI / 180;
+      const tx = R * Math.sin(rad);
+      const tz = R * (1 - Math.cos(rad));
+      const rotY = -d * step;
+      const scale = 1 + Math.min(ad, 3) * 0.05;
+      const opacity = ad > 2.6 ? 0 : (ad > 1.8 ? (2.6 - ad) / 0.8 : 1);
+      const capOpacity = ad > 1.5 ? 0 : 1;
+      const zi = Math.round(100 - ad * 10);
+      const pe = ad > 2.6 ? 'none' : 'auto';
+      const style = `position:absolute;left:50%;top:22px;width:196px;margin-left:-98px;transform-style:preserve-3d;transition:transform .55s cubic-bezier(.22,.61,.36,1),opacity .4s ease;transform:translateX(${tx.toFixed(1)}px) translateZ(${tz.toFixed(1)}px) rotateY(${rotY.toFixed(1)}deg) scale(${scale.toFixed(3)});opacity:${opacity.toFixed(2)};z-index:${zi};pointer-events:${pe}`;
+      return { name, img: it.img, num: '#' + String(i + 1).padStart(2, '0'), style, capOpacity, go: () => this.setState({ center: i }) };
+    });
+
+    const whyData = [
+      { num: '01', title: 'Business-First', body: 'We begin with goals, challenges, users, and expected outcomes before recommending a platform or solution.', x: 597, y: 12, rot: -6 },
+      { num: '02', title: 'Cross-Platform Expertise', body: 'Our capabilities span AI, CRM, cloud, marketing automation, financial systems, and association management.', x: 48, y: 108, rot: 6 },
+      { num: '03', title: 'Practical Solutions', body: 'We focus on solutions that can be implemented, adopted, measured, secured, and maintained.', x: 578, y: 362, rot: -6 },
+      { num: '04', title: 'Long-Term Partnership', body: 'We provide ongoing administration, optimization, training, and support after launch.', x: 48, y: 458, rot: 6 },
+    ];
+    const whyCards = whyData.map((c) => ({ num: c.num, title: c.title, body: c.body, pos: `position:absolute;left:${c.x}px;top:${c.y}px;transform:rotate(${c.rot}deg)` }));
+
+    const p = this.state.p || 0, maxShift = this.state.maxShift || 0;
+    const trackTf = `translateX(${(-p * maxShift).toFixed(1)}px)`;
+    const cardY = (i) => { const base = (i % 2 === 0) ? -34 : 34; return (base + Math.sin(p * Math.PI * 3 + i * 0.8) * 20).toFixed(1); };
+    const tf = {};
+    for (let i = 0; i < 7; i++) tf['tf' + i] = `translateY(${cardY(i)}px)`;
+
+    return {
+      rootRef: this.rootRef,
+      procRef: this.procRef,
+      trackRef: this.trackRef,
+      contRef: this.contRef,
+      trackTf,
+      ...tf,
+      cards,
+      navItems,
+      navRef: this.navRef,
+      onNavMove: (e) => {
+        const nav = this.navRef.current;
+        if (!nav) return;
+        const y = e.clientY;
+        let best = 0, bestD = Infinity;
+        Array.from(nav.children).forEach((ch, i) => {
+          const r = ch.getBoundingClientRect();
+          const mid = r.top + r.height / 2;
+          const d = Math.abs(y - mid);
+          if (d < bestD) { bestD = d; best = i; }
+        });
+        if (best !== this.state.navHover) this.setState({ navHover: best });
+      },
+      onNavLeave: () => this.setState({ navHover: null }),
+      whyCards,
+      isOpen: sel !== null,
+      selectedCard: sel !== null ? data[sel] : null,
+      close: () => this.setState({ selected: null }),
+      stop: (e) => e.stopPropagation(),
+      stopSubmit: (e) => e.preventDefault(),
+      cardsView,
+      center,
+      maxCenter: inds.length - 1,
+      onSlide: (e) => this.setState({ center: parseFloat(e.target.value) }),
+    };
+  }
+}
+</script>
+</body>
+</html>

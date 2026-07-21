@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{font-family:'Quicksand',system-ui,sans-serif;font-weight:300;background:#ffffff;color:#0f1a2e;-webkit-font-smoothing:antialiased}
+  a{color:var(--accent,#1a4bff);text-decoration:none}
+  a:hover{opacity:.82}
+  .cf-input,.cf-select{width:100%;border:none;border-bottom:1px solid #d6dce6;background:transparent;padding:9px 2px;font-family:'Quicksand',sans-serif;font-size:15px;font-weight:400;color:#0f1a2e;outline:none;transition:border-color .25s ease}
+  .cf-input:focus,.cf-select:focus{border-bottom-color:var(--accent,#1a4bff)}
+  .cf-input::placeholder,.cf-area::placeholder{color:#aab2c0;font-weight:300}
+  .cf-select{-webkit-appearance:none;appearance:none;cursor:pointer;padding-right:22px}
+  .cf-area{width:100%;border:1px solid #e0e5ee;border-radius:14px;background:#fff;padding:14px;font-family:'Quicksand',sans-serif;font-size:15px;font-weight:400;color:#0f1a2e;outline:none;resize:vertical;min-height:104px;transition:border-color .25s ease}
+  .cf-area:focus{border-color:var(--accent,#1a4bff)}
+</style>
+</helmet>
+<div ref="{{ rootRef }}" style="display:flex;min-height:100vh;background:#ffffff">
+
+  <aside style="flex:0 0 184px;background:#ffffff;border-right:1px solid #e6eaf1;padding:26px 24px;display:flex;flex-direction:column;gap:40px;position:sticky;top:0;height:100vh">
+    <div style="display:flex;align-items:center;gap:10px">
+      <div style="width:32px;height:32px;position:relative">
+        <div style="position:absolute;width:17px;height:17px;background:#0f1a2e;transform:rotate(45deg);top:0;left:7px;border-radius:3px"></div>
+        <div style="position:absolute;width:17px;height:17px;background:var(--accent,#1a4bff);transform:rotate(45deg);top:8px;left:7px;border-radius:3px;opacity:.9"></div>
+      </div>
+    </div>
+    <nav style="display:flex;flex-direction:column;gap:16px">
+      <a href="Services Hero.dc.html#services" style="font-size:14px;font-weight:400;color:#7b8494;text-decoration:none;padding-left:15px">Services</a>
+      <a href="Services Hero.dc.html#industries" style="font-size:14px;font-weight:400;color:#7b8494;text-decoration:none;padding-left:15px">Industries</a>
+      <a href="Services Hero.dc.html#process" style="font-size:14px;font-weight:400;color:#7b8494;text-decoration:none;padding-left:15px">Process</a>
+      <a href="Case Studies Cube.dc.html" style="font-size:14px;font-weight:400;color:#7b8494;text-decoration:none;padding-left:15px">Case Studies</a>
+      <a href="Services Hero.dc.html#about" style="font-size:14px;font-weight:400;color:#7b8494;text-decoration:none;padding-left:15px">About Us</a>
+      <a href="Contact.dc.html" style="font-size:14px;font-weight:500;color:#0f1a2e;text-decoration:none;display:flex;align-items:center;gap:9px"><span style="width:6px;height:6px;border-radius:50%;background:var(--accent,#1a4bff);display:inline-block"></span>Contact</a>
+    </nav>
+  </aside>
+
+  <main style="flex:1;min-width:0;display:flex;flex-direction:column">
+    <section id="contact" style="background:#ffffff;padding:80px 64px 96px;overflow:hidden">
+      <div style="max-width:900px;margin:0 auto;text-align:center">
+        <div style="font-family:'Quicksand',sans-serif;font-weight:400;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent,#1a4bff);margin-bottom:8px">Get in touch</div>
+        <h1 style="margin:0 0 12px;font-size:40px;line-height:.98;font-weight:500;letter-spacing:-.045em;color:#0f1a2e">Contact</h1>
+        <p style="margin:0 auto 44px;max-width:520px;font-size:16px;line-height:1.6;font-weight:300;color:#586074;text-wrap:pretty">Tell us about your goals and current systems. We'll get back to you within one business day.</p>
+
+        <form onSubmit="{{ stopSubmit }}" style="text-align:left">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:26px 34px">
+            <label style="display:flex;flex-direction:column;gap:8px">
+              <span style="font-size:12px;letter-spacing:.06em;color:#7b8494;font-weight:500">Full Name</span>
+              <input class="cf-input" type="text" placeholder="Jane Cooper">
+            </label>
+            <label style="display:flex;flex-direction:column;gap:8px">
+              <span style="font-size:12px;letter-spacing:.06em;color:#7b8494;font-weight:500">Business Email</span>
+              <input class="cf-input" type="email" placeholder="jane@company.com">
+            </label>
+            <label style="display:flex;flex-direction:column;gap:8px">
+              <span style="font-size:12px;letter-spacing:.06em;color:#7b8494;font-weight:500">Phone Number</span>
+              <input class="cf-input" type="tel" placeholder="+1 (555) 000-0000">
+            </label>
+            <label style="display:flex;flex-direction:column;gap:8px">
+              <span style="font-size:12px;letter-spacing:.06em;color:#7b8494;font-weight:500">Company</span>
+              <input class="cf-input" type="text" placeholder="Company Inc.">
+            </label>
+            <label style="display:flex;flex-direction:column;gap:8px">
+              <span style="font-size:12px;letter-spacing:.06em;color:#7b8494;font-weight:500">Job Title</span>
+              <input class="cf-input" type="text" placeholder="Director of Operations">
+            </label>
+            <label style="display:flex;flex-direction:column;gap:8px">
+              <span style="font-size:12px;letter-spacing:.06em;color:#7b8494;font-weight:500">Service of Interest</span>
+              <div style="position:relative">
+                <select class="cf-select">
+                  <option>AI, Automation &amp; Data</option>
+                  <option>CRM &amp; Marketing</option>
+                  <option>Cloud</option>
+                  <option>Financial Systems</option>
+                  <option>Managed Services &amp; Integrations</option>
+                </select>
+                <span style="position:absolute;right:2px;top:9px;color:#9aa3b2;font-size:12px;pointer-events:none">▾</span>
+              </div>
+            </label>
+            <label style="display:flex;flex-direction:column;gap:8px">
+              <span style="font-size:12px;letter-spacing:.06em;color:#7b8494;font-weight:500">Estimated Timeline</span>
+              <div style="position:relative">
+                <select class="cf-select">
+                  <option>Immediately</option>
+                  <option>1–3 months</option>
+                  <option>3–6 months</option>
+                  <option>6+ months</option>
+                </select>
+                <span style="position:absolute;right:2px;top:9px;color:#9aa3b2;font-size:12px;pointer-events:none">▾</span>
+              </div>
+            </label>
+            <label style="display:flex;flex-direction:column;gap:8px">
+              <span style="font-size:12px;letter-spacing:.06em;color:#7b8494;font-weight:500">Estimated Budget</span>
+              <div style="position:relative">
+                <select class="cf-select">
+                  <option>Under $10k</option>
+                  <option>$10k – $50k</option>
+                  <option>$50k – $100k</option>
+                  <option>$100k+</option>
+                </select>
+                <span style="position:absolute;right:2px;top:9px;color:#9aa3b2;font-size:12px;pointer-events:none">▾</span>
+              </div>
+            </label>
+            <label style="display:flex;flex-direction:column;gap:8px">
+              <span style="font-size:12px;letter-spacing:.06em;color:#7b8494;font-weight:500">Preferred Contact Method</span>
+              <div style="position:relative">
+                <select class="cf-select">
+                  <option>Email</option>
+                  <option>Phone</option>
+                  <option>Video call</option>
+                </select>
+                <span style="position:absolute;right:2px;top:9px;color:#9aa3b2;font-size:12px;pointer-events:none">▾</span>
+              </div>
+            </label>
+            <label style="display:flex;flex-direction:column;gap:8px">
+              <span style="font-size:12px;letter-spacing:.06em;color:#7b8494;font-weight:500">Current Technology Platforms</span>
+              <input class="cf-input" type="text" placeholder="Salesforce, HubSpot, Azure, NetSuite…">
+            </label>
+            <label style="grid-column:1 / -1;display:flex;flex-direction:column;gap:8px">
+              <span style="font-size:12px;letter-spacing:.06em;color:#7b8494;font-weight:500">Project Description</span>
+              <textarea class="cf-area" placeholder="Tell us about your technology goals."></textarea>
+            </label>
+          </div>
+          <button type="submit" style="margin-top:34px;border:none;cursor:pointer;background:var(--accent,#1a4bff);color:#fff;font-family:'Quicksand',sans-serif;font-size:15px;font-weight:500;letter-spacing:.01em;padding:15px 40px;border-radius:999px;box-shadow:0 16px 34px -16px rgba(26,75,255,.55);transition:transform .25s ease,box-shadow .25s ease" style-hover="transform:translateY(-2px);box-shadow:0 22px 44px -16px rgba(26,75,255,.6)">Submit</button>
+        </form>
+      </div>
+    </section>
+
+    <dc-import name="Footer" hint-size="100%,640px"></dc-import>
+  </main>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:900},&quot;accentColor&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#2f6bff&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#1a4bff&quot;,&quot;#2f6bff&quot;,&quot;#0066ff&quot;,&quot;#3b5bdb&quot;]}}">
+class Component extends DCLogic {
+  rootRef = React.createRef();
+  applyVars() {
+    const el = this.rootRef.current;
+    if (!el) return;
+    el.style.setProperty('--accent', this.props.accentColor ?? '#1a4bff');
+  }
+  componentDidMount() { this.applyVars(); }
+  componentDidUpdate() { this.applyVars(); }
+  renderVals() {
+    return {
+      rootRef: this.rootRef,
+      stopSubmit: (e) => e.preventDefault(),
+    };
+  }
+}
+</script>
+</body>
+</html>

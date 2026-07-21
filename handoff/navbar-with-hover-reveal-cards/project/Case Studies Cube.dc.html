@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{font-family:'Quicksand',system-ui,sans-serif;font-weight:300;background:#ffffff;color:#0f1a2e;-webkit-font-smoothing:antialiased}
+  a{color:var(--accent,#1a4bff);text-decoration:none}
+  a:hover{opacity:.82}
+  input[type=range].om-slider{-webkit-appearance:none;appearance:none;width:100%;height:3px;border-radius:4px;background:#dbe1ec;outline:none;margin:0}
+  input[type=range].om-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:14px;height:14px;border-radius:50%;background:#0f1a2e;cursor:pointer;border:3px solid #fff;box-shadow:0 2px 6px rgba(15,26,46,.3)}
+  input[type=range].om-slider::-moz-range-thumb{width:11px;height:11px;border-radius:50%;background:#0f1a2e;cursor:pointer;border:3px solid #fff}
+</style>
+</helmet>
+<div ref="{{ rootRef }}" style="background:#f5f7fa">
+  <div style="display:flex;height:100vh;min-height:640px;background:linear-gradient(160deg,#f7f9fc 0%,#eef1f6 55%,#e7ebf2 100%);position:relative;overflow:hidden">
+
+  <aside style="flex:0 0 236px;padding:34px 26px;display:flex;flex-direction:column;gap:30px;z-index:5">
+    <div style="display:flex;align-items:center;gap:10px">
+      <div style="width:30px;height:30px;position:relative">
+        <div style="position:absolute;width:16px;height:16px;background:#0f1a2e;transform:rotate(45deg);top:0;left:7px;border-radius:3px"></div>
+        <div style="position:absolute;width:16px;height:16px;background:var(--accent,#1a4bff);transform:rotate(45deg);top:8px;left:7px;border-radius:3px;opacity:.9"></div>
+      </div>
+      <span style="font-size:15px;font-weight:500;letter-spacing:-.01em">Nyxo</span>
+    </div>
+
+    <div>
+      <div style="font-family:'Quicksand',sans-serif;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#8b93a3;margin-bottom:14px;padding-left:4px">Case Studies</div>
+      <nav style="display:flex;flex-direction:column;gap:4px">
+        <sc-for list="{{ studies }}" as="s" hint-placeholder-count="6">
+          <div onClick="{{ s.onClick }}" style="{{ s.rowStyle }}">
+            <span style="width:16px;height:16px;border-radius:4px;border:2px solid {{ s.iconColor }};transform:rotate(45deg);flex:0 0 auto"></span>
+            <span style="min-width:0">
+              <span style="{{ s.nameStyle }}">{{ s.name }}</span>
+              <span style="{{ s.catStyle }}">{{ s.category }}</span>
+            </span>
+          </div>
+        </sc-for>
+      </nav>
+    </div>
+  </aside>
+
+  <main style="flex:1;min-width:0;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center">
+    <div style="perspective:1400px;perspective-origin:50% 42%">
+      <div ref="{{ cubeRef }}" style="width:300px;height:300px;position:relative;transform-style:preserve-3d;transform:{{ cubeTf }};transition:transform .9s cubic-bezier(.65,.05,.2,1)">
+        <sc-for list="{{ faces }}" as="f" hint-placeholder-count="6">
+          <div style="{{ f.style }}">
+            <img data-src="{{ f.img }}" alt="{{ f.name }}" data-name="{{ f.name }}" style="width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.9)" />
+            <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,26,46,0) 45%,rgba(15,26,46,.72) 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:18px">
+              <span style="font-family:'Quicksand',sans-serif;font-size:11px;letter-spacing:.14em;color:rgba(255,255,255,.7);text-transform:uppercase">{{ f.num }} · {{ f.category }}</span>
+              <span style="font-size:19px;font-weight:500;color:#fff;letter-spacing:-.01em;margin-top:3px">{{ f.name }}</span>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="width:340px;height:70px;margin-top:6px;border-radius:50%;background:radial-gradient(ellipse at center,rgba(15,26,46,.16) 0%,rgba(15,26,46,0) 68%);filter:blur(3px)"></div>
+
+    <div style="position:absolute;bottom:38px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:14px">
+      <div style="width:300px;max-width:60vw">
+        <input type="range" class="om-slider" min="0" max="359" step="1" value="{{ sliderVal }}" onInput="{{ onSlide }}">
+      </div>
+      <div style="text-align:center">
+        <div style="font-family:'Quicksand',sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#8b93a3">Rotation</div>
+        <div style="font-size:28px;font-weight:300;letter-spacing:.02em;color:#0f1a2e;margin-top:2px">{{ degText }}°</div>
+      </div>
+    </div>
+
+    <div style="position:absolute;bottom:40px;left:40px;font-family:'Quicksand',sans-serif;font-size:11px;color:#9aa3b2;letter-spacing:.06em">
+      <span style="color:#c2c9d5">x</span> <span style="color:#0f1a2e;font-weight:500">y</span> <span style="color:#c2c9d5">z</span>
+    </div>
+  </main>
+
+  <aside style="flex:0 0 236px;padding:34px 26px;display:flex;flex-direction:column;gap:26px;z-index:5">
+    <div>
+      <div style="font-family:'Quicksand',sans-serif;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#8b93a3;margin-bottom:16px">Menu</div>
+      <nav style="display:flex;flex-direction:column;gap:16px">
+        <a href="Services Hero.dc.html#services" style="font-size:14px;font-weight:400;color:#7b8494;padding-left:15px">Services</a>
+        <a href="Services Hero.dc.html#industries" style="font-size:14px;font-weight:400;color:#7b8494;padding-left:15px">Industries</a>
+        <a href="Services Hero.dc.html#process" style="font-size:14px;font-weight:400;color:#7b8494;padding-left:15px">Process</a>
+        <a href="#" style="font-size:14px;font-weight:500;color:#0f1a2e;text-decoration:none;display:flex;align-items:center;gap:9px"><span style="width:6px;height:6px;border-radius:50%;background:var(--accent,#1a4bff);display:inline-block"></span>Case Studies</a>
+        <a href="Services Hero.dc.html#about" style="font-size:14px;font-weight:400;color:#7b8494;padding-left:15px">About Us</a>
+        <a href="Services Hero.dc.html#contact" style="font-size:14px;font-weight:400;color:#7b8494;padding-left:15px">Contact</a>
+      </nav>
+    </div>
+  </aside>
+  </div>
+  <dc-import name="Footer" hint-size="100%,640px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:700},&quot;accentColor&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#2f6bff&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#1a4bff&quot;,&quot;#2f6bff&quot;,&quot;#0066ff&quot;,&quot;#3b5bdb&quot;]}}">
+class Component extends DCLogic {
+  rootRef = React.createRef();
+  cubeRef = React.createRef();
+  state = { sel: 0, rx: 0, ry: 0 };
+
+  applyVars() { const el = this.rootRef.current; if (el) el.style.setProperty('--accent', this.props.accentColor ?? '#1a4bff'); }
+  syncImages() {
+    const el = this.rootRef.current; if (!el) return;
+    el.querySelectorAll('img[data-src]').forEach((im) => {
+      const u = im.getAttribute('data-src');
+      if (u && u.indexOf('{{') === -1 && im.getAttribute('src') !== u) im.setAttribute('src', u);
+    });
+  }
+  componentDidMount() { this.applyVars(); this.syncImages(); }
+  componentDidUpdate() { this.applyVars(); this.syncImages(); }
+
+  renderVals() {
+    const data = [
+      { name: 'Northwind CRM', category: 'Financial Services', img: 'https://images.pexels.com/photos/31650949/pexels-photo-31650949.jpeg?auto=compress&cs=tinysrgb&w=700' },
+      { name: 'Verdant Portal', category: 'Nonprofit', img: 'https://images.pexels.com/photos/6646917/pexels-photo-6646917.jpeg?auto=compress&cs=tinysrgb&w=700' },
+      { name: 'Atlas Cloud', category: 'Enterprise', img: 'https://images.pexels.com/photos/1181406/pexels-photo-1181406.jpeg?auto=compress&cs=tinysrgb&w=700' },
+      { name: 'Cobalt Commerce', category: 'Retail', img: 'https://images.pexels.com/photos/1108101/pexels-photo-1108101.jpeg?auto=compress&cs=tinysrgb&w=700' },
+      { name: 'Helio Assistant', category: 'Artificial Intelligence', img: 'https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=700' },
+      { name: 'Meridian Analytics', category: 'Data Platform', img: 'https://images.pexels.com/photos/1974596/pexels-photo-1974596.jpeg?auto=compress&cs=tinysrgb&w=700' },
+    ];
+    // base transform per cube face, and the cube rotation that brings each face to front
+    const faceBase = [
+      'translateZ(150px)',
+      'rotateY(90deg) translateZ(150px)',
+      'rotateY(180deg) translateZ(150px)',
+      'rotateY(-90deg) translateZ(150px)',
+      'rotateX(90deg) translateZ(150px)',
+      'rotateX(-90deg) translateZ(150px)',
+    ];
+    const target = [ {rx:0,ry:0}, {rx:0,ry:-90}, {rx:0,ry:180}, {rx:0,ry:90}, {rx:-90,ry:0}, {rx:90,ry:0} ];
+
+    const sel = this.state.sel;
+    const faces = data.map((d, i) => ({
+      name: d.name, category: d.category, img: d.img, num: String(i + 1).padStart(2, '0'),
+      style: `position:absolute;width:300px;height:300px;left:0;top:0;overflow:hidden;border-radius:6px;background:#e7ebf1;transform:${faceBase[i]};box-shadow:inset 0 0 0 1px rgba(255,255,255,.14);backface-visibility:hidden`,
+    }));
+
+    const studies = data.map((d, i) => {
+      const active = i === sel;
+      return {
+        name: d.name, category: d.category,
+        iconColor: active ? '#ffffff' : (this.props.accentColor ?? '#1a4bff'),
+        rowStyle: `display:flex;align-items:center;gap:13px;padding:11px 13px;border-radius:12px;cursor:pointer;transition:background .25s ease;background:${active ? '#0f1a2e' : 'transparent'}`,
+        nameStyle: `display:block;font-size:14px;font-weight:${active ? 500 : 400};letter-spacing:-.005em;line-height:1.2;color:${active ? '#ffffff' : '#0f1a2e'};white-space:nowrap;overflow:hidden;text-overflow:ellipsis`,
+        catStyle: `display:block;font-size:11px;font-weight:300;margin-top:2px;color:${active ? 'rgba(255,255,255,.6)' : '#9aa3b2'}`,
+        onClick: () => this.setState({ sel: i, rx: target[i].rx, ry: target[i].ry }),
+      };
+    });
+
+    const deg = ((Math.round(this.state.ry) % 360) + 360) % 360;
+    return {
+      rootRef: this.rootRef,
+      cubeRef: this.cubeRef,
+      faces,
+      studies,
+      cubeTf: `rotateX(${this.state.rx}deg) rotateY(${this.state.ry}deg)`,
+      degText: deg,
+      sliderVal: deg,
+      onSlide: (e) => this.setState({ ry: parseInt(e.target.value, 10), rx: 0 }),
+    };
+  }
+}
+</script>
+</body>
+</html>

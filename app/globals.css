@@ -1,0 +1,364 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   Design tokens — baked from the Claude Design prototype defaults.
+   accent #1a4bff, ink #0f1a2e, modal backdrop blur 8px.
+--------------------------------------------------------------------------- */
+:root {
+  --accent: #1a4bff;
+  --ink: #0f1a2e;
+  --blur: blur(8px);
+  --font-quicksand: "Quicksand", system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-quicksand);
+  font-weight: 300;
+  background: #ffffff;
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+a:hover {
+  opacity: 0.82;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes modalIn {
+  from {
+    opacity: 0;
+    transform: scale(0.93) translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Industries range slider (home) */
+input[type="range"].om-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  border-radius: 4px;
+  background: #e2e7f0;
+  outline: none;
+  margin: 0;
+}
+input[type="range"].om-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--accent);
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(26, 75, 255, 0.45);
+  border: 3px solid #fff;
+}
+input[type="range"].om-slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--accent);
+  cursor: pointer;
+  border: 3px solid #fff;
+}
+
+/* Cube rotation slider (case studies) */
+input[type="range"].cube-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 3px;
+  border-radius: 4px;
+  background: #dbe1ec;
+  outline: none;
+  margin: 0;
+}
+input[type="range"].cube-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #0f1a2e;
+  cursor: pointer;
+  border: 3px solid #fff;
+  box-shadow: 0 2px 6px rgba(15, 26, 46, 0.3);
+}
+input[type="range"].cube-slider::-moz-range-thumb {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #0f1a2e;
+  cursor: pointer;
+  border: 3px solid #fff;
+}
+
+/* Contact form fields */
+.cf-input,
+.cf-select {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #d6dce6;
+  background: transparent;
+  padding: 9px 2px;
+  font-family: var(--font-quicksand);
+  font-size: 15px;
+  font-weight: 400;
+  color: #0f1a2e;
+  outline: none;
+  transition: border-color 0.25s ease;
+}
+.cf-input:focus,
+.cf-select:focus {
+  border-bottom-color: var(--accent);
+}
+.cf-input::placeholder,
+.cf-area::placeholder {
+  color: #aab2c0;
+  font-weight: 300;
+}
+.cf-select {
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  padding-right: 22px;
+}
+.cf-area {
+  width: 100%;
+  border: 1px solid #e0e5ee;
+  border-radius: 14px;
+  background: #fff;
+  padding: 14px;
+  font-family: var(--font-quicksand);
+  font-size: 15px;
+  font-weight: 400;
+  color: #0f1a2e;
+  outline: none;
+  resize: vertical;
+  min-height: 104px;
+  transition: border-color 0.25s ease;
+}
+.cf-area:focus {
+  border-color: var(--accent);
+}
+
+/* ---------------------------------------------------------------------------
+   Hover-only styles (the prototype's style-hover="…"). Inline React styles
+   can't express :hover, so they live here as classes.
+--------------------------------------------------------------------------- */
+
+/* Hero service card: expands + colorizes on hover.
+   Base layout lives here (not inline) so the :hover rule can win — inline
+   styles would otherwise override the hover state. */
+.service-card {
+  flex: 1 1 0;
+  min-width: 0;
+  position: relative;
+  border: 1px solid #e6eaf1;
+  border-radius: 18px;
+  background: #f5f7fa;
+  padding: 20px 18px;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  overflow: hidden;
+  filter: grayscale(1);
+  opacity: 0.82;
+  transform: translateY(0);
+  transition: flex-grow 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+    filter 0.4s ease, opacity 0.4s ease, box-shadow 0.4s ease,
+    border-color 0.4s ease, transform 0.4s ease;
+}
+.service-card:hover {
+  flex-grow: 2.4;
+  filter: none;
+  opacity: 1;
+  background: #ffffff;
+  border-color: var(--accent);
+  box-shadow: 0 26px 55px -22px rgba(26, 75, 255, 0.42);
+  transform: translateY(-8px);
+}
+
+/* Why-us card lift on hover (base here so :hover can override). */
+.why-card {
+  position: relative;
+  width: 300px;
+  border: 1px solid #e6eaf1;
+  border-radius: 20px;
+  background: #ffffff;
+  padding: 26px 26px 28px;
+  box-shadow: 0 20px 46px -26px rgba(15, 26, 46, 0.28);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.35s ease, border-color 0.35s ease;
+}
+.why-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 30px 60px -24px rgba(26, 75, 255, 0.32);
+  border-color: var(--accent);
+}
+
+/* Contact submit button (base box-shadow here so :hover can override). */
+.submit-btn {
+  margin-top: 34px;
+  border: none;
+  cursor: pointer;
+  background: var(--accent);
+  color: #fff;
+  font-family: var(--font-quicksand);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  padding: 15px 40px;
+  border-radius: 999px;
+  box-shadow: 0 16px 34px -16px rgba(26, 75, 255, 0.55);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 22px 44px -16px rgba(26, 75, 255, 0.6);
+}
+
+/* ---------------------------------------------------------------------------
+   Responsive breakpoints. The prototype is a fixed desktop layout with zero
+   media queries; these are additive so the desktop rendering is untouched.
+--------------------------------------------------------------------------- */
+
+/* Tablet and below: collapse the fixed sidebar into a top bar */
+@media (max-width: 860px) {
+  .page-shell {
+    flex-direction: column;
+  }
+  .sidebar {
+    position: static !important;
+    flex: none !important;
+    width: 100% !important;
+    height: auto !important;
+    flex-direction: row !important;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px !important;
+    border-right: none !important;
+    border-bottom: 1px solid #e6eaf1;
+    padding: 16px 22px !important;
+  }
+  .sidebar nav {
+    flex-direction: row !important;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 8px 16px !important;
+    perspective: none !important;
+  }
+  /* Disable the 3D nav tilt on small screens */
+  .sidebar nav a {
+    transform: none !important;
+    opacity: 1 !important;
+    padding-left: 0 !important;
+  }
+
+  .section-pad {
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+  }
+
+  /* Hero cards stack vertically */
+  .service-cards {
+    flex-direction: column;
+    height: auto !important;
+  }
+  .service-card {
+    min-height: 180px;
+  }
+  .service-card:hover {
+    transform: none;
+  }
+
+  /* About: single column */
+  .about-row {
+    flex-direction: column;
+    text-align: center;
+  }
+  /* Ease the laptop's top overflow once the section stacks so it
+     doesn't ride up into the paragraph above it. */
+  .about-laptop {
+    top: -6% !important;
+  }
+
+  /* Why-us scattered canvas becomes a simple stack */
+  .whyus-canvas {
+    width: 100% !important;
+    height: auto !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 22px;
+  }
+  .whyus-canvas svg {
+    display: none;
+  }
+  .whyus-card-pos {
+    position: static !important;
+    transform: none !important;
+  }
+
+  /* Contact form single column */
+  .contact-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Case studies: stack sidebars above/below the stage */
+  .cube-shell {
+    flex-direction: column;
+    height: auto !important;
+  }
+  .cube-aside {
+    flex: none !important;
+    width: 100% !important;
+  }
+  .cube-stage {
+    min-height: 70vh;
+  }
+}
+
+/* Phone: scale down the large fixed-size stages */
+@media (max-width: 560px) {
+  .industries-stage {
+    transform: scale(0.78);
+    transform-origin: top center;
+  }
+  .cube-scale {
+    transform: scale(0.82);
+  }
+  .footer-wordmark {
+    font-size: clamp(64px, 24vw, 120px) !important;
+  }
+  /* Smallest screens: keep the laptop almost flush so it never clips
+     or crowds the text on narrow viewports. */
+  .about-laptop {
+    top: -4% !important;
+  }
+}
