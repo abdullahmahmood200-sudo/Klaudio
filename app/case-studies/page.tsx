@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Footer from "@/components/Footer";
+import MobileMenu from "@/components/MobileMenu";
 
 type Study = { name: string; category: string; img: string };
 
@@ -59,6 +60,9 @@ export default function CaseStudiesPage() {
 
   return (
     <div style={{ background: "#f5f7fa" }}>
+      {/* Mobile-only floating menu; the right sidebar below is hidden on mobile */}
+      <MobileMenu home={false} activeHref="/case-studies" />
+
       <div
         className="cube-shell"
         style={{
@@ -341,9 +345,9 @@ export default function CaseStudiesPage() {
           </div>
         </main>
 
-        {/* Right sidebar — secondary nav */}
+        {/* Right sidebar — secondary nav (desktop only; mobile uses MobileMenu) */}
         <aside
-          className="cube-aside"
+          className="cube-aside cube-aside-menu"
           style={{
             flex: "0 0 236px",
             padding: "34px 26px",

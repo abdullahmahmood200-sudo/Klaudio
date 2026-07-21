@@ -3,6 +3,7 @@
 import { useRef, useState } from "react";
 import Link from "next/link";
 import { navItems } from "./data";
+import MobileMenu from "@/components/MobileMenu";
 
 export default function SideNav() {
   const navRef = useRef<HTMLElement>(null);
@@ -42,13 +43,15 @@ export default function SideNav() {
         height: "100vh",
       }}
     >
-      {/* Logo */}
-      <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+      {/* Logo. On mobile the floating MobileMenu below provides the nav popup. */}
+      <div className="sidebar-bar" style={{ display: "flex", alignItems: "center", gap: 10 }}>
         <div style={{ width: 32, height: 32, position: "relative" }}>
           <div style={{ position: "absolute", width: 17, height: 17, background: "#0f1a2e", transform: "rotate(45deg)", top: 0, left: 7, borderRadius: 3 }} />
           <div style={{ position: "absolute", width: 17, height: 17, background: "var(--accent)", transform: "rotate(45deg)", top: 8, left: 7, borderRadius: 3, opacity: 0.9 }} />
         </div>
       </div>
+
+      <MobileMenu home activeHref="#services" />
 
       <nav
         ref={navRef}
