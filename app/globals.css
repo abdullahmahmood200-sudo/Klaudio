@@ -361,7 +361,9 @@ input[type="range"].cube-slider::-moz-range-thumb {
 .floating-hamburger {
   display: none;
   position: fixed;
-  top: 18px;
+  /* Vertically centers the 40px button on the mobile top bar's logo
+     (14px bar padding + 16px half-logo − 20px half-button = 10px) */
+  top: 10px;
   right: 18px;
   z-index: 61;
   background: rgba(255, 255, 255, 0.9);
@@ -383,7 +385,7 @@ input[type="range"].cube-slider::-moz-range-thumb {
 .mm-popup {
   display: none;
   position: fixed;
-  top: 66px;
+  top: 58px; /* tracks the hamburger (10px top + 40px button + 8px gap) */
   right: 18px;
   min-width: 216px;
   flex-direction: column;
