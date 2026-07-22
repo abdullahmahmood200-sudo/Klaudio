@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Footer from "@/components/Footer";
@@ -55,8 +55,31 @@ export default function CaseStudiesPage() {
   const [sel, setSel] = useState(0);
   const [rx, setRx] = useState(0);
   const [ry, setRy] = useState(0);
+  // Finger/mouse drag on the cube itself. While dragging we track the raw
+  // rotation and disable the snap transition; on release we snap to the
+  // nearest face and sync the selection in the list.
+  const [dragging, setDragging] = useState(false);
+  // Pointer-drag bookkeeping: where the drag started and the live rotation,
+  // mirrored here so endDrag can snap without stale-state gymnastics.
+  const drag = useRef<{ x: number; y: number; startRx: number; startRy: number; rx: number; ry: number } | null>(null);
 
   const deg = ((Math.round(ry) % 360) + 360) % 360;
+
+  function endDrag() {
+    if (!drag.current) return;
+    const { rx: curRx, ry: curRy } = drag.current;
+    drag.current = null;
+    setDragging(false);
+    // Snap to the nearest face. rx is clamped to [-90, 90] during the drag,
+    // so it lands on -90 (top), 0 (ring of side faces) or 90 (bottom).
+    const snapRx = Math.round(curRx / 90) * 90;
+    const snapRy = Math.round(curRy / 90) * 90;
+    setRx(snapRx);
+    setRy(snapRy);
+    // Which face ends up at front: the side ring obeys face i ⇔ ry ≡ -90·i;
+    // tipped up/down it's the top (4) or bottom (5) face regardless of ry.
+    setSel(snapRx === 0 ? ((-snapRy / 90) % 4 + 4) % 4 : snapRx < 0 ? 4 : 5);
+  }
 
   return (
     <div style={{ background: "#f5f7fa" }}>
@@ -108,13 +131,19 @@ export default function CaseStudiesPage() {
             >
               Case Studies
             </div>
-            <nav style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+            <nav className="cube-list" style={{ display: "flex", flexDirection: "column", gap: 4 }}>
               {data.map((s, i) => {
                 const active = i === sel;
                 return (
                   <div
                     key={s.name}
-                    onClick={() => {
+                    className="cube-item"
+                    data-active={active || undefined}
+                    onClick={(e) => {
+                      // On mobile the list is a horizontal chip bar — slide the
+                      // tapped chip into view. block:"nearest" prevents any
+                      // vertical page jump on desktop.
+                      e.currentTarget.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
                       setSel(i);
                       setRx((prev) => nearestEquivalent(prev, canonical[i].rx));
                       setRy((prev) => nearestEquivalent(prev, canonical[i].ry));
@@ -131,6 +160,7 @@ export default function CaseStudiesPage() {
                     }}
                   >
                     <span
+                      className="cube-item-diamond"
                       style={{
                         width: 16,
                         height: 16,
@@ -142,6 +172,7 @@ export default function CaseStudiesPage() {
                     />
                     <span style={{ minWidth: 0 }}>
                       <span
+                        className="cube-item-name"
                         style={{
                           display: "block",
                           fontSize: 14,
@@ -157,6 +188,7 @@ export default function CaseStudiesPage() {
                         {s.name}
                       </span>
                       <span
+                        className="cube-item-cat"
                         style={{
                           display: "block",
                           fontSize: 11,
@@ -188,7 +220,34 @@ export default function CaseStudiesPage() {
             justifyContent: "center",
           }}
         >
-          <div className="cube-scale" style={{ perspective: "1400px", perspectiveOrigin: "50% 42%" }}>
+          <div
+            className="cube-scale"
+            style={{
+              perspective: "1400px",
+              perspectiveOrigin: "50% 42%",
+              touchAction: "none", // finger drags rotate the cube, not the page
+              cursor: dragging ? "grabbing" : "grab",
+              userSelect: "none",
+            }}
+            onPointerDown={(e) => {
+              e.currentTarget.setPointerCapture(e.pointerId);
+              drag.current = { x: e.clientX, y: e.clientY, startRx: rx, startRy: ry, rx, ry };
+              setDragging(true);
+            }}
+            onPointerMove={(e) => {
+              if (!drag.current) return;
+              const d = drag.current;
+              // ~0.4°/px feels right at this cube size; rx is clamped so the
+              // cube can tip to the top/bottom face but never somersault.
+              d.ry = d.startRy + (e.clientX - d.x) * 0.4;
+              d.rx = Math.max(-90, Math.min(90, d.startRx - (e.clientY - d.y) * 0.4));
+              setRx(d.rx);
+              setRy(d.ry);
+            }}
+            onPointerUp={endDrag}
+            onPointerCancel={endDrag}
+            onDragStart={(e) => e.preventDefault()}
+          >
             <div
               style={{
                 width: 300,
@@ -196,7 +255,7 @@ export default function CaseStudiesPage() {
                 position: "relative",
                 transformStyle: "preserve-3d",
                 transform: `rotateX(${rx}deg) rotateY(${ry}deg)`,
-                transition: "transform .9s cubic-bezier(.65,.05,.2,1)",
+                transition: dragging ? "none" : "transform .9s cubic-bezier(.65,.05,.2,1)",
               }}
             >
               {data.map((f, i) => (

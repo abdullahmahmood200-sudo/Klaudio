@@ -560,21 +560,63 @@ input[type="range"].cube-slider::-moz-range-thumb {
     margin-top: 18px !important;
   }
 
-  /* Case studies: stack sidebars above/below the stage */
+  /* Case studies: the list collapses into a horizontal chip bar above the
+     cube so selecting a study and watching the cube happen on one screen. */
   .cube-shell {
     flex-direction: column;
-    height: auto !important;
+    height: 100svh !important;
+    min-height: 620px !important;
   }
   .cube-aside {
     flex: none !important;
     width: 100% !important;
+    padding: 18px 18px 0 !important;
+    gap: 14px !important;
   }
   /* The menu links move into the floating MobileMenu popup on mobile */
   .cube-aside-menu {
     display: none !important;
   }
+  .cube-list {
+    flex-direction: row !important;
+    gap: 8px !important;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    /* bleed to the screen edges so chips scroll edge-to-edge */
+    margin: 0 -18px;
+    padding: 0 18px 12px;
+  }
+  .cube-list::-webkit-scrollbar {
+    display: none;
+  }
+  .cube-item {
+    flex: 0 0 auto;
+    padding: 8px 14px !important;
+    border-radius: 999px !important;
+    border: 1px solid #dfe4ec;
+    /* the component sets background inline (transparent/active), so force
+       a white resting chip and keep the dark active fill */
+    background: #fff !important;
+  }
+  .cube-item[data-active] {
+    border-color: #0f1a2e;
+    background: #0f1a2e !important;
+  }
+  .cube-item-diamond {
+    width: 10px !important;
+    height: 10px !important;
+    border-width: 1.5px !important;
+  }
+  .cube-item-name {
+    font-size: 13px !important;
+  }
+  .cube-item-cat {
+    display: none !important;
+  }
   .cube-stage {
-    min-height: 70vh;
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
   }
 }
 
