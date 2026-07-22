@@ -56,30 +56,25 @@ export default function ServiceModal({
         <div
           className="sm-media"
           style={{
+            position: "relative",
             flex: "0 0 44%",
             minHeight: 380,
-            background:
-              "repeating-linear-gradient(45deg,#eef1f6 0,#eef1f6 11px,#e4e9f1 11px,#e4e9f1 22px)",
-            display: "flex",
-            alignItems: "flex-end",
-            justifyContent: "center",
-            padding: 16,
+            background: "#e4e9f1",
           }}
         >
-          <span
+          <img
+            src={service.img}
+            alt={service.title}
+            draggable={false}
             style={{
-              fontFamily: "var(--font-quicksand)",
-              fontSize: 10,
-              letterSpacing: ".09em",
-              color: "#9aa4b5",
-              background: "rgba(255,255,255,.75)",
-              padding: "4px 9px",
-              borderRadius: 6,
-              textTransform: "uppercase",
+              position: "absolute",
+              inset: 0,
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              objectPosition: "center 38%",
             }}
-          >
-            illustration
-          </span>
+          />
         </div>
         <div
           className="sm-body"

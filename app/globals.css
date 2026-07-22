@@ -257,8 +257,6 @@ input[type="range"].cube-slider::-moz-range-thumb {
   flex-direction: column;
   cursor: pointer;
   overflow: hidden;
-  filter: grayscale(1);
-  opacity: 0.82;
   transform: translateY(0);
   transition: flex-grow 0.5s cubic-bezier(0.4, 0, 0.2, 1),
     filter 0.4s ease, opacity 0.4s ease, box-shadow 0.4s ease,
@@ -266,12 +264,53 @@ input[type="range"].cube-slider::-moz-range-thumb {
 }
 .service-card:hover {
   flex-grow: 2.4;
-  filter: none;
-  opacity: 1;
   background: #ffffff;
   border-color: var(--accent);
   box-shadow: 0 26px 55px -22px rgba(26, 75, 255, 0.42);
   transform: translateY(-8px);
+}
+
+/* Card heading: dark ink so it holds its own against the artwork, and it
+   flips to the accent when its card is the spotlit one. */
+.service-card-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #0f1a2e;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+  transition: color 0.3s ease;
+}
+.service-card:hover .service-card-title {
+  color: var(--accent);
+}
+
+/* Spotlight: everything is full color at rest. Only while the row is
+   hovered do the NON-hovered siblings desaturate and recede, so the
+   active card pops. Guarded to real hover devices so touch scrolling
+   never leaves the row stuck dimmed. */
+@media (hover: hover) {
+  .service-cards:hover .service-card:not(:hover) {
+    filter: grayscale(1);
+    opacity: 0.62;
+  }
+}
+
+/* Card artwork: absolutely fills its rounded frame with object-fit cover,
+   so the flex-grow expansion simply reveals more of the image (portrait
+   sources stay centered, never distort). Slight zoom eases the reveal. */
+.service-card-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 38%;
+  transform: scale(1.08);
+  transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+  user-select: none;
+}
+.service-card:hover .service-card-img {
+  transform: scale(1);
 }
 
 /* Why-us card lift on hover (base here so :hover can override). */

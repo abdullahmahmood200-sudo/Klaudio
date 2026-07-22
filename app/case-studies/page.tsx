@@ -9,12 +9,12 @@ import MobileMenu from "@/components/MobileMenu";
 type Study = { name: string; category: string; img: string };
 
 const data: Study[] = [
-  { name: "Northwind CRM", category: "Financial Services", img: "https://images.pexels.com/photos/31650949/pexels-photo-31650949.jpeg?auto=compress&cs=tinysrgb&w=700" },
-  { name: "Verdant Portal", category: "Nonprofit", img: "https://images.pexels.com/photos/6646917/pexels-photo-6646917.jpeg?auto=compress&cs=tinysrgb&w=700" },
-  { name: "Atlas Cloud", category: "Enterprise", img: "https://images.pexels.com/photos/1181406/pexels-photo-1181406.jpeg?auto=compress&cs=tinysrgb&w=700" },
-  { name: "Cobalt Commerce", category: "Retail", img: "https://images.pexels.com/photos/1108101/pexels-photo-1108101.jpeg?auto=compress&cs=tinysrgb&w=700" },
-  { name: "Helio Assistant", category: "Artificial Intelligence", img: "https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=700" },
-  { name: "Meridian Analytics", category: "Data Platform", img: "https://images.pexels.com/photos/1974596/pexels-photo-1974596.jpeg?auto=compress&cs=tinysrgb&w=700" },
+  { name: "Erikna", category: "Real Estate", img: "/Erikna%20Real%20Estate.avif" },
+  { name: "Forge Manufacturing", category: "Manufacturing", img: "/Forge%20Manufacturing%20(Manufacturing).avif" },
+  { name: "Harbor Realty", category: "Real Estate", img: "/Harbor%20Realty%20Real%20Estate.avif" },
+  { name: "Lumen Learning", category: "Education", img: "/Lumen%20Learning.avif" },
+  { name: "Solace Health", category: "Healthcare", img: "/Solace%20Health%20(Healthcare).avif" },
+  { name: "Vantage Insurance", category: "Financial Services", img: "/Vantage%20Insurance%20(Financial%20Services).avif" },
 ];
 
 // base transform per cube face, and the cube rotation that brings each to front

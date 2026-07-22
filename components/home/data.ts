@@ -1,30 +1,35 @@
-export type Service = { title: string; blurb: string };
+export type Service = { title: string; blurb: string; img: string };
 
 export const services: Service[] = [
   {
     title: "AI & Automation",
     blurb:
       "Deploy intelligent agents and workflow automation that take on the repetitive work, freeing your team to focus on the decisions that actually move revenue.",
+    img: "/Ai%20&%20Automation.avif",
   },
   {
     title: "CRM & Marketing",
     blurb:
       "Unify your customer data and automate campaigns across every channel, so more conversations turn into closed, repeatable revenue.",
+    img: "/CRM%20&%20Marketing.avif",
   },
   {
     title: "Cloud",
     blurb:
       "Migrate, scale, and secure your infrastructure on modern cloud platforms engineered for speed, resilience, and predictable cost.",
+    img: "/Cloud.avif",
   },
   {
     title: "Financial Systems",
     blurb:
       "Connect billing, accounting, and reporting into a single source of truth, so finance runs on clean, real-time numbers.",
+    img: "/Financial%20Systems.avif",
   },
   {
     title: "Managed Services & Integrations",
     blurb:
       "Keep everything running and connected with proactive support and custom integrations across your entire stack.",
+    img: "/Managed%20services.avif",
   },
 ];
 
@@ -42,14 +47,14 @@ export const navItems: NavItem[] = [
 export type Industry = { name: string; img: string };
 
 export const industries: Industry[] = [
-  { name: "Associations", img: "https://images.pexels.com/photos/1181406/pexels-photo-1181406.jpeg?auto=compress&cs=tinysrgb&w=700" },
-  { name: "Nonprofits", img: "https://images.pexels.com/photos/6646917/pexels-photo-6646917.jpeg?auto=compress&cs=tinysrgb&w=700" },
-  { name: "Professional", img: "https://images.pexels.com/photos/30004365/pexels-photo-30004365.jpeg?auto=compress&cs=tinysrgb&w=700" },
-  { name: "Healthcare", img: "https://images.pexels.com/photos/6129507/pexels-photo-6129507.jpeg?auto=compress&cs=tinysrgb&w=700" },
-  { name: "Real Estate", img: "https://images.pexels.com/photos/1974596/pexels-photo-1974596.jpeg?auto=compress&cs=tinysrgb&w=700" },
-  { name: "Financial Services", img: "https://images.pexels.com/photos/31650949/pexels-photo-31650949.jpeg?auto=compress&cs=tinysrgb&w=700" },
-  { name: "Education", img: "https://images.pexels.com/photos/8197534/pexels-photo-8197534.jpeg?auto=compress&cs=tinysrgb&w=700" },
-  { name: "Manufacturing", img: "https://images.pexels.com/photos/1108101/pexels-photo-1108101.jpeg?auto=compress&cs=tinysrgb&w=700" },
+  { name: "Associations", img: "/Associations.avif" },
+  { name: "Nonprofits", img: "/Nonprofits.avif" },
+  { name: "Professional", img: "/Professional.avif" },
+  { name: "Healthcare", img: "/Healthcare.avif" },
+  { name: "Real Estate", img: "/Real%20Estate.avif" },
+  { name: "Financial Services", img: "/Financial%20Services.avif" },
+  { name: "Education", img: "/Education.avif" },
+  { name: "Manufacturing", img: "/Manufacturing.avif" },
 ];
 
 export type WhyCard = {

@@ -62,44 +62,25 @@ export default function Hero() {
               className="service-card"
               onClick={() => setSelected(i)}
             >
-              <span
-                style={{
-                  fontSize: 15,
-                  fontWeight: 400,
-                  color: "#3a4459",
-                  letterSpacing: ".01em",
-                  lineHeight: 1.25,
-                }}
-              >
-                {card.title}
-              </span>
+              <span className="service-card-title">{card.title}</span>
               <div
                 style={{
                   marginTop: 16,
                   flex: 1,
+                  position: "relative",
                   borderRadius: 12,
-                  background:
-                    "repeating-linear-gradient(45deg,#eef1f6 0,#eef1f6 9px,#e4e9f1 9px,#e4e9f1 18px)",
-                  display: "flex",
-                  alignItems: "flex-end",
-                  justifyContent: "center",
-                  padding: 10,
+                  overflow: "hidden",
+                  background: "#e4e9f1",
                 }}
               >
-                <span
-                  style={{
-                    fontFamily: "var(--font-quicksand)",
-                    fontSize: 9.5,
-                    letterSpacing: ".09em",
-                    color: "#9aa4b5",
-                    background: "rgba(255,255,255,.72)",
-                    padding: "3px 7px",
-                    borderRadius: 6,
-                    textTransform: "uppercase",
-                  }}
-                >
-                  illustration
-                </span>
+                {/* Absolute fill + cover: the image just reveals more of
+                    itself as the card's flex-grow animates — no stretching. */}
+                <img
+                  src={card.img}
+                  alt={card.title}
+                  className="service-card-img"
+                  draggable={false}
+                />
               </div>
             </div>
           ))}
