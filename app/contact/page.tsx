@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Footer from "@/components/Footer";
+import MobileMenu from "@/components/MobileMenu";
 
 const navLinks = [
   { label: "Services", href: "/#services" },
@@ -70,6 +71,10 @@ export default function ContactPage() {
             <div style={{ position: "absolute", width: 17, height: 17, background: "var(--accent)", transform: "rotate(45deg)", top: 8, left: 7, borderRadius: 3, opacity: 0.9 }} />
           </div>
         </div>
+
+        {/* Mobile-only floating hamburger; the desktop nav below is hidden on mobile */}
+        <MobileMenu home={false} activeHref="/contact" />
+
         <nav style={{ display: "flex", flexDirection: "column", gap: 16 }}>
           {navLinks.map((l) => (
             <Link

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Quicksand } from "next/font/google";
 import "./globals.css";
+import ScrollFX from "@/components/ScrollFX";
+import ContextCursor from "@/components/ContextCursor";
 
 const quicksand = Quicksand({
   variable: "--font-quicksand",
@@ -22,7 +24,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={quicksand.variable}>
-      <body>{children}</body>
+      <body>
+        <ScrollFX />
+        <ContextCursor />
+        {children}
+      </body>
     </html>
   );
 }

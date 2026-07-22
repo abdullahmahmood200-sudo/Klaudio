@@ -4,10 +4,12 @@ import { useRef, useState } from "react";
 import Link from "next/link";
 import { navItems } from "./data";
 import MobileMenu from "@/components/MobileMenu";
+import { useActiveNav } from "@/components/useActiveNav";
 
 export default function SideNav() {
   const navRef = useRef<HTMLElement>(null);
   const [navHover, setNavHover] = useState<number | null>(null);
+  const [activeHref, setActiveHref] = useActiveNav("#services");
 
   const onNavMove = (e: React.MouseEvent) => {
     const nav = navRef.current;
@@ -66,7 +68,7 @@ export default function SideNav() {
         }}
       >
         {navItems.map((it, i) => {
-          const active = !!it.active;
+          const active = it.href === activeHref;
           const nh = navHover;
           let rotX = 0;
           let tz = 0;
@@ -108,7 +110,12 @@ export default function SideNav() {
             </>
           );
           return it.href.startsWith("#") ? (
-            <a key={it.label} href={it.href} style={style}>
+            <a
+              key={it.label}
+              href={it.href}
+              style={style}
+              onClick={() => setActiveHref(it.href)}
+            >
               {inner}
             </a>
           ) : (

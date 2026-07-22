@@ -38,6 +38,7 @@ export default function ServiceModal({
       }}
     >
       <div
+        className="service-modal"
         onClick={(e) => e.stopPropagation()}
         style={{
           position: "relative",
@@ -53,6 +54,7 @@ export default function ServiceModal({
         }}
       >
         <div
+          className="sm-media"
           style={{
             flex: "0 0 44%",
             minHeight: 380,
@@ -80,6 +82,7 @@ export default function ServiceModal({
           </span>
         </div>
         <div
+          className="sm-body"
           style={{
             flex: 1,
             padding: "46px 46px 40px",
@@ -88,6 +91,7 @@ export default function ServiceModal({
           }}
         >
           <div
+            className="sm-eyebrow"
             style={{
               fontFamily: "var(--font-quicksand)",
               fontSize: 11,
@@ -100,6 +104,7 @@ export default function ServiceModal({
             Service
           </div>
           <h2
+            className="sm-title"
             style={{
               margin: "0 0 16px",
               fontSize: 36,
@@ -112,6 +117,7 @@ export default function ServiceModal({
             {service.title}
           </h2>
           <p
+            className="sm-blurb"
             style={{
               margin: 0,
               fontSize: 16,
@@ -125,6 +131,7 @@ export default function ServiceModal({
           <div style={{ flex: 1 }} />
           <a
             href="#"
+            className="sm-link"
             onClick={(e) => e.stopPropagation()}
             style={{
               marginTop: 30,

@@ -56,6 +56,76 @@ a:hover {
   }
 }
 
+/* ---------------------------------------------------------------------------
+   Contextual label cursor — GSAP moves the wrapper's x/y (transform); the
+   dot and label pill are absolutely centered children that morph via CSS.
+--------------------------------------------------------------------------- */
+/* Hide the native cursor on precise pointers — the blue dot replaces it.
+   `!important` beats the inline `cursor: pointer` on cards/list items. */
+@media (pointer: fine) {
+  body,
+  body * {
+    cursor: none !important;
+  }
+}
+
+.ctx-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 100;
+  opacity: 0;
+  visibility: hidden;
+  will-change: transform;
+}
+/* Idle state: a small accent dot trailing the pointer */
+.cc-dot {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  margin: -5px 0 0 -5px;
+  border-radius: 50%;
+  background: var(--accent);
+  transition: scale 0.3s cubic-bezier(0.22, 0.61, 0.36, 1), opacity 0.25s ease;
+}
+/* The verb pill, hidden until a contextual zone is hovered */
+.cc-pill {
+  position: absolute;
+  transform: translate(-50%, -50%) scale(0.4);
+  white-space: nowrap;
+  font-family: var(--font-quicksand);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #ffffff;
+  background: var(--accent);
+  padding: 9px 16px;
+  border-radius: 999px;
+  box-shadow: 0 12px 28px -10px rgba(26, 75, 255, 0.55);
+  opacity: 0;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+    opacity 0.22s ease;
+}
+.ctx-cursor.has-label .cc-pill {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+}
+.ctx-cursor.has-label .cc-dot {
+  opacity: 0;
+}
+/* Generic links/buttons: the dot just grows a touch */
+.ctx-cursor.is-link .cc-dot {
+  scale: 1.7;
+  opacity: 0.55;
+}
+@media (pointer: coarse) {
+  .ctx-cursor {
+    display: none;
+  }
+}
+
 /* Industries range slider (home) */
 input[type="range"].om-slider {
   -webkit-appearance: none;
@@ -224,7 +294,8 @@ input[type="range"].cube-slider::-moz-range-thumb {
 
 /* Contact submit button (base box-shadow here so :hover can override). */
 .submit-btn {
-  margin-top: 34px;
+  display: block;
+  margin: 34px auto 0;
   border: none;
   cursor: pointer;
   background: var(--accent);
@@ -233,7 +304,7 @@ input[type="range"].cube-slider::-moz-range-thumb {
   font-size: 15px;
   font-weight: 500;
   letter-spacing: 0.01em;
-  padding: 15px 40px;
+  padding: 14px 34px;
   border-radius: 999px;
   box-shadow: 0 16px 34px -16px rgba(26, 75, 255, 0.55);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
@@ -275,7 +346,7 @@ input[type="range"].cube-slider::-moz-range-thumb {
   width: 22px;
   height: 2px;
   border-radius: 2px;
-  background: var(--ink);
+  background: var(--accent);
   transition: transform 0.28s ease, opacity 0.2s ease;
 }
 /* Open state: the two lines cross into an X */
@@ -322,7 +393,7 @@ input[type="range"].cube-slider::-moz-range-thumb {
   box-shadow: 0 26px 60px -16px rgba(15, 26, 46, 0.5);
   z-index: 60;
   transform-origin: top right;
-  animation: mmPop 0.18s ease;
+  animation: mmPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 .mm-popup.open {
   display: flex;
@@ -352,12 +423,18 @@ input[type="range"].cube-slider::-moz-range-thumb {
   display: inline-block;
   flex: 0 0 auto;
 }
+/* Elastic pop: overshoots past full size, then springs back to rest.
+   The timing function above adds extra bounce on top of the keyframes. */
 @keyframes mmPop {
-  from {
+  0% {
     opacity: 0;
-    transform: translateY(-6px) scale(0.97);
+    transform: translateY(-10px) scale(0.88);
   }
-  to {
+  55% {
+    opacity: 1;
+    transform: translateY(2px) scale(1.04);
+  }
+  100% {
     opacity: 1;
     transform: none;
   }
@@ -446,6 +523,41 @@ input[type="range"].cube-slider::-moz-range-thumb {
   /* Contact form single column */
   .contact-grid {
     grid-template-columns: 1fr !important;
+  }
+
+  /* Service modal: stack vertically — image on top, centered text below.
+     The component uses inline styles, so overrides need !important. */
+  .service-modal {
+    flex-direction: column !important;
+    width: min(420px, 94vw) !important;
+    max-height: 86vh;
+    overflow-y: auto !important;
+  }
+  .sm-media {
+    flex: 0 0 auto !important;
+    min-height: 0 !important;
+    height: 150px;
+  }
+  .sm-body {
+    padding: 22px 20px 26px !important;
+    align-items: center;
+    text-align: center;
+  }
+  .sm-eyebrow {
+    font-size: 9px !important;
+    margin-bottom: 8px !important;
+  }
+  .sm-title {
+    font-size: 21px !important;
+    margin-bottom: 10px !important;
+  }
+  .sm-blurb {
+    font-size: 13px !important;
+    line-height: 1.55 !important;
+  }
+  .sm-link {
+    font-size: 12.5px !important;
+    margin-top: 18px !important;
   }
 
   /* Case studies: stack sidebars above/below the stage */

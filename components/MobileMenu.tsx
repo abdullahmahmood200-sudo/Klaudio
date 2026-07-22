@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { navItems } from "./home/data";
+import { useActiveNav } from "./useActiveNav";
 
 /**
  * Floating hamburger + popup menu for small screens.
@@ -23,6 +24,7 @@ export default function MobileMenu({
   activeHref?: string;
 }) {
   const [open, setOpen] = useState(false);
+  const [current, setCurrent] = useActiveNav(activeHref);
   const close = () => setOpen(false);
 
   return (
@@ -44,7 +46,7 @@ export default function MobileMenu({
         {navItems.map((it) => {
           const href =
             !home && it.href.startsWith("#") ? `/${it.href}` : it.href;
-          const active = it.href === activeHref;
+          const active = it.href === current;
           const inner = (
             <>
               {active && <span className="mm-dot" />}
@@ -52,7 +54,14 @@ export default function MobileMenu({
             </>
           );
           return href.startsWith("#") ? (
-            <a key={it.label} href={href} onClick={close}>
+            <a
+              key={it.label}
+              href={href}
+              onClick={() => {
+                setCurrent(it.href);
+                close();
+              }}
+            >
               {inner}
             </a>
           ) : (
