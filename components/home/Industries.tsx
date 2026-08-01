@@ -1,14 +1,69 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { industries } from "./data";
 
+const DURATION = 560;
+const SWIPE_THRESHOLD = 45;
+
 export default function Industries() {
-  const [center, setCenter] = useState(3.5);
-  const maxCenter = industries.length - 1;
-  const step = 18;
-  const R = 360;
+  const [index, setIndex] = useState(0);
+  // The slide being pushed out, plus the direction of travel (1 = next, -1 = prev).
+  const [outgoing, setOutgoing] = useState<{ from: number; dir: number } | null>(
+    null,
+  );
+  const touch = useRef<{ x: number; y: number } | null>(null);
+  const count = industries.length;
+
+  const goTo = (to: number, dir: number) => {
+    if (to === index || outgoing) return;
+    setOutgoing({ from: index, dir });
+    setIndex(to);
+  };
+
+  const step = (dir: number) => goTo((index + dir + count) % count, dir);
+
+  // Safety net: animationend is reliable, but if the tab is backgrounded mid-push
+  // it may never fire, which would otherwise leave the slider locked.
+  useEffect(() => {
+    if (!outgoing) return;
+    const t = window.setTimeout(() => setOutgoing(null), DURATION + 120);
+    return () => window.clearTimeout(t);
+  }, [outgoing]);
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    const t = e.touches[0];
+    touch.current = { x: t.clientX, y: t.clientY };
+  };
+
+  const onTouchEnd = (e: React.TouchEvent) => {
+    const start = touch.current;
+    touch.current = null;
+    if (!start) return;
+    const t = e.changedTouches[0];
+    const dx = t.clientX - start.x;
+    const dy = t.clientY - start.y;
+    // Ignore mostly-vertical drags so the page can still scroll through the card.
+    if (Math.abs(dx) < SWIPE_THRESHOLD || Math.abs(dx) < Math.abs(dy)) return;
+    step(dx < 0 ? 1 : -1);
+  };
+
+  const slideStyle = (i: number): React.CSSProperties => {
+    const isCurrent = i === index;
+    const isOutgoing = outgoing?.from === i;
+    if (!isCurrent && !isOutgoing) return { opacity: 0, visibility: "hidden" };
+    if (!outgoing) return { zIndex: 2 };
+
+    const offscreen = `${outgoing.dir * 100}%`;
+    return {
+      zIndex: isOutgoing ? 1 : 2,
+      animation: `${isOutgoing ? "industry-exit" : "industry-enter"} ${DURATION}ms cubic-bezier(.65,.05,.25,1) both`,
+      ...(isOutgoing
+        ? { ["--x-to" as string]: `-${offscreen}` }
+        : { ["--x-from" as string]: offscreen }),
+    } as React.CSSProperties;
+  };
 
   return (
     <section
@@ -36,6 +91,7 @@ export default function Industries() {
           Industries
         </div>
         <h2
+          className="industries-title"
           style={{
             margin: "0 0 16px",
             fontSize: 36,
@@ -63,111 +119,101 @@ export default function Industries() {
       </header>
 
       <div
-        className="industries-stage"
-        style={{
-          perspective: "1200px",
-          height: 432,
-          position: "relative",
-          marginTop: 30,
-        }}
+        className="industries-slider"
+        role="group"
+        aria-roledescription="carousel"
+        aria-label="Industries we serve"
       >
-        <div style={{ position: "absolute", inset: 0, transformStyle: "preserve-3d" }}>
-          {industries.map((it, i) => {
-            const d = i - center;
-            const ad = Math.abs(d);
-            const rad = (d * step * Math.PI) / 180;
-            const tx = R * Math.sin(rad);
-            const tz = R * (1 - Math.cos(rad));
-            const rotY = -d * step;
-            const scale = 1 + Math.min(ad, 3) * 0.05;
-            const opacity = ad > 2.6 ? 0 : ad > 1.8 ? (2.6 - ad) / 0.8 : 1;
-            const capOpacity = ad > 1.5 ? 0 : 1;
-            const zi = Math.round(100 - ad * 10);
-            const pe = ad > 2.6 ? "none" : "auto";
-            const num = "#" + String(i + 1).padStart(2, "0");
-            return (
-              <div
-                key={it.name}
-                onClick={() => setCenter(i)}
-                style={{
-                  position: "absolute",
-                  left: "50%",
-                  top: 22,
-                  width: 196,
-                  marginLeft: -98,
-                  transformStyle: "preserve-3d",
-                  transition:
-                    "transform .55s cubic-bezier(.22,.61,.36,1),opacity .4s ease",
-                  transform: `translateX(${tx.toFixed(1)}px) translateZ(${tz.toFixed(1)}px) rotateY(${rotY.toFixed(1)}deg) scale(${scale.toFixed(3)})`,
-                  opacity: Number(opacity.toFixed(2)),
-                  zIndex: zi,
-                  pointerEvents: pe as React.CSSProperties["pointerEvents"],
-                }}
-              >
-                <div
+        <button
+          type="button"
+          aria-label="Previous industry"
+          onClick={() => step(-1)}
+          className="industries-arrow industries-arrow--prev"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden>
+            <path
+              d="M15 5l-7 7 7 7"
+              stroke="currentColor"
+              strokeWidth="1.6"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </button>
+
+        <div
+          className="industries-viewport"
+          onTouchStart={onTouchStart}
+          onTouchEnd={onTouchEnd}
+        >
+          {industries.map((it, i) => (
+            <div
+              key={it.name}
+              className="industry-slide"
+              aria-hidden={i !== index}
+              onAnimationEnd={() => {
+                if (i === index) setOutgoing(null);
+              }}
+              style={slideStyle(i)}
+            >
+              <Image
+                src={it.img}
+                alt={it.name}
+                fill
+                sizes="(max-width: 860px) 100vw, 520px"
+                style={{ objectFit: "cover" }}
+                priority={i === 0}
+                draggable={false}
+              />
+              <div className="industry-caption">
+                <span
                   style={{
-                    position: "relative",
-                    height: 296,
-                    borderRadius: 16,
-                    overflow: "hidden",
-                    cursor: "pointer",
-                    boxShadow: "0 22px 44px -18px rgba(15,26,46,.45)",
-                    background: "#e7ebf1",
+                    fontFamily: "var(--font-quicksand)",
+                    color: "#fff",
+                    opacity: 0.7,
+                    fontSize: 12,
+                    letterSpacing: ".1em",
                   }}
                 >
-                  <Image
-                    src={it.img}
-                    alt={it.name}
-                    fill
-                    sizes="196px"
-                    style={{ objectFit: "cover" }}
-                  />
-                </div>
-                <div
-                  style={{
-                    textAlign: "center",
-                    marginTop: 14,
-                    opacity: capOpacity,
-                    transition: "opacity .3s ease",
-                  }}
-                >
-                  <span
-                    style={{
-                      fontFamily: "var(--font-quicksand)",
-                      color: "var(--accent)",
-                      fontSize: 12,
-                      letterSpacing: ".1em",
-                    }}
-                  >
-                    {num}
-                  </span>
-                  <div
-                    style={{
-                      fontSize: 13,
-                      fontWeight: 400,
-                      color: "#0f1a2e",
-                      marginTop: 5,
-                    }}
-                  >
-                    {it.name}
-                  </div>
-                </div>
+                  {"#" + String(i + 1).padStart(2, "0")}
+                </span>
+                <div className="industry-caption-name">{it.name}</div>
               </div>
-            );
-          })}
+            </div>
+          ))}
         </div>
+
+        <button
+          type="button"
+          aria-label="Next industry"
+          onClick={() => step(1)}
+          className="industries-arrow industries-arrow--next"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden>
+            <path
+              d="M9 5l7 7-7 7"
+              stroke="currentColor"
+              strokeWidth="1.6"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </button>
       </div>
 
-      <div style={{ maxWidth: 420, margin: "8px auto 0" }}>
-        <input
-          type="range"
-          className="om-slider"
-          min={0}
-          max={maxCenter}
-          step={0.02}
-          value={center}
-          onChange={(e) => setCenter(parseFloat(e.target.value))}
-        />
+      <div className="industries-dots">
+        {industries.map((it, i) => (
+          <button
+            key={it.name}
+            type="button"
+            aria-label={`Go to ${it.name}`}
+            aria-current={i === index}
+            onClick={() => goTo(i, i > index ? 1 : -1)}
+            className="industries-dot"
+          >
+            <span className={i === index ? "is-active" : undefined} />
+          </button>
+        ))}
       </div>
     </section>
   );

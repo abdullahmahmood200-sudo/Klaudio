@@ -2,6 +2,7 @@ import SideNav from "@/components/home/SideNav";
 import Hero from "@/components/home/Hero";
 import About from "@/components/home/About";
 import Industries from "@/components/home/Industries";
+import IndustrySolutions from "@/components/home/IndustrySolutions";
 import Process from "@/components/home/Process";
 import WhyUs from "@/components/home/WhyUs";
 import Footer from "@/components/Footer";
@@ -23,10 +24,11 @@ export default function Home() {
         }}
       >
         <Hero />
-        <About />
         <Industries />
+        <IndustrySolutions />
         <Process />
         <WhyUs />
+        <About />
         <Footer />
       </main>
     </div>
