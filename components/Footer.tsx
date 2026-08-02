@@ -52,8 +52,8 @@ export default function Footer() {
             >
               Get in Touch
             </Link>
-            <a
-              href="#"
+            <Link
+              href="/services#faqs"
               style={{
                 fontSize: 16,
                 fontWeight: 500,
@@ -62,8 +62,8 @@ export default function Footer() {
                 textUnderlineOffset: 5,
               }}
             >
-              Careers
-            </a>
+              FAQs
+            </Link>
           </div>
         </div>
       </div>

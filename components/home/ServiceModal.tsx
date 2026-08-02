@@ -125,7 +125,7 @@ export default function ServiceModal({
           </p>
           <div style={{ flex: 1 }} />
           <a
-            href="#"
+            href="/services"
             className="sm-link"
             onClick={(e) => e.stopPropagation()}
             style={{

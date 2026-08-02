@@ -389,6 +389,14 @@ input[type="range"].cube-slider::-moz-range-thumb {
    can't express :hover, so they live here as classes.
 --------------------------------------------------------------------------- */
 
+/* The hero card row. Kept in CSS rather than inline so the mobile tile grid
+   in the media queries below can override it. */
+.service-cards {
+  display: flex;
+  gap: 14px;
+  height: 378px;
+}
+
 /* Hero service card: expands + colorizes on hover.
    Base layout lives here (not inline) so the :hover rule can win — inline
    styles would otherwise override the hover state. */
@@ -425,6 +433,9 @@ input[type="range"].cube-slider::-moz-range-thumb {
   color: #0f1a2e;
   letter-spacing: -0.01em;
   line-height: 1.25;
+  /* Two lines reserved so the artwork starts at the same height in every card,
+     however the names wrap at narrow resting widths. */
+  min-height: 38px;
   transition: color 0.3s ease;
 }
 .service-card:hover .service-card-title {
@@ -754,13 +765,25 @@ input[type="range"].cube-slider::-moz-range-thumb {
     transform: translateY(-50%) scale(0.94);
   }
 
-  /* Hero cards stack vertically */
+  /* Hero cards: a two-up tile grid rather than a single stacked column. Five
+     full-width cards was ~1000px of scrolling; this keeps every card — and its
+     artwork — on roughly one screen. The odd card out spans both columns. */
   .service-cards {
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
     height: auto !important;
   }
   .service-card {
-    min-height: 180px;
+    min-height: 158px;
+    padding: 14px 14px 12px;
+  }
+  .service-card:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+  }
+  .service-card-title {
+    font-size: 14px;
+    min-height: 0; /* tiles are their own row — no alignment to reserve for */
   }
   .service-card:hover {
     transform: none;
@@ -923,11 +946,540 @@ input[type="range"].cube-slider::-moz-range-thumb {
   }
 }
 
+/* ---------------------------------------------------------------------------
+   Landing hero (home). Statement headline + CTAs, a platform wordmark strip,
+   and an outcome stat band — the first screen a new visitor sees.
+--------------------------------------------------------------------------- */
+.lp-hero {
+  padding: 108px 64px 72px;
+  background: #ffffff;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.lp-title {
+  margin: 0;
+  max-width: 860px;
+  font-size: clamp(38px, 5vw, 58px);
+  line-height: 1.06;
+  font-weight: 400;
+  letter-spacing: -0.035em;
+  color: #0f1a2e;
+  text-wrap: balance;
+}
+.lp-sub {
+  margin: 22px 0 0;
+  max-width: 620px;
+  font-size: 17px;
+  line-height: 1.62;
+  color: #586074;
+  text-wrap: pretty;
+}
+.lp-ctas {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+  margin-top: 36px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+/* Secondary action next to the accent pill — quiet by design, one accent
+   treatment per view. */
+.lp-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #0f1a2e;
+  transition: color 0.25s ease, gap 0.25s ease;
+}
+.lp-ghost:hover {
+  color: var(--accent);
+  gap: 12px;
+  opacity: 1;
+}
+
+.lp-logos {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 14px 34px;
+  margin-top: 56px;
+  padding-top: 30px;
+  border-top: 1px solid #eef1f5;
+  width: 100%;
+  max-width: 860px;
+}
+/* Logos sit in a fixed 28px band and are desaturated to a single grey weight
+   so six different brand palettes don't fight the page. Colour on hover. */
+.lp-logo-img {
+  height: 28px;
+  width: auto;
+  max-width: 130px;
+  object-fit: contain;
+  filter: grayscale(1);
+  opacity: 0.55;
+  transition: filter 0.3s ease, opacity 0.3s ease;
+}
+.lp-logos:hover .lp-logo-img {
+  filter: grayscale(1);
+  opacity: 0.4;
+}
+.lp-logos .lp-logo-img:hover {
+  filter: none;
+  opacity: 1;
+}
+/* Fallback until a brand's asset is added to /public/logos */
+.lp-logo-text {
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: #98a1b0;
+}
+
+.lp-stats {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 44px;
+  width: 100%;
+  max-width: 860px;
+}
+.lp-stat {
+  flex: 1 1 0;
+  min-width: 0;
+  padding: 26px 18px;
+  border: 1px solid #e6eaf1;
+  border-radius: 18px;
+  background: #f7f9fc;
+}
+.lp-stat-value {
+  font-size: 40px;
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--accent);
+}
+.lp-stat-label {
+  margin-top: 10px;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #8b93a3;
+}
+
+/* ---------------------------------------------------------------------------
+   Services page (/services). Reuses the home page's .service-card row for the
+   platform panels — hover expands a panel, clicking one selects the platform
+   whose offerings render in the detail block below.
+--------------------------------------------------------------------------- */
+.svc-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 22px 40px;
+  border-bottom: 1px solid #e6eaf1;
+  background: #ffffff;
+  position: sticky;
+  top: 0;
+  z-index: 40;
+}
+.svc-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.svc-topnav {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+}
+.svc-topnav a {
+  font-size: 14px;
+  font-weight: 400;
+  color: #7b8494;
+  transition: color 0.25s ease;
+}
+.svc-topnav a:hover {
+  color: #0f1a2e;
+  opacity: 1;
+}
+
+/* Platform panels: the home card row, tuned for eight items on one line —
+   tighter padding and a smaller subtitle so each resting card still reads.
+   Below 1180px eight columns get too thin, so the row wraps to two. */
+.svc-panels {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 10px;
+  height: 360px;
+}
+.svc-panels .service-card {
+  flex: 1 1 0;
+  min-width: 0;
+  padding: 16px 14px;
+}
+/* Reserve two lines for the title and subtitle so the artwork below starts at
+   the same height in every card, however the names wrap. */
+.svc-panels .service-card-title {
+  font-size: 14px;
+  min-height: 36px;
+}
+.svc-panels .service-card-sub {
+  font-size: 11px;
+  min-height: 30px;
+}
+@media (min-width: 861px) and (max-width: 1180px) {
+  .svc-panels {
+    flex-wrap: wrap;
+    height: auto;
+  }
+  .svc-panels .service-card {
+    flex: 1 1 calc(25% - 8px);
+    min-width: 180px;
+    height: 320px;
+  }
+}
+
+/* The selected panel keeps the accent frame after the pointer leaves, so the
+   detail block below always has a visible source. */
+.service-card[data-selected] {
+  border-color: var(--accent);
+  background: #ffffff;
+}
+.service-card[data-selected] .service-card-title {
+  color: var(--accent);
+}
+.service-card-sub {
+  font-size: 12px;
+  font-weight: 300;
+  color: #7b8494;
+  line-height: 1.35;
+  margin-top: 4px;
+}
+
+.svc-detail {
+  padding: 72px 64px;
+  background: #f7f9fc;
+  border-top: 1px solid #eef1f5;
+  border-bottom: 1px solid #eef1f5;
+}
+.svc-detail-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 40px;
+  margin-bottom: 38px;
+}
+.svc-head-cta {
+  flex: 0 0 auto;
+}
+
+.svc-groups {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+.svc-group {
+  background: #ffffff;
+  border: 1px solid #e6eaf1;
+  border-radius: 18px;
+  padding: 24px 24px 26px;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.35s ease, border-color 0.35s ease;
+}
+@media (hover: hover) {
+  .svc-group:hover {
+    transform: translateY(-6px);
+    border-color: var(--accent);
+    box-shadow: 0 26px 55px -26px rgba(26, 75, 255, 0.35);
+  }
+}
+.svc-group-title {
+  margin: 0 0 14px;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: #0f1a2e;
+}
+.svc-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+.svc-list li {
+  position: relative;
+  padding-left: 18px;
+  font-size: 14px;
+  line-height: 1.45;
+  color: #586074;
+}
+.svc-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 7px;
+  width: 7px;
+  height: 7px;
+  border-radius: 2px;
+  background: var(--accent);
+  transform: rotate(45deg);
+  opacity: 0.55;
+}
+
+.svc-extra {
+  margin-top: 32px;
+}
+.svc-extra-label {
+  font-family: var(--font-quicksand);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #8b93a3;
+  margin-bottom: 14px;
+}
+.svc-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.svc-pill {
+  padding: 9px 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(26, 75, 255, 0.18);
+  background: rgba(26, 75, 255, 0.06);
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 400;
+}
+
+/* Deep-linked from the footer — leave room for the sticky top bar (and, on
+   mobile, the sticky chip row) so the heading isn't hidden under them. */
+.svc-faqs {
+  scroll-margin-top: 90px;
+}
+
+.svc-faq {
+  border-bottom: 1px solid #e6eaf1;
+}
+.svc-faq-q {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px 0;
+  border: none;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+  font-family: var(--font-quicksand);
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: #0f1a2e;
+  transition: color 0.25s ease;
+}
+.svc-faq-q:hover {
+  color: var(--accent);
+}
+.svc-faq-icon {
+  flex: 0 0 auto;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid #e0e5ee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+  line-height: 1;
+  color: var(--accent);
+  transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+}
+.svc-faq[data-open] .svc-faq-icon {
+  transform: rotate(45deg);
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #ffffff;
+}
+.svc-faq-a {
+  margin: 0;
+  padding: 0 48px 22px 0;
+  font-size: 15px;
+  line-height: 1.65;
+  color: #586074;
+  text-wrap: pretty;
+  animation: fadeIn 0.25s ease;
+}
+
+.svc-cta {
+  padding: 0 64px 96px;
+  text-align: center;
+}
+.svc-cta-title {
+  margin: 0 auto 14px;
+  max-width: 620px;
+  font-size: 36px;
+  line-height: 1.12;
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  color: #0f1a2e;
+}
+.svc-cta-body {
+  margin: 0 auto;
+  max-width: 560px;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #586074;
+  text-wrap: pretty;
+}
+.svc-cta-btn {
+  margin-top: 30px;
+}
+
+@media (max-width: 860px) {
+  .svc-topbar {
+    padding: 14px 22px;
+  }
+  /* The links move into the floating MobileMenu popup */
+  .svc-topnav {
+    display: none;
+  }
+  .svc-detail,
+  .svc-cta {
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+  }
+  .svc-detail {
+    padding-top: 56px;
+    padding-bottom: 56px;
+  }
+  .svc-detail-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 26px;
+  }
+  .service-card[data-selected] {
+    box-shadow: 0 20px 44px -24px rgba(26, 75, 255, 0.42);
+  }
+  /* Landing hero: tighter rhythm, and the stat band stacks two-up with the
+     odd one full width so it never becomes three cramped columns. (These live
+     in the later of the two 860px blocks — the base .lp-* rules are defined
+     after the first one, so overrides there would lose.) */
+  .lp-hero {
+    padding: 56px 24px 48px;
+  }
+  .lp-sub {
+    font-size: 15.5px;
+  }
+  .lp-logos {
+    gap: 12px 22px;
+    margin-top: 40px;
+    padding-top: 24px;
+  }
+  .lp-logo-text {
+    font-size: 13.5px;
+  }
+  .lp-logo-img {
+    height: 22px;
+    max-width: 104px;
+  }
+  .lp-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 34px;
+  }
+  .lp-stat {
+    padding: 20px 14px;
+  }
+  .lp-stat:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+  }
+  .lp-stat-value {
+    font-size: 32px;
+  }
+
+  /* Eight stacked cards would be ~1600px of scrolling before the detail block
+     starts, so on phones the panels collapse into a horizontal chip bar — the
+     same treatment the case-studies list gets. The whole section is sticky
+     (not just the row) so the chips stay pinned while the detail scrolls; a
+     sticky child would unpin as soon as its own section left the viewport. */
+  .svc-panel-row {
+    position: sticky;
+    top: 61px; /* mobile top bar: 14px pad + 32px logo + 14px pad + 1px rule */
+    z-index: 30;
+    background: #ffffff;
+    border-bottom: 1px solid #eef1f5;
+    padding-top: 12px !important;
+    padding-bottom: 0 !important;
+  }
+  .svc-panels {
+    /* back to a flex row — the home grid rule above doesn't apply to chips */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 8px;
+    height: auto;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    /* bleed to the screen edges so the chips scroll edge-to-edge */
+    margin: 0 -24px;
+    padding: 0 24px 12px;
+  }
+  .svc-panels::-webkit-scrollbar {
+    display: none;
+  }
+  .svc-panels .service-card {
+    flex: 0 0 auto;
+    height: auto;
+    min-height: 0;
+    padding: 9px 16px !important;
+    border-radius: 999px;
+    border: 1px solid #dfe4ec;
+    background: #ffffff;
+    box-shadow: none;
+    transform: none;
+  }
+  .svc-panels .service-card[data-selected] {
+    background: var(--accent);
+    border-color: var(--accent);
+    box-shadow: none;
+  }
+  .svc-panels .service-card[data-selected] .service-card-title {
+    color: #ffffff;
+  }
+  .svc-panels .service-card-title {
+    font-size: 13px;
+    min-height: 0;
+    white-space: nowrap;
+  }
+  /* The subtitle and the artwork frame are what make the card tall — a chip
+     carries the platform name only. */
+  .svc-panels .service-card-sub,
+  .svc-panels .service-card > div {
+    display: none;
+  }
+}
+
 /* Phone: scale down the large fixed-size stages */
 @media (max-width: 560px) {
   .industries-title,
-  .solutions-title {
+  .solutions-title,
+  .svc-cta-title {
     font-size: 28px !important;
+  }
+  .svc-faq-q {
+    font-size: 15.5px;
   }
   .solutions-media {
     height: 240px;

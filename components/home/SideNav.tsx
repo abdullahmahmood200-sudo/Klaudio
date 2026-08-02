@@ -9,7 +9,7 @@ import { useActiveNav } from "@/components/useActiveNav";
 export default function SideNav() {
   const navRef = useRef<HTMLElement>(null);
   const [navHover, setNavHover] = useState<number | null>(null);
-  const [activeHref, setActiveHref] = useActiveNav("#services");
+  const [activeHref, setActiveHref] = useActiveNav("/");
 
   const onNavMove = (e: React.MouseEvent) => {
     const nav = navRef.current;
@@ -53,7 +53,7 @@ export default function SideNav() {
         </div>
       </div>
 
-      <MobileMenu home activeHref="#services" />
+      <MobileMenu home activeHref="/" />
 
       <nav
         ref={navRef}

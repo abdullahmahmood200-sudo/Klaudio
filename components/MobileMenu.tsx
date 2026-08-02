@@ -18,7 +18,7 @@ import { useActiveNav } from "./useActiveNav";
  */
 export default function MobileMenu({
   home = true,
-  activeHref = "#services",
+  activeHref = "/services",
 }: {
   home?: boolean;
   activeHref?: string;

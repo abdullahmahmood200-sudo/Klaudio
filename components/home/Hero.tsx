@@ -52,10 +52,9 @@ export default function Hero() {
           </h1>
         </header>
 
-        <div
-          className="service-cards"
-          style={{ display: "flex", gap: 14, height: 378 }}
-        >
+        {/* Layout lives in CSS (.service-cards) so the mobile tile grid can
+            override it — inline styles would win over the media query. */}
+        <div className="service-cards">
           {services.map((card, i) => (
             <div
               key={card.title}

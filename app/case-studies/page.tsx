@@ -46,7 +46,7 @@ function nearestEquivalent(current: number, target: number): number {
 }
 
 const menuLinks = [
-  { label: "Services", href: "/#services" },
+  { label: "Services", href: "/services" },
   { label: "Industries", href: "/#industries" },
   { label: "Process", href: "/#process" },
 ];

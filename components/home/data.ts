@@ -14,10 +14,16 @@ export const services: Service[] = [
     img: "/CRM%20&%20Marketing.avif",
   },
   {
-    title: "Cloud",
+    title: "AWS Cloud",
     blurb:
-      "Migrate, scale, and secure your infrastructure on modern cloud platforms engineered for speed, resilience, and predictable cost.",
+      "Migrate, modernize, and secure your infrastructure on AWS — architected for speed, resilience, and predictable cost.",
     img: "/Cloud.avif",
+  },
+  {
+    title: "Ecommerce",
+    blurb:
+      "Build and scale storefronts on Shopify and VTEX — themes, custom apps, marketplaces, and migrations that keep loading fast and converting.",
+    img: "/Professional.avif",
   },
   {
     title: "Financial Systems",
@@ -26,7 +32,7 @@ export const services: Service[] = [
     img: "/Financial%20Systems.avif",
   },
   {
-    title: "Managed Services & Integrations",
+    title: "Managed Services",
     blurb:
       "Keep everything running and connected with proactive support and custom integrations across your entire stack.",
     img: "/Managed%20services.avif",
@@ -36,7 +42,8 @@ export const services: Service[] = [
 export type NavItem = { label: string; href: string; active?: boolean };
 
 export const navItems: NavItem[] = [
-  { label: "Services", href: "#services", active: true },
+  { label: "Home", href: "/", active: true },
+  { label: "Services", href: "/services" },
   { label: "Industries", href: "#industries" },
   { label: "Process", href: "#process" },
   { label: "Case Studies", href: "/case-studies" },

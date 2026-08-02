@@ -13,7 +13,12 @@ export function useActiveNav(initial: string) {
   const [active, setActive] = useState(initial);
 
   useEffect(() => {
-    const ids = ["services", "industries", "process", "about"];
+    const ids = ["home", "services", "industries", "process", "about"];
+    // Two home sections are represented in the nav by routes, not anchors.
+    const asRoute: Record<string, string> = {
+      home: "/",
+      services: "/services",
+    };
     const els = ids
       .map((id) => document.getElementById(id))
       .filter((el): el is HTMLElement => el !== null);
@@ -24,7 +29,10 @@ export function useActiveNav(initial: string) {
         const visible = entries
           .filter((e) => e.isIntersecting)
           .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-        if (visible) setActive(`#${visible.target.id}`);
+        if (visible) {
+          const id = visible.target.id;
+          setActive(asRoute[id] ?? `#${id}`);
+        }
       },
       // A band around the middle of the viewport decides the active section.
       { rootMargin: "-35% 0px -45% 0px", threshold: [0, 0.25, 0.5, 1] }

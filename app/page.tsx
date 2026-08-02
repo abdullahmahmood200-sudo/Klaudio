@@ -1,4 +1,5 @@
 import SideNav from "@/components/home/SideNav";
+import Landing from "@/components/home/Landing";
 import Hero from "@/components/home/Hero";
 import About from "@/components/home/About";
 import Industries from "@/components/home/Industries";
@@ -23,6 +24,7 @@ export default function Home() {
           flexDirection: "column",
         }}
       >
+        <Landing />
         <Hero />
         <Industries />
         <IndustrySolutions />
