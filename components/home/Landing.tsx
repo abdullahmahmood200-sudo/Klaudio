@@ -1,69 +1,95 @@
+"use client";
+
 import Link from "next/link";
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
 import LogoStrip from "./LogoStrip";
 
 /**
- * Landing hero — the site had no default landing page, so this sits above the
- * existing service-card section and gives a first-time visitor a headline, a
- * CTA, and proof before they scroll into the sections.
+ * Landing hero — "Aperture". The wordmark resolves out of a blur inside a
+ * hairline ring, with a single accent dot orbiting the ring as the only
+ * continuous motion on the page.
  *
- * Three parts: the statement hero, a platform wordmark strip, and an outcome
- * stat band.
+ * Deliberately sparse: name, one line, one small action. The ring is sized
+ * well clear of the content so the composition reads as mostly air, which is
+ * the whole point of the direction.
  */
 
-// PLACEHOLDER FIGURES — confirm these with the client before launch.
-const stats = [
-  { value: "12+", label: "Years delivering" },
-  { value: "150+", label: "Projects shipped" },
-  { value: "98%", label: "Clients who stay" },
-];
-
 export default function Landing() {
+  const scope = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const root = scope.current;
+    if (!root) return;
+
+    // Reduced motion: show the final state, skip the reveal entirely. The
+    // orbiting dot is paused in CSS under the same media query.
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      gsap.set(root.querySelectorAll("[data-reveal]"), {
+        opacity: 1,
+        filter: "none",
+        scale: 1,
+        y: 0,
+      });
+      return;
+    }
+
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+
+      tl.fromTo(
+        "[data-reveal='ring']",
+        { opacity: 0, scale: 0.88 },
+        { opacity: 1, scale: 1, duration: 1.1 }
+      )
+        .fromTo(
+          "[data-reveal='word']",
+          { opacity: 0, scale: 0.9, filter: "blur(9px)" },
+          { opacity: 1, scale: 1, filter: "blur(0px)", duration: 1.1 },
+          0.15
+        )
+        .fromTo(
+          "[data-reveal='line']",
+          { opacity: 0, y: 12 },
+          { opacity: 1, y: 0, duration: 0.8 },
+          0.75
+        )
+        .fromTo(
+          "[data-reveal='cta']",
+          { opacity: 0, y: 12 },
+          { opacity: 1, y: 0, duration: 0.8 },
+          0.92
+        );
+    }, root);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section id="home" className="section-pad lp-hero">
-      <div
-        style={{
-          fontFamily: "var(--font-quicksand)",
-          fontWeight: 400,
-          fontSize: 10,
-          letterSpacing: ".22em",
-          textTransform: "uppercase",
-          color: "var(--accent)",
-          marginBottom: 20,
-        }}
-      >
-        AI & Technology Consulting
-      </div>
+    <section id="home" ref={scope} className="section-pad lp-hero">
+      <div className="ap-stage">
+        <span className="ap-ring" data-reveal="ring" aria-hidden="true">
+          <span className="ap-orbit">
+            <span className="ap-dot" />
+          </span>
+        </span>
 
-      <h1 className="lp-title">
-        We build the systems your business{" "}
-        <span style={{ color: "var(--accent)" }}>actually runs on</span>
-      </h1>
+        <div className="ap-content">
+          <h1 className="ap-word" data-reveal="word">
+            Klaudio
+          </h1>
 
-      <p className="lp-sub">
-        Salesforce, AWS, ecommerce, and AI automation — designed around your
-        processes, integrated with what you already use, and supported long
-        after launch.
-      </p>
+          <p className="ap-line" data-reveal="line">
+            Consulting for the systems you actually run.
+          </p>
 
-      <div className="lp-ctas">
-        <Link href="/contact" className="cta-btn">
-          Schedule a free consultation
-        </Link>
-        <Link href="/services" className="lp-ghost">
-          See our services <span aria-hidden>→</span>
-        </Link>
+          <Link href="/contact" className="ap-cta" data-reveal="cta">
+            Book a meeting
+          </Link>
+        </div>
       </div>
 
       <LogoStrip />
-
-      <div className="lp-stats">
-        {stats.map((s) => (
-          <div key={s.label} className="lp-stat">
-            <div className="lp-stat-value">{s.value}</div>
-            <div className="lp-stat-label">{s.label}</div>
-          </div>
-        ))}
-      </div>
     </section>
   );
 }

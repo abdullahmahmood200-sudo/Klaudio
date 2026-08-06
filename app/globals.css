@@ -120,6 +120,15 @@ a:hover {
   scale: 1.7;
   opacity: 0.55;
 }
+/* Over accent/ink surfaces the accent dot would vanish into the background,
+   so it inverts to white — and the verb pill inverts with it. */
+.ctx-cursor.on-dark .cc-dot {
+  background: #ffffff;
+}
+.ctx-cursor.on-dark .cc-pill {
+  background: #ffffff;
+  color: var(--accent);
+}
 @media (pointer: coarse) {
   .ctx-cursor {
     display: none;
@@ -947,8 +956,9 @@ input[type="range"].cube-slider::-moz-range-thumb {
 }
 
 /* ---------------------------------------------------------------------------
-   Landing hero (home). Statement headline + CTAs, a platform wordmark strip,
-   and an outcome stat band — the first screen a new visitor sees.
+   Landing hero (home) — "Aperture". The wordmark resolves inside a hairline
+   ring with one accent dot orbiting it. Sparse by design: name, one line, one
+   small action, and a lot of air.
 --------------------------------------------------------------------------- */
 .lp-hero {
   padding: 108px 64px 72px;
@@ -958,47 +968,97 @@ input[type="range"].cube-slider::-moz-range-thumb {
   flex-direction: column;
   align-items: center;
 }
-.lp-title {
-  margin: 0;
-  max-width: 860px;
-  font-size: clamp(38px, 5vw, 58px);
-  line-height: 1.06;
-  font-weight: 400;
-  letter-spacing: -0.035em;
-  color: #0f1a2e;
-  text-wrap: balance;
+
+/* The stage is square so the ring stays circular; content is centred inside
+   it rather than nested in it, so long words can never be clipped by the
+   ring's own box. */
+.ap-stage {
+  position: relative;
+  width: clamp(340px, 46vw, 640px);
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
 }
-.lp-sub {
-  margin: 22px 0 0;
-  max-width: 620px;
-  font-size: 17px;
-  line-height: 1.62;
+.ap-ring {
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(26, 75, 255, 0.22);
+  border-radius: 50%;
+  pointer-events: none;
+}
+/* Rotating the wrapper (not the dot) keeps the orbit centred without any
+   transform-origin arithmetic. */
+.ap-orbit {
+  position: absolute;
+  inset: 0;
+  animation: ap-orbit 11s linear infinite;
+}
+@keyframes ap-orbit {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.ap-dot {
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  margin-left: -5px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.ap-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Kept well inside the ring so the chord never crowds the text. */
+  width: 78%;
+}
+.ap-word {
+  margin: 0;
+  font-size: clamp(46px, 7.4vw, 96px);
+  line-height: 1;
+  font-weight: 600;
+  letter-spacing: -0.05em;
+  color: var(--ink);
+}
+.ap-line {
+  margin: 20px 0 0;
+  max-width: 34ch;
+  font-size: 15px;
+  line-height: 1.6;
+  font-weight: 400;
   color: #586074;
   text-wrap: pretty;
 }
-.lp-ctas {
-  display: flex;
-  align-items: center;
-  gap: 26px;
-  margin-top: 36px;
-  flex-wrap: wrap;
-  justify-content: center;
+/* Small on purpose — the generous padding, not the font size, is what gives
+   it presence. */
+.ap-cta {
+  display: inline-block;
+  margin-top: 30px;
+  padding: 13px 34px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #ffffff;
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, opacity 0.25s ease;
 }
-/* Secondary action next to the accent pill — quiet by design, one accent
-   treatment per view. */
-.lp-ghost {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 15px;
-  font-weight: 500;
-  color: #0f1a2e;
-  transition: color 0.25s ease, gap 0.25s ease;
-}
-.lp-ghost:hover {
-  color: var(--accent);
-  gap: 12px;
+.ap-cta:hover {
   opacity: 1;
+  transform: translateY(-1px);
+  box-shadow: 0 10px 26px -12px rgba(26, 75, 255, 0.75);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ap-orbit {
+    animation: none;
+  }
 }
 
 .lp-logos {
@@ -1038,37 +1098,6 @@ input[type="range"].cube-slider::-moz-range-thumb {
   font-weight: 500;
   letter-spacing: -0.01em;
   color: #98a1b0;
-}
-
-.lp-stats {
-  display: flex;
-  justify-content: center;
-  gap: 18px;
-  margin-top: 44px;
-  width: 100%;
-  max-width: 860px;
-}
-.lp-stat {
-  flex: 1 1 0;
-  min-width: 0;
-  padding: 26px 18px;
-  border: 1px solid #e6eaf1;
-  border-radius: 18px;
-  background: #f7f9fc;
-}
-.lp-stat-value {
-  font-size: 40px;
-  font-weight: 300;
-  letter-spacing: -0.03em;
-  line-height: 1;
-  color: var(--accent);
-}
-.lp-stat-label {
-  margin-top: 10px;
-  font-size: 10px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: #8b93a3;
 }
 
 /* ---------------------------------------------------------------------------
@@ -1370,15 +1399,19 @@ input[type="range"].cube-slider::-moz-range-thumb {
   .service-card[data-selected] {
     box-shadow: 0 20px 44px -24px rgba(26, 75, 255, 0.42);
   }
-  /* Landing hero: tighter rhythm, and the stat band stacks two-up with the
-     odd one full width so it never becomes three cramped columns. (These live
-     in the later of the two 860px blocks — the base .lp-* rules are defined
-     after the first one, so overrides there would lose.) */
+  /* Landing hero: tighter rhythm. The ring shrinks with the viewport via its
+     own clamp, so only the surrounding padding needs adjusting here. (These
+     live in the later of the two 860px blocks — the base .lp-* rules are
+     defined after the first one, so overrides there would lose.) */
   .lp-hero {
     padding: 56px 24px 48px;
   }
-  .lp-sub {
-    font-size: 15.5px;
+  .ap-line {
+    font-size: 14px;
+  }
+  .ap-cta {
+    margin-top: 24px;
+    padding: 12px 28px;
   }
   .lp-logos {
     gap: 12px 22px;
@@ -1392,22 +1425,6 @@ input[type="range"].cube-slider::-moz-range-thumb {
     height: 22px;
     max-width: 104px;
   }
-  .lp-stats {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    margin-top: 34px;
-  }
-  .lp-stat {
-    padding: 20px 14px;
-  }
-  .lp-stat:last-child:nth-child(odd) {
-    grid-column: 1 / -1;
-  }
-  .lp-stat-value {
-    font-size: 32px;
-  }
-
   /* Eight stacked cards would be ~1600px of scrolling before the detail block
      starts, so on phones the panels collapse into a horizontal chip bar — the
      same treatment the case-studies list gets. The whole section is sticky

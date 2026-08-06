@@ -26,6 +26,11 @@ const zones: { sel: string; label: string }[] = [
 const genericInteractive =
   "a, button, [role='button'], input, select, textarea, label";
 
+// Accent-filled and ink-filled surfaces. The dot is var(--accent), so over
+// these it would be invisible — it flips to white instead.
+const darkSurfaces =
+  ".ap-cta, .cta-btn, .submit-btn, .mm-popup, .svc-faq[data-open] .svc-faq-icon";
+
 export default function ContextCursor() {
   const ref = useRef<HTMLDivElement>(null);
   const pillRef = useRef<HTMLSpanElement>(null);
@@ -60,6 +65,7 @@ export default function ContextCursor() {
         "is-link",
         !zone && !!target?.closest?.(genericInteractive)
       );
+      el.classList.toggle("on-dark", !!target?.closest?.(darkSurfaces));
     };
 
     const onLeave = () => {
