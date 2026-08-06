@@ -110,10 +110,21 @@ export default function CaseStudiesPage() {
             zIndex: 5,
           }}
         >
-          <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+          <Link
+            href="/"
+            aria-label="Klaudio home"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 10,
+              width: "fit-content",
+              color: "inherit",
+              textDecoration: "none",
+            }}
+          >
             <Logo size={34} animated />
             <span style={{ fontSize: 15, fontWeight: 500, letterSpacing: "-.01em" }}>Klaudio</span>
-          </div>
+          </Link>
 
           <div>
             <div

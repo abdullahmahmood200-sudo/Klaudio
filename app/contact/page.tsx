@@ -66,9 +66,13 @@ export default function ContactPage() {
           height: "100vh",
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+        <Link
+          href="/"
+          aria-label="Klaudio home"
+          style={{ display: "flex", alignItems: "center", gap: 10, width: "fit-content" }}
+        >
           <Logo size={36} animated />
-        </div>
+        </Link>
 
         {/* Mobile-only floating hamburger; the desktop nav below is hidden on mobile */}
         <MobileMenu home={false} activeHref="/contact" />

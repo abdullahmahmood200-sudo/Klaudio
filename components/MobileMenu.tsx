@@ -46,7 +46,14 @@ export default function MobileMenu({
       <nav className={`mm-popup${open ? " open" : ""}`}>
         {/* Mono on the accent panel — the two brand colours would vanish. */}
         <span className="mm-brand" aria-hidden={!open}>
-          <Logo size={30} mono animated />
+          <Link
+            href="/"
+            aria-label="Klaudio home"
+            onClick={close}
+            style={{ display: "inline-flex", width: "fit-content" }}
+          >
+            <Logo size={30} mono animated />
+          </Link>
         </span>
 
         {navItems.map((it) => {
