@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
+import Logo from "@/components/Logo";
 import Image from "next/image";
 import Link from "next/link";
 import Footer from "@/components/Footer";
@@ -110,10 +111,7 @@ export default function CaseStudiesPage() {
           }}
         >
           <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-            <div style={{ width: 30, height: 30, position: "relative" }}>
-              <div style={{ position: "absolute", width: 16, height: 16, background: "#0f1a2e", transform: "rotate(45deg)", top: 0, left: 7, borderRadius: 3 }} />
-              <div style={{ position: "absolute", width: 16, height: 16, background: "var(--accent)", transform: "rotate(45deg)", top: 8, left: 7, borderRadius: 3, opacity: 0.9 }} />
-            </div>
+            <Logo size={30} animated />
             <span style={{ fontSize: 15, fontWeight: 500, letterSpacing: "-.01em" }}>Klaudio</span>
           </div>
 

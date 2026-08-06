@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import LogoStrip from "./LogoStrip";
+import Logo from "../Logo";
 
 /**
  * Landing hero — "Aperture". The wordmark resolves out of a blur inside a
@@ -67,6 +68,12 @@ export default function Landing() {
 
   return (
     <section id="home" ref={scope} className="section-pad lp-hero">
+      {/* The mark sits opposite the nav rail rather than on top of it, so the
+          first screen reads corner-to-corner. */}
+      <Link href="/" className="ap-logo" aria-label="Klaudio home">
+        <Logo size={38} animated />
+      </Link>
+
       <div className="ap-stage">
         <span className="ap-ring" data-reveal="ring" aria-hidden="true">
           <span className="ap-orbit">

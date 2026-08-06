@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Logo from "@/components/Logo";
 import Link from "next/link";
 import Footer from "@/components/Footer";
 import MobileMenu from "@/components/MobileMenu";
@@ -28,10 +29,7 @@ export default function ServicesPage() {
           carries its own header, same as /case-studies does. */}
       <header className="svc-topbar">
         <Link href="/" className="svc-logo" aria-label="Klaudio home">
-          <span style={{ width: 32, height: 32, position: "relative", display: "block" }}>
-            <span style={{ position: "absolute", width: 17, height: 17, background: "#0f1a2e", transform: "rotate(45deg)", top: 0, left: 7, borderRadius: 3 }} />
-            <span style={{ position: "absolute", width: 17, height: 17, background: "var(--accent)", transform: "rotate(45deg)", top: 8, left: 7, borderRadius: 3, opacity: 0.9 }} />
-          </span>
+          <Logo size={32} animated />
           <span style={{ fontSize: 15, fontWeight: 500, letterSpacing: "-.01em", color: "#0f1a2e" }}>
             Klaudio
           </span>

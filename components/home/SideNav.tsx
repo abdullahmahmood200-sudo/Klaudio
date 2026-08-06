@@ -45,13 +45,10 @@ export default function SideNav() {
         height: "100vh",
       }}
     >
-      {/* Logo. On mobile the floating MobileMenu below provides the nav popup. */}
-      <div className="sidebar-bar" style={{ display: "flex", alignItems: "center", gap: 10 }}>
-        <div style={{ width: 32, height: 32, position: "relative" }}>
-          <div style={{ position: "absolute", width: 17, height: 17, background: "#0f1a2e", transform: "rotate(45deg)", top: 0, left: 7, borderRadius: 3 }} />
-          <div style={{ position: "absolute", width: 17, height: 17, background: "var(--accent)", transform: "rotate(45deg)", top: 8, left: 7, borderRadius: 3, opacity: 0.9 }} />
-        </div>
-      </div>
+      {/* The mark now lives in the hero's top-right corner (see Landing), so
+          the rail keeps only its spacing. On mobile the floating MobileMenu
+          below provides the nav popup. */}
+      <div className="sidebar-bar" style={{ height: 32 }} />
 
       <MobileMenu home activeHref="/" />
 

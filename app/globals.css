@@ -1379,6 +1379,104 @@ input[type="range"].cube-slider::-moz-range-thumb {
 }
 
 /* ---------------------------------------------------------------------------
+   Klaudio mark — "Node K". Static everywhere by default; with .is-animated a
+   signal walks each arm from the hub and blooms a ring on arrival.
+   Arm geometry is 24 across by 18 down, so each arm is exactly 30 units long
+   — the dash values below depend on that.
+--------------------------------------------------------------------------- */
+.kl-logo {
+  display: block;
+  overflow: visible;
+}
+.kl-arm {
+  opacity: 1;
+}
+.kl-signal {
+  opacity: 0;
+}
+.kl-ring {
+  opacity: 0;
+  fill: none;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+/* Animated variant: the arms drop back so the travelling signal reads. */
+.kl-logo.is-animated .kl-arm {
+  opacity: 0.28;
+}
+.kl-logo.is-animated .kl-signal {
+  stroke-dasharray: 5 25;
+  stroke-dashoffset: 30;
+  animation: kl-travel 2.4s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+.kl-logo.is-animated .kl-ring {
+  animation: kl-bloom 2.4s ease-out infinite;
+}
+/* The lower arm trails the upper one so the mark has a pulse rather than a
+   symmetrical blink. */
+.kl-logo.is-animated .kl-signal-b,
+.kl-logo.is-animated .kl-ring-b {
+  animation-delay: 0.3s;
+}
+
+@keyframes kl-travel {
+  0% {
+    stroke-dashoffset: 30;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  50% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+  60%,
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0;
+  }
+}
+@keyframes kl-bloom {
+  0%,
+  48% {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+  58% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  82%,
+  100% {
+    opacity: 0;
+    transform: scale(2.1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kl-logo.is-animated .kl-arm {
+    opacity: 1;
+  }
+  .kl-logo.is-animated .kl-signal,
+  .kl-logo.is-animated .kl-ring {
+    animation: none;
+  }
+}
+
+/* Corner placement on the landing hero. */
+.lp-hero {
+  position: relative;
+}
+.ap-logo {
+  position: absolute;
+  top: 30px;
+  right: 44px;
+  z-index: 5;
+}
+
+/* ---------------------------------------------------------------------------
    Footer closing wordmark. It is an <a> rather than a <div> so it can act as
    the back-to-top control — these styles were inline before that change.
 --------------------------------------------------------------------------- */

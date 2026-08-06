@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Logo from "@/components/Logo";
 import Footer from "@/components/Footer";
 import MobileMenu from "@/components/MobileMenu";
 
@@ -66,10 +67,7 @@ export default function ContactPage() {
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-          <div style={{ width: 32, height: 32, position: "relative" }}>
-            <div style={{ position: "absolute", width: 17, height: 17, background: "#0f1a2e", transform: "rotate(45deg)", top: 0, left: 7, borderRadius: 3 }} />
-            <div style={{ position: "absolute", width: 17, height: 17, background: "var(--accent)", transform: "rotate(45deg)", top: 8, left: 7, borderRadius: 3, opacity: 0.9 }} />
-          </div>
+          <Logo size={32} animated />
         </div>
 
         {/* Mobile-only floating hamburger; the desktop nav below is hidden on mobile */}
