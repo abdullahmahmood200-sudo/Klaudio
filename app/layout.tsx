@@ -12,9 +12,9 @@ const quicksand = Quicksand({
 });
 
 export const metadata: Metadata = {
-  title: "Nyxo Agency — AI & Technology Consulting",
+  title: "Klaudio Agency — AI & Technology Consulting",
   description:
-    "Nyxo Agency is an AI and technology consulting firm helping ambitious organizations put the right platforms to work.",
+    "Klaudio Agency is an AI and technology consulting firm helping ambitious organizations put the right platforms to work.",
 };
 
 export default function RootLayout({

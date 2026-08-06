@@ -114,7 +114,7 @@ export default function CaseStudiesPage() {
               <div style={{ position: "absolute", width: 16, height: 16, background: "#0f1a2e", transform: "rotate(45deg)", top: 0, left: 7, borderRadius: 3 }} />
               <div style={{ position: "absolute", width: 16, height: 16, background: "var(--accent)", transform: "rotate(45deg)", top: 8, left: 7, borderRadius: 3, opacity: 0.9 }} />
             </div>
-            <span style={{ fontSize: 15, fontWeight: 500, letterSpacing: "-.01em" }}>Nyxo</span>
+            <span style={{ fontSize: 15, fontWeight: 500, letterSpacing: "-.01em" }}>Klaudio</span>
           </div>
 
           <div>

@@ -120,7 +120,7 @@ export default function Footer() {
               }}
             >
               <span style={{ fontSize: 12.5, fontWeight: 300, color: "#0f1a2e" }}>
-                © 2026 Nyxo Agency
+                © 2026 Klaudio Agency
               </span>
               <a href="#" style={{ fontSize: 12.5, fontWeight: 500, color: "var(--accent)", textDecoration: "none" }}>
                 Terms of Use
@@ -165,7 +165,7 @@ export default function Footer() {
           <div
             className="footer-wordmark"
             style={{
-              fontSize: "clamp(88px,25vw,360px)",
+              fontSize: "clamp(50px,14.3vw,206px)",
               fontWeight: 700,
               letterSpacing: "-.05em",
               lineHeight: 0.78,
@@ -174,7 +174,7 @@ export default function Footer() {
               userSelect: "none",
             }}
           >
-            NYXO
+            KLAUDIO
           </div>
         </div>
       </div>

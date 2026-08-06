@@ -40,7 +40,7 @@ export default function About() {
         >
           We&apos;re{" "}
           <span style={{ color: "var(--accent)", fontWeight: 500 }}>
-            Nyxo Agency
+            Klaudio Agency
           </span>
           , an AI and technology consulting firm helping ambitious
           organizations put the right platforms to work. Our team combines AI
@@ -80,7 +80,7 @@ export default function About() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/laptop-cutout-trimmed.png"
-            alt="The Nyxo Case Studies experience running on a laptop"
+            alt="The Klaudio Case Studies experience running on a laptop"
             className="about-laptop"
             style={{
               position: "absolute",

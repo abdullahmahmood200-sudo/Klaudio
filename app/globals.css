@@ -1494,7 +1494,7 @@ input[type="range"].cube-slider::-moz-range-thumb {
     transform: scale(0.82);
   }
   .footer-wordmark {
-    font-size: clamp(64px, 24vw, 120px) !important;
+    font-size: clamp(36px, 13.7vw, 68px) !important;
   }
   /* Smallest screens: keep the laptop almost flush so it never clips
      or crowds the text on narrow viewports. */
