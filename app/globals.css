@@ -964,8 +964,15 @@ input[type="range"].cube-slider::-moz-range-thumb {
    ring with one accent dot orbiting it. Sparse by design: name, one line, one
    small action, and a lot of air.
 --------------------------------------------------------------------------- */
+/* The first screen is sized to the viewport so the platform strip lands just
+   inside the bottom edge instead of running under it. `svh` (not `vh`) is what
+   keeps that true on phones, where the browser chrome eats into `vh`. The
+   bottom padding *is* the gap — the strip is pushed down onto it by the stage's
+   auto margins below — so it's roomier here than in the phone override further
+   down, where the strip sits nearly flush. */
 .lp-hero {
-  padding: 108px 64px 72px;
+  min-height: 100svh;
+  padding: 108px 64px 40px;
   background: #ffffff;
   text-align: center;
   display: flex;
@@ -978,10 +985,25 @@ input[type="range"].cube-slider::-moz-range-thumb {
    ring's own box. */
 .ap-stage {
   position: relative;
-  width: clamp(340px, 46vw, 640px);
+  /* Width tracks the viewport's *shorter* constraint: on a wide, short window
+     the height term wins, so the ring shrinks instead of shoving the platform
+     strip off the bottom. 300px is the fixed chrome above and below it: 108px
+     of hero padding, the 114px strip, and the 40px bottom gap, plus slack. */
+  width: clamp(300px, min(46vw, 100svh - 300px), 640px);
+  max-width: 100%;
   aspect-ratio: 1;
   display: grid;
   place-items: center;
+  /* Equal auto margins absorb the leftover viewport height, which centres the
+     ring in the free space and settles the strip onto the bottom padding. */
+  margin: auto 0;
+  /* .ap-orbit is a full-size square that spins, so its *bounding box* sweeps
+     out to width×√2 — ~62px past each edge here — and that phantom box is
+     enough to widen the document and scroll the page sideways on a loop.
+     `clip` (not `hidden`) contains it without creating a scroll container; the
+     margin leaves room for the dot, which straddles the ring by 5px. */
+  overflow: clip;
+  overflow-clip-margin: 12px;
 }
 .ap-ring {
   position: absolute;
@@ -1465,14 +1487,6 @@ input[type="range"].cube-slider::-moz-range-thumb {
   }
 }
 
-/* Mark at the head of the mobile nav popup. */
-.mm-brand {
-  display: block;
-  padding: 2px 0 14px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.22);
-  margin-bottom: 6px;
-}
-
 /* Corner placement on the landing hero. */
 .lp-hero {
   position: relative;
@@ -1482,6 +1496,26 @@ input[type="range"].cube-slider::-moz-range-thumb {
   top: 30px;
   right: 44px;
   z-index: 5;
+}
+
+/* On phones the mark takes the top-left corner of the sticky bar, opposite the
+   floating hamburger. Fixed (like the button) so the two stay put while the
+   hero scrolls, and sized down to sit level with the 40px button. It stays
+   below .mm-backdrop's z-index so an open menu dims it like the rest. */
+@media (max-width: 860px) {
+  .ap-logo {
+    position: fixed;
+    /* centres the 32px mark on the 40px button: 10px + 20px − 16px */
+    top: 14px;
+    right: auto;
+    /* matches the top bar's 22px gutter */
+    left: 22px;
+    z-index: 54;
+  }
+  .ap-logo .kl-logo {
+    width: 32px;
+    height: 32px;
+  }
 }
 
 /* ---------------------------------------------------------------------------
@@ -1541,7 +1575,10 @@ input[type="range"].cube-slider::-moz-range-thumb {
      live in the later of the two 860px blocks — the base .lp-* rules are
      defined after the first one, so overrides there would lose.) */
   .lp-hero {
-    padding: 56px 24px 48px;
+    /* The sticky top bar is in flow above the hero on phones, so the fitted
+       height has to give its 61px back or the strip pushes past the fold. */
+    min-height: calc(100svh - 61px);
+    padding: 56px 24px 1px;
   }
   .ap-line {
     font-size: 14px;

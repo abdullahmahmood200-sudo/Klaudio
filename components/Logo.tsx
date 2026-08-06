@@ -7,8 +7,8 @@
  * boundary and keeps working with JavaScript disabled. Motion is suppressed
  * under prefers-reduced-motion in globals.css.
  *
- * `mono` renders the whole mark in white, for the accent-blue surfaces (the
- * mobile menu popup) where the two brand colours would disappear.
+ * `mono` renders the whole mark in white, for accent-blue surfaces where the
+ * two brand colours would disappear.
  */
 export default function Logo({
   size = 32,
