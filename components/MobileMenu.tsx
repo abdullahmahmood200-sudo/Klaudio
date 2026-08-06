@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Logo from "./Logo";
 import Link from "next/link";
 import { navItems } from "./home/data";
 import { useActiveNav } from "./useActiveNav";
@@ -43,6 +44,11 @@ export default function MobileMenu({
       {open && <div className="mm-backdrop" onClick={close} />}
 
       <nav className={`mm-popup${open ? " open" : ""}`}>
+        {/* Mono on the accent panel — the two brand colours would vanish. */}
+        <span className="mm-brand" aria-hidden={!open}>
+          <Logo size={30} mono animated />
+        </span>
+
         {navItems.map((it) => {
           const href =
             !home && it.href.startsWith("#") ? `/${it.href}` : it.href;

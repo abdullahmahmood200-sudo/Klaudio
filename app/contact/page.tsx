@@ -67,7 +67,7 @@ export default function ContactPage() {
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-          <Logo size={32} animated />
+          <Logo size={36} animated />
         </div>
 
         {/* Mobile-only floating hamburger; the desktop nav below is hidden on mobile */}

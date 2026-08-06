@@ -6,16 +6,24 @@
  * and blooms a ring on arrival. It is pure SVG + CSS, so it needs no client
  * boundary and keeps working with JavaScript disabled. Motion is suppressed
  * under prefers-reduced-motion in globals.css.
+ *
+ * `mono` renders the whole mark in white, for the accent-blue surfaces (the
+ * mobile menu popup) where the two brand colours would disappear.
  */
 export default function Logo({
   size = 32,
   animated = false,
+  mono = false,
   className = "",
 }: {
   size?: number;
   animated?: boolean;
+  mono?: boolean;
   className?: string;
 }) {
+  const ink = mono ? "#ffffff" : "var(--ink)";
+  const accent = mono ? "#ffffff" : "var(--accent)";
+
   return (
     <svg
       viewBox="0 0 64 64"
@@ -27,41 +35,36 @@ export default function Logo({
       className={`kl-logo${animated ? " is-animated" : ""} ${className}`.trim()}
     >
       {/* stem */}
-      <path
-        d="M18 12v40"
-        stroke="var(--ink)"
-        strokeWidth="4"
-        strokeLinecap="round"
-      />
+      <path d="M18 12v40" stroke={ink} strokeWidth="4" strokeLinecap="round" />
 
-      {/* arms, held at low opacity so the travelling signal reads on top */}
+      {/* arms, dropped back so the travelling signal reads on top of them */}
       <path
+        className="kl-arm"
         d="M18 32L42 14"
-        stroke="var(--accent)"
+        stroke={accent}
         strokeWidth="4"
         strokeLinecap="round"
-        className="kl-arm"
       />
       <path
+        className="kl-arm"
         d="M18 32L42 50"
-        stroke="var(--accent)"
+        stroke={accent}
         strokeWidth="4"
         strokeLinecap="round"
-        className="kl-arm"
       />
 
       {/* the signal itself — a short dash walking each arm */}
       <path
         className="kl-signal kl-signal-a"
         d="M18 32L42 14"
-        stroke="var(--accent)"
+        stroke={accent}
         strokeWidth="4"
         strokeLinecap="round"
       />
       <path
         className="kl-signal kl-signal-b"
         d="M18 32L42 50"
-        stroke="var(--accent)"
+        stroke={accent}
         strokeWidth="4"
         strokeLinecap="round"
       />
@@ -72,7 +75,7 @@ export default function Logo({
         cx="42"
         cy="14"
         r="5"
-        stroke="var(--accent)"
+        stroke={accent}
         strokeWidth="1.4"
       />
       <circle
@@ -80,13 +83,13 @@ export default function Logo({
         cx="42"
         cy="50"
         r="5"
-        stroke="var(--accent)"
+        stroke={accent}
         strokeWidth="1.4"
       />
 
-      <circle cx="42" cy="14" r="5" fill="var(--accent)" />
-      <circle cx="42" cy="50" r="5" fill="var(--accent)" />
-      <circle cx="18" cy="32" r="5.5" fill="var(--ink)" />
+      <circle cx="42" cy="14" r="5" fill={accent} />
+      <circle cx="42" cy="50" r="5" fill={accent} />
+      <circle cx="18" cy="32" r="5.5" fill={ink} />
     </svg>
   );
 }

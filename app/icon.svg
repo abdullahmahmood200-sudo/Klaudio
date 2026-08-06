@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!--
+    Klaudio favicon — Node K on a white disc.
+
+    Standalone file, so the brand values are literal rather than CSS variables,
+    and the strokes are heavier than the in-page mark: at 16px the 4-unit arms
+    of the site version thin out to nothing.
+  -->
+  <circle cx="32" cy="32" r="32" fill="#ffffff"/>
+  <g transform="translate(7.2 6.4) scale(0.8)" fill="none" stroke-linecap="round">
+    <path d="M18 12v40" stroke="#0f1a2e" stroke-width="6"/>
+    <path d="M18 32L42 14" stroke="#1a4bff" stroke-width="6"/>
+    <path d="M18 32L42 50" stroke="#1a4bff" stroke-width="6"/>
+    <circle cx="42" cy="14" r="6.5" fill="#1a4bff"/>
+    <circle cx="42" cy="50" r="6.5" fill="#1a4bff"/>
+    <circle cx="18" cy="32" r="7" fill="#0f1a2e"/>
+  </g>
+</svg>

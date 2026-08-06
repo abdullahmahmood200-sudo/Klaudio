@@ -111,7 +111,7 @@ export default function CaseStudiesPage() {
           }}
         >
           <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-            <Logo size={30} animated />
+            <Logo size={34} animated />
             <span style={{ fontSize: 15, fontWeight: 500, letterSpacing: "-.01em" }}>Klaudio</span>
           </div>
 

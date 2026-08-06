@@ -71,7 +71,7 @@ export default function Landing() {
       {/* The mark sits opposite the nav rail rather than on top of it, so the
           first screen reads corner-to-corner. */}
       <Link href="/" className="ap-logo" aria-label="Klaudio home">
-        <Logo size={38} animated />
+        <Logo size={46} animated />
       </Link>
 
       <div className="ap-stage">

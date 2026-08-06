@@ -1465,6 +1465,14 @@ input[type="range"].cube-slider::-moz-range-thumb {
   }
 }
 
+/* Mark at the head of the mobile nav popup. */
+.mm-brand {
+  display: block;
+  padding: 2px 0 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+  margin-bottom: 6px;
+}
+
 /* Corner placement on the landing hero. */
 .lp-hero {
   position: relative;

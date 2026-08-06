@@ -29,7 +29,7 @@ export default function ServicesPage() {
           carries its own header, same as /case-studies does. */}
       <header className="svc-topbar">
         <Link href="/" className="svc-logo" aria-label="Klaudio home">
-          <Logo size={32} animated />
+          <Logo size={36} animated />
           <span style={{ fontSize: 15, fontWeight: 500, letterSpacing: "-.01em", color: "#0f1a2e" }}>
             Klaudio
           </span>
