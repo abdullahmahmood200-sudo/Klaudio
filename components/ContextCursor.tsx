@@ -15,6 +15,7 @@ import gsap from "gsap";
 
 // First match wins, so put the most specific zones on top.
 const zones: { sel: string; label: string }[] = [
+  { sel: ".footer-wordmark", label: "Top" },
   { sel: ".service-card", label: "View" },
   { sel: ".submit-btn", label: "Send" },
   { sel: "input[type='range']", label: "Drag" },
@@ -28,8 +29,10 @@ const genericInteractive =
 
 // Accent-filled and ink-filled surfaces. The dot is var(--accent), so over
 // these it would be invisible — it flips to white instead.
+// The footer's CTA band is a full-bleed accent panel and the closing wordmark
+// is accent-filled type, so both need the inverted dot too.
 const darkSurfaces =
-  ".ap-cta, .cta-btn, .submit-btn, .mm-popup, .svc-faq[data-open] .svc-faq-icon";
+  ".ap-cta, .cta-btn, .submit-btn, .mm-popup, .svc-faq[data-open] .svc-faq-icon, .footer-cta, .footer-wordmark";
 
 export default function ContextCursor() {
   const ref = useRef<HTMLDivElement>(null);

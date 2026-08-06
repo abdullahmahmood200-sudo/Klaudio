@@ -1,4 +1,5 @@
 import Link from "next/link";
+import FooterWordmark from "./FooterWordmark";
 
 export default function Footer() {
   return (
@@ -7,6 +8,7 @@ export default function Footer() {
     >
       {/* CTA band */}
       <div
+        className="footer-cta"
         style={{ background: "var(--accent)", color: "#ffffff", padding: "72px 64px" }}
       >
         <div
@@ -160,22 +162,9 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Giant wordmark */}
+        {/* Giant wordmark — doubles as the back-to-top control */}
         <div style={{ maxWidth: 1200, margin: "36px auto 0" }}>
-          <div
-            className="footer-wordmark"
-            style={{
-              fontSize: "clamp(50px,14.3vw,206px)",
-              fontWeight: 700,
-              letterSpacing: "-.05em",
-              lineHeight: 0.78,
-              color: "var(--accent)",
-              textAlign: "center",
-              userSelect: "none",
-            }}
-          >
-            KLAUDIO
-          </div>
+          <FooterWordmark />
         </div>
       </div>
     </footer>

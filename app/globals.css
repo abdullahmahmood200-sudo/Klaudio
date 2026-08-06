@@ -124,6 +124,10 @@ a:hover {
    so it inverts to white — and the verb pill inverts with it. */
 .ctx-cursor.on-dark .cc-dot {
   background: #ffffff;
+  /* The footer wordmark is accent type on a light ground, so a plain white
+     dot would vanish in the gaps between letters — the hairline keeps it
+     readable on both. */
+  box-shadow: 0 0 0 1px rgba(15, 26, 46, 0.22);
 }
 .ctx-cursor.on-dark .cc-pill {
   background: #ffffff;
@@ -1372,6 +1376,33 @@ input[type="range"].cube-slider::-moz-range-thumb {
 }
 .svc-cta-btn {
   margin-top: 30px;
+}
+
+/* ---------------------------------------------------------------------------
+   Footer closing wordmark. It is an <a> rather than a <div> so it can act as
+   the back-to-top control — these styles were inline before that change.
+--------------------------------------------------------------------------- */
+.footer-wordmark {
+  display: block;
+  font-size: clamp(50px, 14.3vw, 206px);
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  line-height: 0.78;
+  color: var(--accent);
+  text-align: center;
+  user-select: none;
+  text-decoration: none;
+  /* Cancel the global link hover fade — the wordmark is a surface, not a
+     line of body copy. */
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+.footer-wordmark:hover {
+  opacity: 0.88;
+}
+.footer-wordmark:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 6px;
 }
 
 @media (max-width: 860px) {

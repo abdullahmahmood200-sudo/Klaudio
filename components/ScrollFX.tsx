@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
+import { setLenis } from "./lenis";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -33,9 +34,12 @@ export default function ScrollFX() {
     const raf = (time: number) => lenis.raf(time * 1000);
     gsap.ticker.add(raf);
     gsap.ticker.lagSmoothing(0);
+    // Published so components can drive a scroll without owning the instance.
+    setLenis(lenis);
 
     return () => {
       gsap.ticker.remove(raf);
+      setLenis(null);
       lenis.destroy();
     };
   }, []);
