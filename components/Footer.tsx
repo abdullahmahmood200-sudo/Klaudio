@@ -1,6 +1,5 @@
 import Link from "next/link";
 import FooterWordmark from "./FooterWordmark";
-import Logo from "./Logo";
 
 export default function Footer() {
   return (
@@ -92,10 +91,6 @@ export default function Footer() {
               minWidth: 220,
             }}
           >
-            <Link href="/" aria-label="Klaudio home" style={{ display: "flex", width: "fit-content" }}>
-              <Logo size={36} animated />
-            </Link>
-
             <div style={{ display: "flex", gap: 18, alignItems: "center" }}>
               <a href="#" aria-label="LinkedIn" style={{ display: "flex", color: "#0f1a2e" }}>
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">

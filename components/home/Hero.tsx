@@ -33,7 +33,7 @@ export default function Hero() {
               marginBottom: 18,
             }}
           >
-            What we build
+            Services
           </div>
           <h1
             style={{
@@ -47,8 +47,9 @@ export default function Hero() {
               textWrap: "pretty",
             }}
           >
-            Technology that moves your{" "}
-            <span style={{ color: "var(--accent)" }}>business forward</span>
+            Built
+            <br />
+            <span style={{ color: "var(--accent)" }}>Different</span>
           </h1>
         </header>
 

@@ -46,8 +46,12 @@ export default function ScrollFX() {
 
   // Reveal animations, rebuilt per route so new pages animate in too.
   useEffect(() => {
+    // The landing hero is excluded: it choreographs its own entrance, and the
+    // y-tween here would put a transform on it for two seconds. That makes it
+    // the containing block for its own `position: fixed` children — the corner
+    // mark — which then rides the tween up instead of staying pinned.
     const targets = gsap.utils.toArray<HTMLElement>(
-      "section, .cube-shell, footer"
+      "section:not(.lp-hero), .cube-shell, footer"
     );
     const tweens = targets.map((el) =>
       gsap.fromTo(

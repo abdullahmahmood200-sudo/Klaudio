@@ -1491,6 +1491,22 @@ input[type="range"].cube-slider::-moz-range-thumb {
 .lp-hero {
   position: relative;
 }
+
+/* The hero reveal is driven by GSAP in Landing.tsx, which can only set the
+   start state once hydration runs — on a phone that is several frames after
+   first paint, so without this the elements flash at their final position and
+   then snap back to animate. Hiding them in CSS means the very first painted
+   frame is already the start of the cascade. GSAP animates opacity to 1, and
+   the reduced-motion branch sets it directly. */
+.lp-hero [data-reveal] {
+  opacity: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .lp-hero [data-reveal] {
+    opacity: 1;
+  }
+}
+
 .ap-logo {
   position: absolute;
   top: 30px;
