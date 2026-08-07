@@ -1709,3 +1709,30 @@ input[type="range"].cube-slider::-moz-range-thumb {
     top: -4% !important;
   }
 }
+
+/* ---------------------------------------------------------------------------
+   Landing hero — desktop scale. On a large screen the composition was hitting
+   the top of every clamp at once (640px ring, 96px wordmark), which filled the
+   fold edge to edge. Pulling each term back ~12% zooms the whole first screen
+   out so the air around the ring reads as deliberate rather than as overflow.
+   Scoped above the phone breakpoint and placed last so it wins over the base
+   rules; the mobile sizes below 861px are untouched.
+--------------------------------------------------------------------------- */
+@media (min-width: 861px) {
+  .ap-stage {
+    /* Same shape as the base clamp — the shorter of width/height still wins —
+       just a smaller ceiling and a gentler width term. */
+    width: clamp(300px, min(41vw, 100svh - 300px), 560px);
+  }
+  .ap-word {
+    font-size: clamp(46px, 6.4vw, 84px);
+  }
+  .ap-line {
+    margin-top: 18px;
+    font-size: 14.5px;
+  }
+  .ap-cta {
+    margin-top: 26px;
+    padding: 12px 30px;
+  }
+}
