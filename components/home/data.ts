@@ -16,13 +16,13 @@ export const services: Service[] = [
   {
     title: "AWS Cloud",
     blurb:
-      "Migrate, modernize, and secure your infrastructure on AWS — architected for speed, resilience, and predictable cost.",
+      "Migrate, modernize, and secure your infrastructure on AWS, architected for speed, resilience, and predictable cost.",
     img: "/Cloud.avif",
   },
   {
     title: "Ecommerce",
     blurb:
-      "Build and scale storefronts on Shopify and VTEX — themes, custom apps, marketplaces, and migrations that keep loading fast and converting.",
+      "Build and scale storefronts on Shopify and VTEX: themes, custom apps, marketplaces, and migrations that keep loading fast and converting.",
     img: "/Professional.avif",
   },
   {

@@ -71,8 +71,8 @@ export default function ServicesPage() {
             textWrap: "pretty",
           }}
         >
-          One partner for the platforms your{" "}
-          <span style={{ color: "var(--accent)" }}>business runs on</span>
+          Every platform{" "}
+          <span style={{ color: "var(--accent)" }}>One partner</span>
         </h1>
         <p
           style={{
@@ -85,7 +85,7 @@ export default function ServicesPage() {
           }}
         >
           Consulting, implementation, integration, migration, and managed
-          services across Salesforce, AWS, and ecommerce — delivered by certified
+          services across Salesforce, AWS, and ecommerce, delivered by certified
           teams and supported long after go-live.
         </p>
       </section>
@@ -263,7 +263,7 @@ export default function ServicesPage() {
       <section className="svc-cta section-pad">
         <h2 className="svc-cta-title">Tell us what you&apos;re trying to fix</h2>
         <p className="svc-cta-body">
-          Every engagement starts with a discovery call — your goals, your
+          Every engagement starts with a discovery call: your goals, your
           current systems, and what good looks like. No platform pitch until we
           understand the problem.
         </p>

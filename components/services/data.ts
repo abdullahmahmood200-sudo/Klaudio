@@ -30,7 +30,7 @@ export const platforms: Platform[] = [
     img: "/Ai%20&%20Automation.avif",
     headline: "AI agents that carry real workload",
     blurb:
-      "Voice agents that answer and make calls, chatbots that qualify and support, and n8n workflows that move the data between them — built on your systems, with a human handoff wherever it matters.",
+      "Voice agents that answer and make calls, chatbots that qualify and support, and n8n workflows that move the data between them, built on your systems, with a human handoff wherever it matters.",
     offerings: [
       {
         title: "AI voice agents",
@@ -102,7 +102,7 @@ export const platforms: Platform[] = [
     img: "/Professional.avif",
     headline: "End-to-end Salesforce services",
     blurb:
-      "Whether you're adopting Salesforce for the first time or optimizing an existing ecosystem, our certified experts build CRM that sales, service, and marketing teams actually use — and keep evolving it after go-live.",
+      "Whether you're adopting Salesforce for the first time or optimizing an existing ecosystem, our certified experts build CRM that sales, service, and marketing teams actually use, and keep evolving it after go-live.",
     offerings: [
       {
         title: "Consulting",
@@ -321,7 +321,7 @@ export const platforms: Platform[] = [
     img: "/Manufacturing.avif",
     headline: "Build, scale, and grow on Shopify",
     blurb:
-      "Launching a new store, migrating from another platform, or extending an existing Shopify ecosystem — we build storefronts, themes, and apps that convert and keep loading fast.",
+      "Launching a new store, migrating from another platform, or extending an existing Shopify ecosystem, we build storefronts, themes, and apps that convert and keep loading fast.",
     offerings: [
       {
         title: "Store development",
@@ -453,7 +453,7 @@ export const platforms: Platform[] = [
     img: "/Financial%20Systems.avif",
     headline: "Finance running on one set of numbers",
     blurb:
-      "Billing, accounting, payments, and reporting connected into a single source of truth — so the close is shorter, the reconciliation is automated, and the board deck matches the ledger.",
+      "Billing, accounting, payments, and reporting connected into a single source of truth, so the close is shorter, the reconciliation is automated, and the board deck matches the ledger.",
     offerings: [
       {
         title: "ERP & accounting integration",
@@ -565,7 +565,7 @@ export type Faq = { q: string; a: string };
 export const faqs: Faq[] = [
   {
     q: "How can your solutions help our business grow?",
-    a: "We streamline operations, cut manual cost, and improve customer experience — so the technology you already pay for starts supporting growth instead of absorbing it.",
+    a: "We streamline operations, cut manual cost, and improve customer experience, so the technology you already pay for starts supporting growth instead of absorbing it.",
   },
   {
     q: "Can you work with our existing systems?",
@@ -585,6 +585,6 @@ export const faqs: Faq[] = [
   },
   {
     q: "What engagement models do you offer?",
-    a: "Fixed price projects, dedicated teams, time and material, staff augmentation, and fully managed services — whichever fits how your team wants to work.",
+    a: "Fixed price projects, dedicated teams, time and material, staff augmentation, and fully managed services, whichever fits how your team wants to work.",
   },
 ];
