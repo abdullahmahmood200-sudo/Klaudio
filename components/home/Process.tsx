@@ -65,7 +65,7 @@ export default function Process() {
         style={{
           position: "sticky",
           top: 0,
-          height: "100vh",
+          height: "100dvh",
           overflow: "hidden",
           display: "flex",
           flexDirection: "column",

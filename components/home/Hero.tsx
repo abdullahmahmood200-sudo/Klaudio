@@ -13,7 +13,7 @@ export default function Hero() {
         id="services"
         className="section-pad"
         style={{
-          minHeight: "100vh",
+          minHeight: "100dvh",
           background: "#ffffff",
           padding: 64,
           display: "flex",

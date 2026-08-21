@@ -42,7 +42,7 @@ export default function SideNav() {
         gap: 40,
         position: "sticky",
         top: 0,
-        height: "100vh",
+        height: "100dvh",
       }}
     >
       {/* The mark now lives in the hero's top-right corner (see Landing), so

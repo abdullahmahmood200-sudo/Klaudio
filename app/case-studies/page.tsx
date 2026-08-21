@@ -91,7 +91,7 @@ export default function CaseStudiesPage() {
         className="cube-shell"
         style={{
           display: "flex",
-          height: "100vh",
+          height: "100dvh",
           minHeight: 640,
           background: "linear-gradient(160deg,#f7f9fc 0%,#eef1f6 55%,#e7ebf2 100%)",
           position: "relative",

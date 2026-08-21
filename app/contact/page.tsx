@@ -49,7 +49,7 @@ export default function ContactPage() {
   return (
     <div
       className="page-shell"
-      style={{ display: "flex", minHeight: "100vh", background: "#ffffff" }}
+      style={{ display: "flex", minHeight: "100dvh", background: "#ffffff" }}
     >
       <aside
         className="sidebar"
@@ -63,7 +63,7 @@ export default function ContactPage() {
           gap: 40,
           position: "sticky",
           top: 0,
-          height: "100vh",
+          height: "100dvh",
         }}
       >
         <Link

@@ -73,9 +73,7 @@ export default function IndustrySolutions() {
             textWrap: "pretty",
           }}
         >
-          Utilizing industry-specific knowledge, we&apos;re on the verge of
-          triggering a new paradigm of changing business models and processes
-          making them more customer-centric!
+          Deep industry knowledge, turned into systems your customers feel.
         </p>
 
         <Link href="/contact" className="cta-btn solutions-cta">

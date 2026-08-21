@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <div
       className="page-shell"
-      style={{ display: "flex", minHeight: "100vh", background: "#ffffff" }}
+      style={{ display: "flex", minHeight: "100dvh", background: "#ffffff" }}
     >
       <SideNav />
       <main

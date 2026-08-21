@@ -15,10 +15,23 @@
   box-sizing: border-box;
 }
 
+/* Nothing may be wider than the screen. An in-app webview (Instagram's, in
+   particular) reacts to a single overflowing child by shrinking the whole
+   layout to fit it, which reads as a zoomed-in, overlapping page. */
 html,
 body {
   margin: 0;
   padding: 0;
+  max-width: 100%;
+  /* `clip`, not `hidden`: hidden would turn the root into a scroll container
+     and break every `position: sticky` on the site. */
+  overflow-x: clip;
+}
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
 }
 
 body {
@@ -487,7 +500,8 @@ input[type="range"].cube-slider::-moz-range-thumb {
 /* Why-us card lift on hover (base here so :hover can override). */
 .why-card {
   position: relative;
-  width: 300px;
+  /* Fixed 300px overflowed a 320px phone once padding was counted. */
+  width: min(300px, 100%);
   border: 1px solid #e6eaf1;
   border-radius: 20px;
   background: #ffffff;
@@ -869,7 +883,7 @@ input[type="range"].cube-slider::-moz-range-thumb {
   .service-modal {
     flex-direction: column !important;
     width: min(420px, 94vw) !important;
-    max-height: 86vh;
+    max-height: 86dvh;
     overflow-y: auto !important;
   }
   .sm-media {
