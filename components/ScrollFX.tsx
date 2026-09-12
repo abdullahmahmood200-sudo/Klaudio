@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
-import { setLenis } from "./lenis";
+import { getLenis, setLenis } from "./lenis";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -43,6 +43,18 @@ export default function ScrollFX() {
       lenis.destroy();
     };
   }, []);
+
+  // Reset the scroll on navigation. Next scrolls the window to the top itself,
+  // but Lenis keeps its own target position and writes that stale value back on
+  // the next rAF tick, so following a footer link landed you on the footer of
+  // the new page. This runs before the reveal effect below so ScrollTrigger
+  // measures from the top.
+  useEffect(() => {
+    // A hash link is asking for a specific section, so leave it to Lenis's
+    // own anchor handling rather than yanking the page to the top.
+    if (window.location.hash) return;
+    getLenis()?.scrollTo(0, { immediate: true, force: true });
+  }, [pathname]);
 
   // Reveal animations, rebuilt per route so new pages animate in too.
   useEffect(() => {

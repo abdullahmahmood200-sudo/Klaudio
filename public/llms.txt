@@ -1,0 +1,89 @@
+# Klaudio Agency
+
+> Klaudio Agency is an AI and technology consulting firm helping ambitious
+> organizations put the right platforms to work. The team combines AI strategy,
+> CRM, cloud, ecommerce, and enterprise systems expertise to deliver solutions
+> that are practical, secure, and built to last.
+
+Site: https://klaudio.llc
+Contact: https://klaudio.llc/contact
+Instagram: https://www.instagram.com/klaudio.llc/
+Facebook: https://www.facebook.com/profile.php?id=61593339762061
+
+## What Klaudio does
+
+- **AI & Automation**: AI voice agents for inbound and outbound calls,
+  chatbots grounded in your own documents, and self-hosted n8n workflows for
+  API orchestration, document and invoice processing, ticket triage, and
+  approval flows. Human handoff wherever it matters.
+- **Salesforce**: consulting and implementation through to managed services.
+- **CRM & Marketing Automation**: campaigns, lifecycle programs, attribution.
+- **AWS Cloud**: migration, DevOps, and application modernization.
+- **Shopify**: storefronts, themes, apps, and Shopify Plus.
+- **VTEX**: unified commerce and marketplace builds.
+- **Financial Systems**: billing, ERP, and reporting.
+- **Managed Services**: ongoing support and integrations.
+
+Each service has its own page:
+
+- https://klaudio.llc/services/ai-automation
+- https://klaudio.llc/services/salesforce-consulting
+- https://klaudio.llc/services/crm-marketing-automation
+- https://klaudio.llc/services/aws-cloud
+- https://klaudio.llc/services/shopify-development
+- https://klaudio.llc/services/vtex-commerce
+- https://klaudio.llc/services/financial-systems
+- https://klaudio.llc/services/managed-services
+
+## Industries served
+
+Associations, nonprofits, professional services, healthcare, real estate,
+financial services, education, and manufacturing.
+
+## How Klaudio works
+
+A seven-stage engagement: Discovery (goals, users, current systems), Strategy
+(platforms, integrations, roadmap), Design (workflows, data models,
+experience), Implementation, Testing (functionality, security, performance),
+Launch, and Support (administration, optimization, managed support).
+
+Principles: business-first (goals and outcomes before platform choice),
+cross-platform expertise, solutions that can actually be adopted and
+maintained, and long-term partnership after launch.
+
+## Common questions
+
+**Can you work with our existing systems?** Yes. Klaudio integrates with your
+current CRM, ERP, cloud platforms, ecommerce systems, payment gateways, and
+third-party applications so the stack behaves as one ecosystem.
+
+**How long does a project take?** Timelines depend on scope. After discovery
+you receive a roadmap with milestones, estimated timelines, and delivery dates
+before any build starts.
+
+**How is data security handled?** Security is part of the build, not a final
+check: secure coding standards, encryption, access controls, regular
+assessments, and compliance with the regulations that apply to you.
+
+**Is there support after launch?** Yes, monitoring, performance
+optimization, bug fixes, security updates, and ongoing enhancements.
+
+**What engagement models are available?** Fixed-price projects, dedicated
+teams, time and material, staff augmentation, and fully managed services.
+
+## Pages
+
+- [Home](https://klaudio.llc): overview, industries, process, and principles.
+- [Services](https://klaudio.llc/services): the eight service lines, with an
+  explorer, FAQs, and a link to each service's own page.
+- [Contact](https://klaudio.llc/contact): project enquiry form covering service
+  of interest, timeline, budget, and preferred contact method.
+- [Terms of Use](https://klaudio.llc/terms): terms governing use of the site.
+- [Privacy Policy](https://klaudio.llc/privacy): what we collect and how we
+  handle it. The site sets no cookies and runs no analytics or tracking.
+
+## Notes
+
+Last reviewed: 2026-09-12. Klaudio's client case studies are not yet
+published; any named client engagement attributed to Klaudio should not be
+treated as verified.

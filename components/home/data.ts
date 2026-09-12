@@ -1,38 +1,54 @@
-export type Service = { title: string; blurb: string; img: string };
+export type Service = {
+  title: string;
+  blurb: string;
+  img: string;
+  /**
+   * The /services/<slug> page this card leads to. The home cards are grouped
+   * for the landing page, so "Ecommerce" covers both the Shopify and VTEX
+   * pages and points at the Shopify one.
+   */
+  slug: string;
+};
 
 export const services: Service[] = [
   {
     title: "AI & Automation",
+    slug: "ai-automation",
     blurb:
       "Deploy intelligent agents and workflow automation that take on the repetitive work, freeing your team to focus on the decisions that actually move revenue.",
     img: "/Ai%20&%20Automation.avif",
   },
   {
     title: "CRM & Marketing",
+    slug: "crm-marketing-automation",
     blurb:
       "Unify your customer data and automate campaigns across every channel, so more conversations turn into closed, repeatable revenue.",
     img: "/CRM%20&%20Marketing.avif",
   },
   {
     title: "AWS Cloud",
+    slug: "aws-cloud",
     blurb:
       "Migrate, modernize, and secure your infrastructure on AWS, architected for speed, resilience, and predictable cost.",
     img: "/Cloud.avif",
   },
   {
     title: "Ecommerce",
+    slug: "shopify-development",
     blurb:
       "Build and scale storefronts on Shopify and VTEX: themes, custom apps, marketplaces, and migrations that keep loading fast and converting.",
     img: "/Professional.avif",
   },
   {
     title: "Financial Systems",
+    slug: "financial-systems",
     blurb:
       "Connect billing, accounting, and reporting into a single source of truth, so finance runs on clean, real-time numbers.",
     img: "/Financial%20Systems.avif",
   },
   {
     title: "Managed Services",
+    slug: "managed-services",
     blurb:
       "Keep everything running and connected with proactive support and custom integrations across your entire stack.",
     img: "/Managed%20services.avif",

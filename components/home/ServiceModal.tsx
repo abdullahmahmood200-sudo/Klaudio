@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect } from "react";
 import type { Service } from "./data";
 
@@ -124,8 +125,10 @@ export default function ServiceModal({
             {service.blurb}
           </p>
           <div style={{ flex: 1 }} />
-          <a
-            href="/services"
+          {/* Deep link to this service's own page rather than the hub, so the
+              modal is a step toward the detail instead of a detour. */}
+          <Link
+            href={`/services/${service.slug}`}
             className="sm-link"
             onClick={(e) => e.stopPropagation()}
             style={{
@@ -138,8 +141,8 @@ export default function ServiceModal({
               gap: 8,
             }}
           >
-            Take a look <span style={{ fontSize: 17 }}>→</span>
-          </a>
+            See {service.title} <span style={{ fontSize: 17 }}>→</span>
+          </Link>
         </div>
         <button
           onClick={onClose}

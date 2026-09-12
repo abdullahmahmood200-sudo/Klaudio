@@ -12,6 +12,12 @@ export type Offering = { title: string; items: string[] };
 
 export type Platform = {
   key: string;
+  /** URL segment for the service's own page at /services/<slug>. */
+  slug: string;
+  /** Title for that page — phrased the way someone would search for it. */
+  seoTitle: string;
+  /** Meta description for that page. The blurb is prose; this is the summary. */
+  metaDescription: string;
   title: string;
   sub: string;
   img: string;
@@ -25,6 +31,10 @@ export type Platform = {
 export const platforms: Platform[] = [
   {
     key: "ai",
+    slug: "ai-automation",
+    seoTitle: "AI Automation Services | Voice Agents, Chatbots & n8n",
+    metaDescription:
+      "AI voice agents, document-grounded chatbots, and self-hosted n8n workflows built on your own systems, with human handoff where it matters. Klaudio designs, builds, and runs them.",
     title: "AI & Automation",
     sub: "Voice agents, chatbots, n8n",
     img: "/Ai%20&%20Automation.avif",
@@ -97,6 +107,10 @@ export const platforms: Platform[] = [
   },
   {
     key: "salesforce",
+    slug: "salesforce-consulting",
+    seoTitle: "Salesforce Consulting, Implementation & Managed Services",
+    metaDescription:
+      "Salesforce consulting, implementation, Apex and Lightning customization, integration, data migration, and managed support across Sales, Service, Marketing, Commerce, Experience, and Data Cloud.",
     title: "Salesforce",
     sub: "Consulting to managed services",
     img: "/Professional.avif",
@@ -175,6 +189,10 @@ export const platforms: Platform[] = [
   },
   {
     key: "crm",
+    slug: "crm-marketing-automation",
+    seoTitle: "CRM & Marketing Automation Consulting",
+    metaDescription:
+      "Unify customer data across CRM and marketing tools, then automate journeys, lead scoring, lifecycle campaigns, and multi-touch attribution. HubSpot, Klaviyo, Marketing Cloud, Braze, GA4.",
     title: "CRM & Marketing",
     sub: "Campaigns, lifecycle, attribution",
     img: "/CRM%20&%20Marketing.avif",
@@ -251,6 +269,10 @@ export const platforms: Platform[] = [
   },
   {
     key: "aws",
+    slug: "aws-cloud",
+    seoTitle: "AWS Cloud Consulting, Migration & DevOps",
+    metaDescription:
+      "AWS cloud consulting, migration, DevOps, security, and managed services. Klaudio designs and runs environments that cut operational cost and stay resilient as you scale.",
     title: "AWS Cloud",
     sub: "Migration, DevOps, modernization",
     img: "/Cloud.avif",
@@ -316,6 +338,10 @@ export const platforms: Platform[] = [
   },
   {
     key: "shopify",
+    slug: "shopify-development",
+    seoTitle: "Shopify & Shopify Plus Development Agency",
+    metaDescription:
+      "Shopify and Shopify Plus storefronts, custom themes, private apps, migrations, headless builds, and ongoing managed support from a team that stays after launch.",
     title: "Shopify",
     sub: "Storefronts, themes, apps, Plus",
     img: "/Manufacturing.avif",
@@ -383,6 +409,10 @@ export const platforms: Platform[] = [
   },
   {
     key: "vtex",
+    slug: "vtex-commerce",
+    seoTitle: "VTEX Commerce Implementation & Marketplace Builds",
+    metaDescription:
+      "VTEX implementation, unified commerce, marketplace and seller management, headless storefronts, and integrations with your ERP, payments, and fulfilment systems.",
     title: "VTEX",
     sub: "Unified commerce and marketplaces",
     img: "/Associations.avif",
@@ -448,6 +478,10 @@ export const platforms: Platform[] = [
   },
   {
     key: "financial",
+    slug: "financial-systems",
+    seoTitle: "Financial Systems Consulting | Billing, ERP & Reporting",
+    metaDescription:
+      "Billing, ERP, and financial reporting systems that close on one set of numbers: revenue recognition, reconciliation, approval workflows, and finance integrations.",
     title: "Financial Systems",
     sub: "Billing, ERP, reporting",
     img: "/Financial%20Systems.avif",
@@ -513,6 +547,10 @@ export const platforms: Platform[] = [
   },
   {
     key: "managed",
+    slug: "managed-services",
+    seoTitle: "Managed IT Services, Support & Integrations",
+    metaDescription:
+      "Ongoing managed services: monitoring, production support, release management, performance optimization, security updates, and the integrations that keep your stack connected.",
     title: "Managed Services",
     sub: "Support and integrations",
     img: "/Managed%20services.avif",

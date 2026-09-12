@@ -14,7 +14,10 @@ export default function About() {
       }}
     >
       <div style={{ flex: 1, maxWidth: 440, textAlign: "center" }}>
-        <div
+        {/* An h2 rather than a div: this section had no heading at all, so the
+            company description sat under nothing in the outline. Styles are
+            unchanged apart from resetting the UA heading margin. */}
+        <h2
           style={{
             fontFamily: "var(--font-quicksand)",
             fontWeight: 400,
@@ -22,11 +25,11 @@ export default function About() {
             letterSpacing: ".22em",
             textTransform: "uppercase",
             color: "var(--accent)",
-            marginBottom: 22,
+            margin: "0 0 22px",
           }}
         >
-          About Us
-        </div>
+          About Klaudio Agency
+        </h2>
         <p
           style={{
             margin: 0,

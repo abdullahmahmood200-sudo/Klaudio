@@ -1379,6 +1379,26 @@ input[type="range"].cube-slider::-moz-range-thumb {
   border-color: var(--accent);
   color: #ffffff;
 }
+/* The answer is in the DOM for every FAQ, open or not, so it ships in the
+   server HTML. Collapsing with grid-template-rows instead of display:none
+   keeps the text in the box model (and animatable) rather than removing it. */
+.svc-faq-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.3s ease, opacity 0.25s ease;
+  opacity: 0;
+}
+.svc-faq[data-open] .svc-faq-panel {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+/* min-height:0 lets the 0fr track actually reach zero; overflow clips the
+   answer while the row animates. */
+.svc-faq-panel-inner {
+  min-height: 0;
+  overflow: hidden;
+}
+
 .svc-faq-a {
   margin: 0;
   padding: 0 48px 22px 0;
@@ -1386,7 +1406,199 @@ input[type="range"].cube-slider::-moz-range-thumb {
   line-height: 1.65;
   color: #586074;
   text-wrap: pretty;
-  animation: fadeIn 0.25s ease;
+}
+
+/* ---------------------------------------------------------------------------
+   Per-service pages (/services/<slug>) — breadcrumb, the service index on the
+   explorer, and the "other services" grid. */
+
+.svc-crumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 26px 64px 0;
+  font-size: 12px;
+  color: #8a93a6;
+}
+.svc-crumb a {
+  color: #586074;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.svc-crumb a:hover {
+  color: var(--accent);
+}
+.svc-crumb [aria-current] {
+  color: #0f1a2e;
+}
+
+/* The explorer only renders one platform, so this list is how the other seven
+   stay reachable. */
+.svc-all-links {
+  margin-top: 48px;
+  padding-top: 26px;
+  border-top: 1px solid #eef1f5;
+}
+.svc-all-links-label {
+  display: block;
+  margin-bottom: 14px;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.svc-all-links ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.svc-all-links a {
+  display: inline-flex;
+  padding: 8px 15px;
+  border: 1px solid #e0e5ee;
+  border-radius: 999px;
+  font-size: 13.5px;
+  color: #0f1a2e;
+  text-decoration: none;
+  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+}
+.svc-all-links a:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: #f5f8ff;
+}
+
+.svc-related {
+  padding: 16px 64px 72px;
+}
+.svc-related-title {
+  margin: 0 0 22px;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.svc-related-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(232px, 1fr));
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.svc-related-list a {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  height: 100%;
+  padding: 18px 20px;
+  border: 1px solid #e6eaf1;
+  border-radius: 14px;
+  text-decoration: none;
+  transition: border-color 0.25s ease, transform 0.25s ease;
+}
+.svc-related-list a:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+.svc-related-name {
+  font-size: 15.5px;
+  letter-spacing: -0.01em;
+  color: #0f1a2e;
+}
+.svc-related-sub {
+  font-size: 13px;
+  line-height: 1.5;
+  color: #8a93a6;
+}
+
+@media (max-width: 860px) {
+  .svc-crumb {
+    padding-top: 20px;
+  }
+  .svc-related {
+    padding-top: 12px;
+    padding-bottom: 56px;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Legal pages (/terms, /privacy). Long-form prose, so the column is narrow and
+   the rhythm is set once here rather than inline per element. */
+
+.legal {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 30px 64px 96px;
+}
+.legal-title {
+  margin: 0 0 10px;
+  font-size: 36px;
+  line-height: 1.12;
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  color: #0f1a2e;
+}
+.legal-effective {
+  margin: 0 0 26px;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.legal-intro {
+  margin: 0 0 12px;
+  font-size: 17px;
+  line-height: 1.65;
+  color: #4a5262;
+  text-wrap: pretty;
+}
+.legal h2 {
+  margin: 40px 0 12px;
+  font-size: 19px;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  color: #0f1a2e;
+}
+.legal p,
+.legal li {
+  font-size: 15.5px;
+  line-height: 1.7;
+  color: #586074;
+  text-wrap: pretty;
+}
+.legal p {
+  margin: 0 0 14px;
+}
+.legal ul {
+  margin: 0 0 14px;
+  padding-left: 20px;
+}
+.legal li {
+  margin-bottom: 7px;
+}
+.legal a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(26, 75, 255, 0.28);
+  transition: border-color 0.2s ease;
+}
+.legal a:hover {
+  border-bottom-color: var(--accent);
+}
+
+@media (max-width: 860px) {
+  .legal {
+    padding-top: 22px;
+    padding-bottom: 64px;
+  }
+  .legal-title {
+    font-size: 30px;
+  }
 }
 
 .svc-cta {

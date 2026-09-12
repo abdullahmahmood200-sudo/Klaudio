@@ -35,7 +35,7 @@ export default function Hero() {
           >
             Services
           </div>
-          <h1
+          <h2
             style={{
               margin: "0 auto",
               maxWidth: 640,
@@ -50,7 +50,7 @@ export default function Hero() {
             Built
             <br />
             <span style={{ color: "var(--accent)" }}>Different</span>
-          </h1>
+          </h2>
         </header>
 
         {/* Layout lives in CSS (.service-cards) so the mobile tile grid can
