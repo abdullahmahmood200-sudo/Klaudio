@@ -22,8 +22,12 @@ export function generateStaticParams() {
   return platforms.map((p) => ({ slug: p.slug }));
 }
 
-/** Anything outside the eight slugs is a 404, not a soft-404 empty page. */
-export const dynamicParams = false;
+/*
+ * No `dynamicParams = false` here. On Cloudflare (OpenNext) with no
+ * incremental cache configured, the prerendered pages are not in a cache the
+ * worker can read, so a closed param list turned every service page into a
+ * 404 in production. Unknown slugs still 404 through notFound() below.
+ */
 
 function find(slug: string) {
   return platforms.find((p) => p.slug === slug);

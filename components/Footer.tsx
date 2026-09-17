@@ -140,7 +140,7 @@ export default function Footer() {
           <div style={{ display: "flex", gap: 64, flexWrap: "wrap" }}>
             <address style={{ fontStyle: "normal" }}>
               <div style={{ fontSize: 13.5, fontWeight: 600, color: "var(--accent)", marginBottom: 9 }}>
-                {ADDRESS.city}
+                Address
               </div>
               <div style={{ fontSize: 13, fontWeight: 300, lineHeight: 1.7, color: "#0f1a2e" }}>
                 {ADDRESS.street}
