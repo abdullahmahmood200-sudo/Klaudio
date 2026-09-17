@@ -3,6 +3,7 @@ import Link from "next/link";
 import JsonLd from "@/components/JsonLd";
 import LegalPage from "@/components/legal/LegalPage";
 import {
+  ADDRESS,
   LEGAL,
   OG_DEFAULTS,
   ORG_ID,
@@ -47,21 +48,25 @@ export default function PrivacyPage() {
 
       <LegalPage
         title="Privacy Policy"
-        intro={`This policy explains what ${LEGAL.entity} ("Klaudio", "we", "us") does with information collected through klaudio.llc. It describes how this site actually behaves rather than covering every practice a consulting firm might have.`}
+        intro={`This policy explains what ${LEGAL.entity} does with information collected through klaudio.llc. It describes how this site actually behaves rather than covering every practice a consulting firm might have.`}
       >
-        <h2>The short version</h2>
-        <p>
-          This website sets no cookies, runs no analytics, and carries no
-          advertising or tracking pixels. Fonts are served from our own domain,
-          so loading a page does not tell a third party that you visited. The
-          only personal information we hold is what you choose to send us.
-        </p>
+        <section className="legal-callout">
+          <h2>The short version</h2>
+          <p>
+            This website sets no cookies, runs no analytics, and carries no
+            advertising or tracking pixels. Fonts are served from our own
+            domain, so loading a page does not tell a third party that you
+            visited. The only personal information we hold is what you choose
+            to send us.
+          </p>
+        </section>
 
         <h2>Who we are</h2>
         <p>
           {LEGAL.entity} is a technology and AI consulting firm registered in
-          the {LEGAL.jurisdiction}. We are responsible for the information
-          described here. For anything in this policy, write to{" "}
+          the {LEGAL.jurisdiction}, with its office at {ADDRESS.street},{" "}
+          {ADDRESS.city}, {ADDRESS.region} {ADDRESS.postalCode}. We are
+          responsible for the information described here. For anything in this policy, write to{" "}
           <a href={`mailto:${LEGAL.email}`}>{LEGAL.email}</a>.
         </p>
 

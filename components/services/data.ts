@@ -192,9 +192,9 @@ export const platforms: Platform[] = [
     slug: "crm-marketing-automation",
     seoTitle: "CRM & Marketing Automation Consulting",
     metaDescription:
-      "Unify customer data across CRM and marketing tools, then automate journeys, lead scoring, lifecycle campaigns, and multi-touch attribution. HubSpot, Klaviyo, Marketing Cloud, Braze, GA4.",
+      "Unify customer data across CRM and marketing tools, build animated, interactive websites and landing pages that capture leads, then automate journeys, lead scoring, lifecycle campaigns, and multi-touch attribution. HubSpot, Klaviyo, Marketing Cloud, Braze, GA4.",
     title: "CRM & Marketing",
-    sub: "Campaigns, lifecycle, attribution",
+    sub: "Web, campaigns, lifecycle, attribution",
     img: "/CRM%20&%20Marketing.avif",
     headline: "One customer record, campaigns that follow it",
     blurb:
@@ -207,6 +207,15 @@ export const platforms: Platform[] = [
           "Lead scoring",
           "Nurture sequences",
           "Email & SMS templates",
+        ],
+      },
+      {
+        title: "Web development",
+        items: [
+          "Animated, interactive websites",
+          "Scroll & motion storytelling",
+          "Landing pages & microsites",
+          "Lead capture forms wired to your CRM",
         ],
       },
       {

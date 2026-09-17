@@ -47,7 +47,7 @@ export default function TermsPage() {
 
       <LegalPage
         title="Terms of Use"
-        intro={`These terms govern your use of klaudio.llc, operated by ${LEGAL.entity} ("Klaudio", "we", "us"). By using the site you accept them. If you do not accept them, please do not use the site.`}
+        intro={`These terms govern your use of klaudio.llc, operated by ${LEGAL.entity}. By using the site you accept them. If you do not accept them, please do not use the site.`}
       >
         <h2>What these terms cover</h2>
         <p>

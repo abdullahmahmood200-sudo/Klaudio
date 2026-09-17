@@ -17,7 +17,7 @@ Facebook: https://www.facebook.com/profile.php?id=61593339762061
   API orchestration, document and invoice processing, ticket triage, and
   approval flows. Human handoff wherever it matters.
 - **Salesforce**: consulting and implementation through to managed services.
-- **CRM & Marketing Automation**: campaigns, lifecycle programs, attribution.
+- **CRM & Marketing Automation**: animated, interactive websites and landing pages, campaigns, lifecycle programs, attribution.
 - **AWS Cloud**: migration, DevOps, and application modernization.
 - **Shopify**: storefronts, themes, apps, and Shopify Plus.
 - **VTEX**: unified commerce and marketplace builds.

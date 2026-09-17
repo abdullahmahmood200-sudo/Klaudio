@@ -19,6 +19,15 @@ export const ORG_ID = `${SITE_URL}/#organization`;
 export const SITE_DESCRIPTION =
   "Klaudio Agency is an AI and technology consulting firm helping ambitious organizations put the right platforms to work: AI automation, Salesforce, AWS cloud, ecommerce, and financial systems.";
 
+/** Registered office. Shown in the footer and published as the Organization's address. */
+export const ADDRESS = {
+  street: "821 N St, Suite 102",
+  city: "Anchorage",
+  region: "AK",
+  postalCode: "99501",
+  country: "US",
+} as const;
+
 /**
  * Legal identity, used by the Terms of Use and Privacy Policy pages.
  *
@@ -80,10 +89,10 @@ export const SOCIAL = {
 } as const;
 
 /**
- * The company itself. Kept deliberately free of contact points and social
- * profiles: the site has none published yet, and a fabricated `telephone` or
- * `sameAs` is worse than an absent one, because it teaches a wrong fact.
- * Add `telephone`, `email`, `address`, and `sameAs` here once they are real.
+ * The company itself. Kept deliberately free of phone and email contact
+ * points: the site has none published yet, and a fabricated `telephone` is
+ * worse than an absent one, because it teaches a wrong fact.
+ * Add `telephone` and `email` here once they are real.
  */
 export function organizationNode() {
   return {
@@ -100,6 +109,14 @@ export function organizationNode() {
       height: 1024,
     },
     image: `${SITE_URL}/opengraph-image`,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: ADDRESS.street,
+      addressLocality: ADDRESS.city,
+      addressRegion: ADDRESS.region,
+      postalCode: ADDRESS.postalCode,
+      addressCountry: ADDRESS.country,
+    },
     sameAs: [SOCIAL.instagram, SOCIAL.facebook],
     knowsAbout: [...SERVICE_LINES],
     areaServed: { "@type": "Place", name: "Worldwide" },

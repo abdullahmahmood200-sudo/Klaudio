@@ -3,6 +3,7 @@ import Footer from "@/components/Footer";
 import Logo from "@/components/Logo";
 import MobileMenu from "@/components/MobileMenu";
 import { LEGAL } from "@/lib/site";
+import LegalToc from "./LegalToc";
 
 const menuLinks = [
   { label: "Services", href: "/services" },
@@ -25,6 +26,11 @@ export default function LegalPage({
   intro: string;
   children: React.ReactNode;
 }) {
+  const sibling =
+    title === "Privacy Policy"
+      ? { label: "Terms of Use", href: "/terms" }
+      : { label: "Privacy Policy", href: "/privacy" };
+
   return (
     <div style={{ background: "#ffffff" }}>
       <MobileMenu home={false} activeHref="/" />
@@ -60,10 +66,27 @@ export default function LegalPage({
       </nav>
 
       <article className="legal section-pad">
-        <h1 className="legal-title">{title}</h1>
-        <p className="legal-effective">Effective {LEGAL.effective}</p>
-        <p className="legal-intro">{intro}</p>
-        {children}
+        <header className="legal-hero">
+          <p className="legal-effective">
+            <span aria-hidden className="legal-effective-dot" />
+            Effective {LEGAL.effective}
+          </p>
+          <h1 className="legal-title">{title}</h1>
+          <p className="legal-intro">{intro}</p>
+          <p className="legal-sibling">
+            See also{" "}
+            <Link href={sibling.href}>{sibling.label}</Link>
+          </p>
+        </header>
+
+        <div className="legal-layout">
+          <aside className="legal-aside">
+            <LegalToc bodyId="legal-body" />
+          </aside>
+          <div id="legal-body" className="legal-body">
+            {children}
+          </div>
+        </div>
       </article>
 
       <Footer />

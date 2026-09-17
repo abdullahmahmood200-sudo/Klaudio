@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { SOCIAL } from "@/lib/site";
+import { ADDRESS, SOCIAL } from "@/lib/site";
 import FooterWordmark from "./FooterWordmark";
 
 export default function Footer() {
@@ -136,32 +136,18 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Offices */}
+          {/* Office */}
           <div style={{ display: "flex", gap: 64, flexWrap: "wrap" }}>
-            <div>
+            <address style={{ fontStyle: "normal" }}>
               <div style={{ fontSize: 13.5, fontWeight: 600, color: "var(--accent)", marginBottom: 9 }}>
-                San Francisco
+                {ADDRESS.city}
               </div>
               <div style={{ fontSize: 13, fontWeight: 300, lineHeight: 1.7, color: "#0f1a2e" }}>
-                2200 Market Street, Suite 400
+                {ADDRESS.street}
                 <br />
-                San Francisco, CA 94114
-                <br />
-                415.555.0142
+                {ADDRESS.city}, {ADDRESS.region} {ADDRESS.postalCode}
               </div>
-            </div>
-            <div>
-              <div style={{ fontSize: 13.5, fontWeight: 600, color: "var(--accent)", marginBottom: 9 }}>
-                New York
-              </div>
-              <div style={{ fontSize: 13, fontWeight: 300, lineHeight: 1.7, color: "#0f1a2e" }}>
-                85 Fifth Avenue, Floor 6
-                <br />
-                New York, NY 10003
-                <br />
-                212.555.0198
-              </div>
-            </div>
+            </address>
           </div>
         </div>
 
