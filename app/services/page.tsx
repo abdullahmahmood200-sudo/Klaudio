@@ -13,7 +13,6 @@ import { ORG_ID, SITE_URL, breadcrumbNode, jsonLd } from "@/lib/site";
 const menuLinks = [
   { label: "Industries", href: "/#industries" },
   { label: "Process", href: "/#process" },
-  { label: "Case Studies", href: "/case-studies" },
   { label: "About Us", href: "/#about" },
   { label: "Contact", href: "/contact" },
 ];
@@ -71,7 +70,7 @@ export default function ServicesPage() {
       <MobileMenu home={false} activeHref="/services" />
 
       {/* Top bar — the home page's sidebar doesn't apply here, so this page
-          carries its own header, same as /case-studies does. */}
+          carries its own header. */}
       <header className="svc-topbar">
         <Link href="/" className="svc-logo" aria-label="Klaudio home">
           <Logo size={36} animated />

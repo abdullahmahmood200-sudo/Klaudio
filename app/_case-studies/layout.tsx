@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
 
 /**
+ * Hidden until there are real clients to write up. The leading underscore
+ * makes this a private folder, so Next.js does not route it and /case-studies
+ * returns 404. To bring it back, rename the folder to `case-studies` and
+ * restore the "Case Studies" link in components/home/data.ts (navItems) and
+ * in the menus on app/services/page.tsx and app/contact/page.tsx.
+ *
  * Held out of the index on purpose: the six entries on this page are
  * placeholder client names, not real engagements. Indexing them would let
  * answer engines cite invented clients as Klaudio's, which is the kind of
