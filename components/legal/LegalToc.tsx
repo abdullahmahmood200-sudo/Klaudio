@@ -19,6 +19,22 @@ export default function LegalToc({ bodyId }: { bodyId: string }) {
   const [sections, setSections] = useState<Section[]>([]);
   const [active, setActive] = useState<string>("");
 
+  // The rail centers itself in the space below the sticky top bar, so it
+  // needs that bar's real height, which varies with breakpoint and zoom.
+  useEffect(() => {
+    const bar = document.querySelector<HTMLElement>(".svc-topbar");
+    if (!bar) return;
+    const sync = () =>
+      document.documentElement.style.setProperty(
+        "--legal-topbar",
+        `${bar.offsetHeight}px`,
+      );
+    sync();
+    const ro = new ResizeObserver(sync);
+    ro.observe(bar);
+    return () => ro.disconnect();
+  }, []);
+
   useEffect(() => {
     const body = document.getElementById(bodyId);
     if (!body) return;

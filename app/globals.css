@@ -1595,9 +1595,18 @@ input[type="range"].cube-slider::-moz-range-thumb {
   justify-content: center;
   gap: 72px;
 }
+/* The rail is a full-height box pinned just below the sticky .svc-topbar,
+   with the list centered inside it, so the list pins at the vertical center
+   of the visible area rather than tucked under the bar. */
 .legal-toc {
+  /* --legal-topbar is measured by LegalToc; 81px is the desktop bar. */
   position: sticky;
-  top: 32px;
+  top: var(--legal-topbar, 81px);
+  height: calc(100vh - var(--legal-topbar, 81px));
+  display: flex;
+  flex-direction: column;
+  justify-content: safe center;
+  overflow-y: auto;
 }
 .legal-toc-label {
   margin: 0 0 14px;
@@ -1649,7 +1658,7 @@ input[type="range"].cube-slider::-moz-range-thumb {
   font-weight: 500;
   letter-spacing: -0.02em;
   color: #0f1a2e;
-  scroll-margin-top: 28px;
+  scroll-margin-top: calc(var(--legal-topbar, 81px) + 28px);
 }
 .legal-body h2::before {
   content: counter(legal-section, decimal-leading-zero);
