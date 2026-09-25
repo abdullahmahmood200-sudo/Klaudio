@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 /**
  * Metadata only. The structured data for the hub lives in page.tsx, because a
  * layout also wraps /services/<slug> and would stamp the FAQ and catalog nodes
- * onto all eight service pages, which do not show either.
+ * onto all six service pages, which do not show either.
  */
 export default function ServicesLayout({
   children,

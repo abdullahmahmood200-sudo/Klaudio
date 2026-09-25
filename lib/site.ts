@@ -57,13 +57,11 @@ export const OG_DEFAULTS = {
 /** The service lines, phrased as a person would ask for them. */
 export const SERVICE_LINES = [
   "AI & Automation",
-  "Salesforce Consulting",
-  "CRM & Marketing Automation",
+  "Revenue Operations",
   "AWS Cloud",
   "Shopify & Ecommerce",
   "VTEX Commerce",
   "Financial Systems",
-  "Managed Services",
 ] as const;
 
 export const INDUSTRIES = [

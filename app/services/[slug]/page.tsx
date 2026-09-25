@@ -17,7 +17,7 @@ const menuLinks = [
   { label: "Contact", href: "/contact" },
 ];
 
-/** All eight pages are known at build time, so they prerender as static HTML. */
+/** All six pages are known at build time, so they prerender as static HTML. */
 export function generateStaticParams() {
   return platforms.map((p) => ({ slug: p.slug }));
 }

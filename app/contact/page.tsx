@@ -17,7 +17,7 @@ const selects = [
     label: "Service of Interest",
     options: [
       "AI, Automation & Data",
-      "CRM & Marketing",
+      "Revenue Operations",
       "Cloud",
       "Financial Systems",
       "Managed Services & Integrations",

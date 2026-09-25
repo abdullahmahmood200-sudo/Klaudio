@@ -22,7 +22,7 @@ const menuLinks = [
  * it stays on /services only: a layout also wraps /services/<slug>, and the
  * service pages show neither the FAQs nor the full catalog.
  *
- * The ItemList advertises the eight services and points at the page that owns
+ * The ItemList advertises the six services and points at the page that owns
  * each one. Those pages carry the full offer catalogs under the same @id, so
  * nothing is restated twice.
  */

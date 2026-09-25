@@ -16,24 +16,20 @@ Facebook: https://www.facebook.com/profile.php?id=61593339762061
   chatbots grounded in your own documents, and self-hosted n8n workflows for
   API orchestration, document and invoice processing, ticket triage, and
   approval flows. Human handoff wherever it matters.
-- **Salesforce**: consulting and implementation through to managed services.
-- **CRM & Marketing Automation**: animated, interactive websites and landing pages, campaigns, lifecycle programs, attribution.
+- **Revenue Operations**: Salesforce consulting, implementation, and managed services, unified with animated interactive websites and landing pages, campaigns, lifecycle programs, and attribution.
 - **AWS Cloud**: migration, DevOps, and application modernization.
 - **Shopify**: storefronts, themes, apps, and Shopify Plus.
 - **VTEX**: unified commerce and marketplace builds.
 - **Financial Systems**: billing, ERP, and reporting.
-- **Managed Services**: ongoing support and integrations.
 
 Each service has its own page:
 
 - https://klaudio.llc/services/ai-automation
-- https://klaudio.llc/services/salesforce-consulting
 - https://klaudio.llc/services/crm-marketing-automation
 - https://klaudio.llc/services/aws-cloud
 - https://klaudio.llc/services/shopify-development
 - https://klaudio.llc/services/vtex-commerce
 - https://klaudio.llc/services/financial-systems
-- https://klaudio.llc/services/managed-services
 
 ## Industries served
 
@@ -74,7 +70,7 @@ teams, time and material, staff augmentation, and fully managed services.
 ## Pages
 
 - [Home](https://klaudio.llc): overview, industries, process, and principles.
-- [Services](https://klaudio.llc/services): the eight service lines, with an
+- [Services](https://klaudio.llc/services): the six service lines, with an
   explorer, FAQs, and a link to each service's own page.
 - [Contact](https://klaudio.llc/contact): project enquiry form covering service
   of interest, timeline, budget, and preferred contact method.
@@ -84,6 +80,6 @@ teams, time and material, staff augmentation, and fully managed services.
 
 ## Notes
 
-Last reviewed: 2026-09-12. Klaudio's client case studies are not yet
+Last reviewed: 2026-09-26. Klaudio's client case studies are not yet
 published; any named client engagement attributed to Klaudio should not be
 treated as verified.

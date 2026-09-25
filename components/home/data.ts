@@ -19,7 +19,7 @@ export const services: Service[] = [
     img: "/Ai%20&%20Automation.avif",
   },
   {
-    title: "CRM & Marketing",
+    title: "Revenue Operations",
     slug: "crm-marketing-automation",
     blurb:
       "Unify your customer data and automate campaigns across every channel, so more conversations turn into closed, repeatable revenue.",
@@ -45,13 +45,6 @@ export const services: Service[] = [
     blurb:
       "Connect billing, accounting, and reporting into a single source of truth, so finance runs on clean, real-time numbers.",
     img: "/Financial%20Systems.avif",
-  },
-  {
-    title: "Managed Services",
-    slug: "managed-services",
-    blurb:
-      "Keep everything running and connected with proactive support and custom integrations across your entire stack.",
-    img: "/Managed%20services.avif",
   },
 ];
 
