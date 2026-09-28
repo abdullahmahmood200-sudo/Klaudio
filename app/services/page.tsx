@@ -13,7 +13,8 @@ import { ORG_ID, SITE_URL, breadcrumbNode, jsonLd } from "@/lib/site";
 const menuLinks = [
   { label: "Industries", href: "/#industries" },
   { label: "Process", href: "/#process" },
-  { label: "About Us", href: "/#about" },
+  { label: "About Us", href: "/about" },
+  { label: "Insights", href: "/insights" },
   { label: "Contact", href: "/contact" },
 ];
 

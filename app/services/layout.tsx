@@ -1,16 +1,20 @@
 import type { Metadata } from "next";
-import { OG_DEFAULTS } from "@/lib/site";
+import { OG_DEFAULTS, SITE_NAME } from "@/lib/site";
 
 const description =
-  "Klaudio's consulting services: AI voice agents and n8n automation, Salesforce, CRM and marketing automation, AWS cloud, Shopify and VTEX commerce, financial systems, and managed support.";
+  "Klaudio LLC's consulting services: AI voice agents and n8n automation, revenue operations on Salesforce, HubSpot, and GoHighLevel, AWS cloud, Shopify and VTEX commerce, financial systems, and managed support.";
+
+const title = `Services | AI, Revenue Operations, AWS & Ecommerce Consulting | ${SITE_NAME}`;
 
 export const metadata: Metadata = {
-  title: "Services | AI, Salesforce, AWS, CRM & Ecommerce Consulting",
+  // A plain string title here would stop the root template reaching the six
+  // /services/<slug> pages, so they would ship without the brand name.
+  title: { absolute: title, template: `%s | ${SITE_NAME}` },
   description,
   alternates: { canonical: "/services" },
   openGraph: {
     ...OG_DEFAULTS,
-    title: "Services | AI, Salesforce, AWS, CRM & Ecommerce Consulting",
+    title,
     description,
     url: "/services",
   },

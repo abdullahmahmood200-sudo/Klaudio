@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   // Lets every child segment declare canonicals and OG images as relative paths.
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Klaudio Agency | AI & Technology Consulting",
+    default: "Klaudio LLC | AI & Technology Consulting",
     // Child pages set a bare `title` and inherit the brand suffix.
     template: `%s | ${SITE_NAME}`,
   },
@@ -43,14 +43,14 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     siteName: SITE_NAME,
-    title: "Klaudio Agency | AI & Technology Consulting",
+    title: "Klaudio LLC | AI & Technology Consulting",
     description: SITE_DESCRIPTION,
     url: "/",
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Klaudio Agency | AI & Technology Consulting",
+    title: "Klaudio LLC | AI & Technology Consulting",
     description: SITE_DESCRIPTION,
   },
   robots: {

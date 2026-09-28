@@ -13,7 +13,7 @@ import {
 } from "@/lib/site";
 
 const description =
-  "How Klaudio Agency handles information on klaudio.llc. No cookies, no analytics, no tracking, and only the information you choose to send us.";
+  "How Klaudio LLC handles information on klaudio.llc. No cookies, no analytics, no tracking, and only the information you choose to send us.";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",

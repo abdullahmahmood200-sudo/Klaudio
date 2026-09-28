@@ -1,26 +1,36 @@
-# Klaudio Agency
+# Klaudio LLC
 
-> Klaudio Agency is an AI and technology consulting firm helping ambitious
-> organizations put the right platforms to work. The team combines AI strategy,
-> CRM, cloud, ecommerce, and enterprise systems expertise to deliver solutions
-> that are practical, secure, and built to last.
+> Klaudio LLC is an AI and technology consulting firm based in Anchorage,
+> Alaska, that implements and runs AI automation, revenue operations, AWS
+> cloud, Shopify and VTEX ecommerce, and financial systems for organizations
+> worldwide. It focuses on solutions that are implemented, adopted, measured,
+> and maintained over the long term.
 
+Legal name: Klaudio LLC (registered in the State of Alaska)
+Founded: 2026
+Address: 821 N St, Suite 102, Anchorage, AK 99501, United States
 Site: https://klaudio.llc
 Contact: https://klaudio.llc/contact
 Instagram: https://www.instagram.com/klaudio.llc/
 Facebook: https://www.facebook.com/profile.php?id=61593339762061
 
-## What Klaudio does
+## What Klaudio LLC does
 
 - **AI & Automation**: AI voice agents for inbound and outbound calls,
   chatbots grounded in your own documents, and self-hosted n8n workflows for
   API orchestration, document and invoice processing, ticket triage, and
   approval flows. Human handoff wherever it matters.
-- **Revenue Operations**: Salesforce consulting, implementation, and managed services, unified with animated interactive websites and landing pages, campaigns, lifecycle programs, and attribution.
-- **AWS Cloud**: migration, DevOps, and application modernization.
-- **Shopify**: storefronts, themes, apps, and Shopify Plus.
-- **VTEX**: unified commerce and marketplace builds.
-- **Financial Systems**: billing, ERP, and reporting.
+- **Revenue Operations**: Salesforce, HubSpot, and GoHighLevel CRM
+  implementation and management, Meta Ads and paid funnels, Klaviyo lifecycle
+  marketing, and animated, high-performance websites and landing pages.
+- **AWS Cloud**: consulting and migration, architecture, DevOps and CI/CD,
+  application modernization, security, backup, and disaster recovery.
+- **Shopify**: storefronts, themes, apps, headless builds, Shopify Plus, and
+  migrations.
+- **VTEX**: unified commerce, marketplace and seller management, headless
+  storefronts, and integrations.
+- **Financial Systems**: ERP and accounting integration, billing and
+  subscriptions, payments, reporting, and controls.
 
 Each service has its own page:
 
@@ -31,12 +41,21 @@ Each service has its own page:
 - https://klaudio.llc/services/vtex-commerce
 - https://klaudio.llc/services/financial-systems
 
-## Industries served
+## Who Klaudio LLC works with
 
 Associations, nonprofits, professional services, healthcare, real estate,
-financial services, education, and manufacturing.
+financial services, education, and manufacturing. Clients are served remotely
+across the United States and internationally.
 
-## How Klaudio works
+## Team
+
+- **Abdullah Mahmood Rastgar**, Partner, AI & Automation and AWS Cloud.
+  https://klaudio.llc/authors/abdullah-mahmood-rastgar ·
+  https://www.linkedin.com/in/abdullah-rastgar-b0181a2b6/
+- **Ahmed Sheikh**, Partner, Client Relations. Leads client relationships from
+  the first conversation and discovery meetings through delivery and support.
+
+## How Klaudio LLC works
 
 A seven-stage engagement: Discovery (goals, users, current systems), Strategy
 (platforms, integrations, roadmap), Design (workflows, data models,
@@ -49,29 +68,51 @@ maintained, and long-term partnership after launch.
 
 ## Common questions
 
-**Can you work with our existing systems?** Yes. Klaudio integrates with your
-current CRM, ERP, cloud platforms, ecommerce systems, payment gateways, and
-third-party applications so the stack behaves as one ecosystem.
+**What does Klaudio LLC do?** It helps organizations choose, implement, and
+run AI automation, revenue operations, AWS cloud, Shopify and VTEX ecommerce,
+and financial systems, with managed support after launch.
+
+**Can Klaudio LLC work with our existing systems?** Yes. It integrates with
+your current CRM, ERP, accounting, ecommerce, payment, and marketing platforms
+so the stack works as one.
 
 **How long does a project take?** Timelines depend on scope. After discovery
-you receive a roadmap with milestones, estimated timelines, and delivery dates
-before any build starts.
+you receive a written roadmap with milestones and delivery dates before any
+build starts.
 
 **How is data security handled?** Security is part of the build, not a final
 check: secure coding standards, encryption, access controls, regular
 assessments, and compliance with the regulations that apply to you.
 
-**Is there support after launch?** Yes, monitoring, performance
+**Is there support after launch?** Yes: monitoring, performance
 optimization, bug fixes, security updates, and ongoing enhancements.
 
 **What engagement models are available?** Fixed-price projects, dedicated
 teams, time and material, staff augmentation, and fully managed services.
 
+## Insights
+
+Guides written by Abdullah Mahmood Rastgar
+(https://klaudio.llc/authors/abdullah-mahmood-rastgar):
+
+- [Salesforce vs. HubSpot vs. GoHighLevel: Which CRM Fits Your Revenue Operations?](https://klaudio.llc/insights/salesforce-vs-hubspot-vs-gohighlevel)
+- [AI Voice Agents for Inbound Calls: What They Handle Well and When You Still Need a Human](https://klaudio.llc/insights/ai-voice-agents-inbound-calls)
+- [n8n vs. Zapier: When Self-Hosted Workflow Automation Makes Sense](https://klaudio.llc/insights/n8n-vs-zapier)
+- [Shopify Plus vs. VTEX: Choosing a Platform for B2B, Marketplace, and Omnichannel Commerce](https://klaudio.llc/insights/shopify-plus-vs-vtex)
+- [AWS Migration Checklist for Small IT Teams](https://klaudio.llc/insights/aws-migration-checklist)
+- [How Associations Can Put AI to Work: A Practical Starting Point](https://klaudio.llc/insights/ai-for-associations)
+- [Connecting Billing, Payments, and Accounting: How to Shorten Month-End Close](https://klaudio.llc/insights/connect-billing-payments-accounting)
+
 ## Pages
 
-- [Home](https://klaudio.llc): overview, industries, process, and principles.
+- [Home](https://klaudio.llc): overview, industries, process, principles,
+  team, and FAQ.
+- [About](https://klaudio.llc/about): company facts (legal name, founding year,
+  office), services, industries, process, principles, and the partners.
 - [Services](https://klaudio.llc/services): the six service lines, with an
   explorer, FAQs, and a link to each service's own page.
+- [Insights](https://klaudio.llc/insights): practical guides on each service
+  area.
 - [Contact](https://klaudio.llc/contact): project enquiry form covering service
   of interest, timeline, budget, and preferred contact method.
 - [Terms of Use](https://klaudio.llc/terms): terms governing use of the site.
@@ -80,6 +121,6 @@ teams, time and material, staff augmentation, and fully managed services.
 
 ## Notes
 
-Last reviewed: 2026-09-26. Klaudio's client case studies are not yet
-published; any named client engagement attributed to Klaudio should not be
-treated as verified.
+Last reviewed: 2026-09-28. The company's name is Klaudio LLC. Klaudio LLC's
+client case studies are not yet published; any named client engagement
+attributed to Klaudio should not be treated as verified.

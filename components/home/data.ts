@@ -55,7 +55,8 @@ export const navItems: NavItem[] = [
   { label: "Services", href: "/services" },
   { label: "Industries", href: "#industries" },
   { label: "Process", href: "#process" },
-  { label: "About Us", href: "#about" },
+  { label: "About Us", href: "/about" },
+  { label: "Insights", href: "/insights" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -98,4 +99,46 @@ export const processSteps: ProcessStep[] = [
   { num: "05", title: "Testing", body: "We validate functionality, security, and performance before go-live." },
   { num: "06", title: "Launch", body: "We deploy the solution and support your team through go-live." },
   { num: "07", title: "Support", body: "We provide ongoing administration, optimization, and Managed Support." },
+];
+
+export type HomeFaq = { q: string; a: string };
+
+/**
+ * Homepage FAQ. Written answer-first: the opening sentence of each answer
+ * stands on its own, because that is the sentence an answer engine lifts.
+ * Rendered as visible text and mirrored into FAQPage schema in app/page.tsx.
+ */
+export const homeFaqs: HomeFaq[] = [
+  {
+    q: "What does Klaudio LLC do?",
+    a: "Klaudio LLC is an AI and technology consulting firm that helps organizations choose, implement, and run the systems they depend on. Its services are AI automation, revenue operations (Salesforce, HubSpot, GoHighLevel, Klaviyo, and paid funnels), AWS cloud, Shopify and VTEX ecommerce, and financial systems, with managed support after launch.",
+  },
+  {
+    q: "Who does Klaudio LLC work with?",
+    a: "Klaudio LLC works with associations, nonprofits, professional services firms, healthcare organizations, real estate firms, financial services companies, education providers, and manufacturers. Clients are typically organizations that need systems that work in daily operations rather than a strategy document.",
+  },
+  {
+    q: "Where is Klaudio LLC based?",
+    a: "Klaudio LLC was founded in 2026 and is registered in Alaska, with its office at 821 N St, Suite 102, Anchorage, AK 99501. The team works with clients remotely across the United States and internationally.",
+  },
+  {
+    q: "How does a Klaudio LLC engagement work?",
+    a: "Every engagement follows seven stages: Discovery, Strategy, Design, Implementation, Testing, Launch, and Support. Klaudio learns your goals and current systems before recommending any platform, and stays on after go-live to administer and improve what it built.",
+  },
+  {
+    q: "How long does a typical project take?",
+    a: "Timelines depend on scope: a single automation or integration is far smaller than a CRM rollout or a cloud migration. After discovery you receive a written roadmap with milestones and delivery dates, before any build work starts.",
+  },
+  {
+    q: "Can Klaudio LLC work with our existing CRM, marketing, and finance platforms?",
+    a: "Yes. Klaudio integrates with the CRM, ERP, accounting, ecommerce, payment, and marketing platforms you already use, including Salesforce, HubSpot, GoHighLevel, Klaviyo, Meta Ads, Shopify, and VTEX. Where a system does not need replacing, it gets connected instead, so the whole stack works as one.",
+  },
+  {
+    q: "Can Klaudio LLC help with AWS cloud migration or cost optimization?",
+    a: "Yes. Klaudio assesses your current environment, plans and runs workload and database migrations, and sets up infrastructure as code, CI/CD pipelines, security controls, backups, and disaster recovery. For environments already on AWS, it runs well-architected reviews and cost optimization.",
+  },
+  {
+    q: "What makes Klaudio LLC different from other AI consultancies?",
+    a: "Klaudio starts from the business problem rather than a platform, and one team covers AI, CRM, cloud, ecommerce, and financial systems, so integrations are not split across vendors. It only recommends what your team can adopt and maintain, and it stays after launch with administration, optimization, and training.",
+  },
 ];

@@ -82,8 +82,14 @@ export default function Landing() {
         </span>
 
         <div className="ap-content">
+          {/* The wordmark is the visual, but the h1 is what engines read as
+              the page's subject, so it carries the full name and category. */}
           <h1 className="ap-word" data-reveal="word">
             Klaudio
+            <span className="sr-only">
+              {" "}
+              LLC, AI and technology consulting firm
+            </span>
           </h1>
 
           <p className="ap-line" data-reveal="line">

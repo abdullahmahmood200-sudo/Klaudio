@@ -14,10 +14,11 @@ export function useActiveNav(initial: string) {
 
   useEffect(() => {
     const ids = ["home", "services", "industries", "process", "about"];
-    // Two home sections are represented in the nav by routes, not anchors.
+    // Some home sections are represented in the nav by routes, not anchors.
     const asRoute: Record<string, string> = {
       home: "/",
       services: "/services",
+      about: "/about",
     };
     const els = ids
       .map((id) => document.getElementById(id))

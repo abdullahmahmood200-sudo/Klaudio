@@ -7,13 +7,17 @@ import Logo from "@/components/Logo";
 import MobileMenu from "@/components/MobileMenu";
 import ServiceDetail from "@/components/services/ServiceDetail";
 import { platforms } from "@/components/services/data";
+import { serviceFaqs } from "@/components/services/faqs";
+import FaqList, { faqPageNode } from "@/components/FaqList";
+import { articlesForService, readingMinutes } from "@/lib/insights";
 import { OG_DEFAULTS, ORG_ID, SITE_URL, jsonLd } from "@/lib/site";
 
 const menuLinks = [
   { label: "Services", href: "/services" },
   { label: "Industries", href: "/#industries" },
   { label: "Process", href: "/#process" },
-  { label: "About Us", href: "/#about" },
+  { label: "About Us", href: "/about" },
+  { label: "Insights", href: "/insights" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -65,6 +69,8 @@ export default async function ServicePage({
   if (!platform) notFound();
 
   const others = platforms.filter((p) => p.slug !== platform.slug);
+  const guides = articlesForService(platform.slug);
+  const faqs = serviceFaqs[platform.slug] ?? [];
 
   /**
    * One Service node scoped to this page, with the page's own offerings as its
@@ -117,7 +123,23 @@ export default async function ServicePage({
 
   return (
     <div style={{ background: "#ffffff" }}>
-      <JsonLd data={jsonLd(serviceNode, breadcrumb)} />
+      <JsonLd
+        data={jsonLd(
+          serviceNode,
+          breadcrumb,
+          ...(faqs.length
+            ? [
+                {
+                  ...faqPageNode(
+                    `${SITE_URL}/services/${platform.slug}#faq`,
+                    faqs,
+                  ),
+                  about: { "@id": serviceNode["@id"] },
+                },
+              ]
+            : []),
+        )}
+      />
       <MobileMenu home={false} activeHref="/services" />
 
       <header className="svc-topbar">
@@ -158,6 +180,32 @@ export default async function ServicePage({
             repeat the breadcrumb, so it is dropped here. */}
         <ServiceDetail platform={platform} as="h1" showEyebrow={false} />
       </section>
+
+      {faqs.length > 0 && (
+        <FaqList
+          id="faq"
+          title={`Questions about ${platform.title}`}
+          items={faqs}
+        />
+      )}
+
+      {guides.length > 0 && (
+        <section className="svc-related section-pad">
+          <h2 className="svc-related-title">Guides on {platform.title}</h2>
+          <ul className="svc-related-list">
+            {guides.map((a) => (
+              <li key={a.slug}>
+                <Link href={`/insights/${a.slug}`}>
+                  <span className="svc-related-name">{a.title}</span>
+                  <span className="svc-related-sub">
+                    {readingMinutes(a)} min read
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
 
       <section className="svc-related section-pad">
         <h2 className="svc-related-title">Other services</h2>

@@ -11,13 +11,23 @@
 /** Canonical origin. No trailing slash, metadataBase composes paths onto it. */
 export const SITE_URL = "https://klaudio.llc";
 
-export const SITE_NAME = "Klaudio Agency";
+/** The registered company name. Use it everywhere, with no variants. */
+export const SITE_NAME = "Klaudio LLC";
 
 /** Stable identifier for the company node that every page's graph references. */
 export const ORG_ID = `${SITE_URL}/#organization`;
 
+/**
+ * The canonical one-sentence definition of the company. The meta description,
+ * the Organization schema, the homepage About block, and llms.txt all say this
+ * same sentence, so every source an answer engine reads agrees on who we are.
+ * If you change it here, change public/llms.txt to match.
+ */
 export const SITE_DESCRIPTION =
-  "Klaudio Agency is an AI and technology consulting firm helping ambitious organizations put the right platforms to work: AI automation, Salesforce, AWS cloud, ecommerce, and financial systems.";
+  "Klaudio LLC is an AI and technology consulting firm based in Anchorage, Alaska, that implements and runs AI automation, revenue operations, AWS cloud, Shopify and VTEX ecommerce, and financial systems for organizations worldwide.";
+
+/** Year the company was founded. Published as the Organization's `foundingDate`. */
+export const FOUNDED = "2026";
 
 /** Registered office. Shown in the footer and published as the Organization's address. */
 export const ADDRESS = {
@@ -35,7 +45,7 @@ export const ADDRESS = {
  * change it here if the filed name differs from the trading name.
  */
 export const LEGAL = {
-  entity: "Klaudio Agency LLC",
+  entity: "Klaudio LLC",
   jurisdiction: "State of Alaska, United States",
   state: "Alaska",
   email: "hello@klaudio.llc",
@@ -97,6 +107,12 @@ export function organizationNode() {
     "@type": "ProfessionalService",
     "@id": ORG_ID,
     name: SITE_NAME,
+    legalName: LEGAL.entity,
+    foundingDate: FOUNDED,
+    foundingLocation: {
+      "@type": "Place",
+      name: `${ADDRESS.city}, Alaska, United States`,
+    },
     alternateName: "Klaudio",
     url: SITE_URL,
     description: SITE_DESCRIPTION,
@@ -116,6 +132,8 @@ export function organizationNode() {
       addressCountry: ADDRESS.country,
     },
     sameAs: [SOCIAL.instagram, SOCIAL.facebook],
+    // The partners, so engines can answer "who runs Klaudio LLC".
+    member: TEAM.map((m) => ({ "@id": personId(m) })),
     knowsAbout: [...SERVICE_LINES],
     areaServed: { "@type": "Place", name: "Worldwide" },
     serviceType: [...SERVICE_LINES],
@@ -128,6 +146,84 @@ export function organizationNode() {
       })),
     },
   };
+}
+
+export type TeamMember = {
+  name: string;
+  slug: string;
+  jobTitle: string;
+  /** Service lines this partner leads, published as `knowsAbout`. */
+  practice: string[];
+  /** Square headshot in /public, or null to show the initials placeholder. */
+  image: string | null;
+  bio: string;
+  /** Profile URLs (LinkedIn first). Keep the job title there the same as here. */
+  sameAs: string[];
+  /** Has a page at /authors/<slug> because it writes Insights articles. */
+  author: boolean;
+};
+
+/**
+ * The partners. Shown in the homepage team section and published as Person
+ * nodes that the Organization lists as members. Titles are "Partner" plus the
+ * area each one leads, so a person can be matched to a service.
+ */
+export const TEAM: TeamMember[] = [
+  {
+    name: "Abdullah Mahmood Rastgar",
+    slug: "abdullah-mahmood-rastgar",
+    jobTitle: "Partner, AI & Automation and AWS Cloud",
+    practice: ["AI & Automation", "AWS Cloud"],
+    image: "/team/abdullah-mahmood-rastgar.jpg",
+    bio: "Abdullah Mahmood Rastgar is a Partner at Klaudio LLC who leads its AI & Automation and AWS Cloud practices. Abdullah also writes the Klaudio LLC Insights series on how organizations choose, implement, and run their business systems.",
+    sameAs: ["https://www.linkedin.com/in/abdullah-rastgar-b0181a2b6/"],
+    author: true,
+  },
+  {
+    name: "Ahmed Sheikh",
+    slug: "ahmed-sheikh",
+    jobTitle: "Partner, Client Relations",
+    practice: [],
+    // TODO: add the headshot at /team/ahmed-sheikh.jpg and point to it here.
+    image: null,
+    bio: "Ahmed Sheikh is a Partner at Klaudio LLC who leads client relations, from the first conversation and discovery meetings through delivery and ongoing support.",
+    // TODO: add the LinkedIn profile URL.
+    sameAs: [],
+    author: false,
+  },
+];
+
+/** Author pages get their own URL as the node id; others live on the homepage. */
+export function personId(m: TeamMember) {
+  return m.author
+    ? `${SITE_URL}/authors/${m.slug}#person`
+    : `${SITE_URL}/#${m.slug}`;
+}
+
+export function personNode(m: TeamMember) {
+  return {
+    "@type": "Person",
+    "@id": personId(m),
+    name: m.name,
+    jobTitle: m.jobTitle,
+    ...(m.image ? { image: `${SITE_URL}${m.image}` } : {}),
+    ...(m.author ? { url: `${SITE_URL}/authors/${m.slug}` } : {}),
+    description: m.bio,
+    worksFor: { "@id": ORG_ID },
+    ...(m.practice.length ? { knowsAbout: m.practice } : {}),
+    ...(m.sameAs.length ? { sameAs: m.sameAs } : {}),
+  };
+}
+
+/**
+ * Author of the Insights articles. Answer engines weigh who wrote a page, so
+ * every article points its `author` at this one Person node.
+ */
+export const AUTHOR = TEAM[0] as TeamMember & { image: string };
+export const AUTHOR_ID = personId(AUTHOR);
+
+export function authorNode() {
+  return personNode(AUTHOR);
 }
 
 /** The site node, so engines treat the four pages as one publication. */

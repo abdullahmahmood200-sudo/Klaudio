@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/contact" },
   openGraph: {
     ...OG_DEFAULTS,
-    title: "Contact Klaudio Agency",
+    title: "Contact Klaudio LLC",
     description,
     url: "/contact",
   },
@@ -35,7 +35,7 @@ export default function ContactLayout({
           {
             "@type": "ContactPage",
             "@id": `${SITE_URL}/contact#page`,
-            name: "Contact Klaudio Agency",
+            name: "Contact Klaudio LLC",
             description,
             about: { "@id": ORG_ID },
           },

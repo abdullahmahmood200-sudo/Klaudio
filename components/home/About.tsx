@@ -28,7 +28,7 @@ export default function About() {
             margin: "0 0 22px",
           }}
         >
-          About Klaudio Agency
+          About Klaudio LLC
         </h2>
         <p
           style={{
@@ -41,14 +41,16 @@ export default function About() {
             textWrap: "pretty",
           }}
         >
-          We&apos;re{" "}
+          {/* The first sentence is SITE_DESCRIPTION word for word, so the
+              page, the meta description, and the schema all agree. */}
           <span style={{ color: "var(--accent)", fontWeight: 500 }}>
-            Klaudio Agency
-          </span>
-          , an AI and technology consulting firm helping ambitious
-          organizations put the right platforms to work. Our team combines AI
-          strategy, CRM, cloud, and enterprise systems expertise to deliver
-          solutions that are practical, secure, and built to last.
+            Klaudio LLC
+          </span>{" "}
+          is an AI and technology consulting firm based in Anchorage, Alaska,
+          that implements and runs AI automation, revenue operations, AWS
+          cloud, Shopify and VTEX ecommerce, and financial systems for
+          organizations worldwide. We focus on solutions that are implemented,
+          adopted, measured, and maintained over the long term.
         </p>
       </div>
       <div

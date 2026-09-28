@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { platforms } from "@/components/services/data";
-import { SITE_URL } from "@/lib/site";
+import { articles } from "@/lib/insights";
+import { AUTHOR, SITE_URL } from "@/lib/site";
 
 /**
  * /case-studies is deliberately absent: the page currently shows placeholder
@@ -26,6 +27,32 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
       priority: 0.8,
     })),
+    {
+      url: `${SITE_URL}/about`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${SITE_URL}/insights`,
+      lastModified: new Date(articles[0]?.updated ?? Date.now()),
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
+    // Articles carry their real updated date, which engines use as a
+    // freshness signal. Bump `updated` in the article when it changes.
+    ...articles.map((a) => ({
+      url: `${SITE_URL}/insights/${a.slug}`,
+      lastModified: new Date(a.updated),
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    })),
+    {
+      url: `${SITE_URL}/authors/${AUTHOR.slug}`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.4,
+    },
     {
       url: `${SITE_URL}/contact`,
       lastModified,

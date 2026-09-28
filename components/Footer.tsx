@@ -56,7 +56,7 @@ export default function Footer() {
               Get in Touch
             </Link>
             <Link
-              href="/services#faqs"
+              href="/#faq"
               style={{
                 fontSize: 16,
                 fontWeight: 500,
@@ -125,7 +125,7 @@ export default function Footer() {
               }}
             >
               <span style={{ fontSize: 12.5, fontWeight: 300, color: "#0f1a2e" }}>
-                © 2026 Klaudio Agency
+                © 2026 Klaudio LLC
               </span>
               <Link href="/terms" style={{ fontSize: 12.5, fontWeight: 500, color: "var(--accent)", textDecoration: "none" }}>
                 Terms of Use

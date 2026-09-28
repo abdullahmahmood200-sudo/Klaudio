@@ -491,13 +491,15 @@ export const faqs: Faq[] = [
     q: "How can your solutions help our business grow?",
     a: "We streamline operations, cut manual cost, and improve customer experience, so the technology you already pay for starts supporting growth instead of absorbing it.",
   },
+  // "Existing systems" and "timelines" live in the homepage FAQ; these two
+  // cover different ground so the pages do not repeat each other.
   {
-    q: "Can you work with our existing systems?",
-    a: "Yes. We integrate new solutions with your current CRM, ERP, cloud platforms, ecommerce systems, payment gateways, and third-party applications so the stack behaves as one ecosystem.",
+    q: "How do we get started?",
+    a: "Book a free consultation through the contact page. The first step is a discovery call about your goals, your current systems, and what good looks like, and you receive a roadmap with milestones before any build work starts.",
   },
   {
-    q: "How long does a project usually take?",
-    a: "Timelines depend on scope. After a discovery phase we hand you a roadmap with milestones, estimated timelines, and delivery dates before any build starts.",
+    q: "Which service should we start with?",
+    a: "Start with the problem costing you the most time or revenue. If you are not sure which that is, discovery identifies it, and the right first step is sometimes a single automation or integration rather than a full platform change.",
   },
   {
     q: "How do you handle data security and compliance?",
