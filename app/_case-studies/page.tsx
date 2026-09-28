@@ -463,7 +463,7 @@ export default function CaseStudiesPage() {
                 <span style={{ width: 6, height: 6, borderRadius: "50%", background: "var(--accent)", display: "inline-block" }} />
                 Case Studies
               </a>
-              <Link href="/#about" style={{ fontSize: 14, fontWeight: 400, color: "#7b8494", paddingLeft: 15 }}>
+              <Link href="/about" style={{ fontSize: 14, fontWeight: 400, color: "#7b8494", paddingLeft: 15 }}>
                 About Us
               </Link>
               {/* Bug fix: source pointed to Services Hero.dc.html#contact (no such

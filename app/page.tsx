@@ -1,7 +1,6 @@
 import SideNav from "@/components/home/SideNav";
 import Landing from "@/components/home/Landing";
 import Hero from "@/components/home/Hero";
-import About from "@/components/home/About";
 import Industries from "@/components/home/Industries";
 import IndustrySolutions from "@/components/home/IndustrySolutions";
 import Process from "@/components/home/Process";
@@ -43,7 +42,6 @@ export default function Home() {
         <IndustrySolutions />
         <Process />
         <WhyUs />
-        <About />
         <Team moreLink />
         <HomeFaq />
         <Footer />

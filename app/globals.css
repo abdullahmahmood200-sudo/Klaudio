@@ -816,17 +816,6 @@ input[type="range"].cube-slider::-moz-range-thumb {
     transform: none;
   }
 
-  /* About: single column */
-  .about-row {
-    flex-direction: column;
-    text-align: center;
-  }
-  /* Ease the laptop's top overflow once the section stacks so it
-     doesn't ride up into the paragraph above it. */
-  .about-laptop {
-    top: -6% !important;
-  }
-
   /* Industry Solutions: single column, photo below the copy. The section
      never had horizontal padding, so the stacked photo stays edge-to-edge
      and keeps its full-bleed feel; the diagonal is dropped since there is
@@ -2092,11 +2081,6 @@ input[type="range"].cube-slider::-moz-range-thumb {
   }
   .footer-wordmark {
     font-size: clamp(36px, 13.7vw, 68px) !important;
-  }
-  /* Smallest screens: keep the laptop almost flush so it never clips
-     or crowds the text on narrow viewports. */
-  .about-laptop {
-    top: -4% !important;
   }
 }
 

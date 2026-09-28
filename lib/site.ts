@@ -19,7 +19,7 @@ export const ORG_ID = `${SITE_URL}/#organization`;
 
 /**
  * The canonical one-sentence definition of the company. The meta description,
- * the Organization schema, the homepage About block, and llms.txt all say this
+ * the Organization schema, the /about page, and llms.txt all say this
  * same sentence, so every source an answer engine reads agrees on who we are.
  * If you change it here, change public/llms.txt to match.
  */
