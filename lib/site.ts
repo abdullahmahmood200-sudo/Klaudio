@@ -24,7 +24,7 @@ export const ORG_ID = `${SITE_URL}/#organization`;
  * If you change it here, change public/llms.txt to match.
  */
 export const SITE_DESCRIPTION =
-  "Klaudio LLC is an AI and technology consulting firm based in Anchorage, Alaska, that implements and runs AI automation, revenue operations, AWS cloud, Shopify and VTEX ecommerce, and financial systems for organizations worldwide.";
+  "Klaudio LLC is an ecommerce technology and AI consulting firm based in Anchorage, Alaska, that builds, automates, and scales online stores on Shopify and VTEX for DTC, headless, omnichannel, and B2B wholesale brands, with AI automation, retention marketing, AWS cloud, and ecommerce finance systems.";
 
 /** Year the company was founded. Published as the Organization's `foundingDate`. */
 export const FOUNDED = "2026";
@@ -66,24 +66,65 @@ export const OG_DEFAULTS = {
 
 /** The service lines, phrased as a person would ask for them. */
 export const SERVICE_LINES = [
-  "AI & Automation",
-  "Revenue Operations",
-  "AWS Cloud",
-  "Shopify & Ecommerce",
+  "Shopify Development",
   "VTEX Commerce",
-  "Financial Systems",
+  "Ecommerce AI & Automation",
+  "Ecommerce Growth & Retention Marketing",
+  "Ecommerce Cloud Infrastructure on AWS",
+  "Ecommerce Finance & Accounting Systems",
 ] as const;
 
-export const INDUSTRIES = [
-  "Associations",
-  "Nonprofits",
-  "Professional Services",
-  "Healthcare",
-  "Real Estate",
-  "Financial Services",
-  "Education",
-  "Manufacturing",
-] as const;
+/** The one industry Klaudio serves. Sub-categories are in SEGMENTS below. */
+export const TARGET_INDUSTRY = "E-Commerce & Digital Commerce Brands";
+
+export type Segment = {
+  name: string;
+  /** Anchor id on /about, and the name of the carousel photo in /public/industries. */
+  slug: string;
+  /** Who they are and what they need, in one sentence. */
+  summary: string;
+  /** Job titles of the people who buy, published as the audience's `audienceType`. */
+  buyers: string[];
+};
+
+/**
+ * The four kinds of ecommerce business Klaudio serves. The homepage carousel
+ * (components/home/data.ts adds the photos), the /about page, the homepage
+ * FAQ, the Organization schema's `audience`, and public/llms.txt all read or
+ * repeat this list, so change it here and in llms.txt together.
+ */
+export const SEGMENTS: Segment[] = [
+  {
+    name: "High-Growth DTC Brands",
+    slug: "dtc-brands",
+    summary:
+      "Fast-moving consumer goods brands in apparel, beauty, wellness, and food and beverage, with high ad spend and order volumes.",
+    buyers: ["Founders", "CMOs", "Heads of Growth"],
+  },
+  {
+    name: "Headless & High-Traffic Stores",
+    slug: "headless-high-traffic",
+    summary:
+      "Brands running custom-built web apps or high-volume storefronts that need fast page loads and resilient cloud uptime.",
+    buyers: ["CTOs", "Technical Co-Founders", "VPs of Engineering"],
+  },
+  {
+    name: "Multi-Channel & Omnichannel Retailers",
+    slug: "omnichannel-retail",
+    summary:
+      "Retailers selling through their own website, marketplaces like Amazon and TikTok Shop, and physical stores, who need connected back-end systems.",
+    buyers: ["COOs", "Operations Directors", "Founders"],
+  },
+  {
+    name: "B2B Commerce & Wholesale Distributors",
+    slug: "b2b-wholesale",
+    summary:
+      "Distributors, manufacturers, and trade suppliers moving from phone and email orders to digital ordering portals with dedicated sales pipelines.",
+    buyers: ["VPs of Sales", "Operations Heads", "Managing Directors"],
+  },
+];
+
+export const INDUSTRIES = SEGMENTS.map((s) => s.name);
 
 /**
  * Published social profiles. These double as the Organization's `sameAs`
@@ -132,9 +173,15 @@ export function organizationNode() {
       addressCountry: ADDRESS.country,
     },
     sameAs: [SOCIAL.instagram, SOCIAL.facebook],
-    // The partners, so engines can answer "who runs Klaudio LLC".
-    member: TEAM.map((m) => ({ "@id": personId(m) })),
-    knowsAbout: [...SERVICE_LINES],
+    knowsAbout: [TARGET_INDUSTRY, ...SERVICE_LINES],
+    // Who the firm serves, so "who does Klaudio LLC work with" resolves to
+    // the four segments and the roles that buy from each.
+    audience: SEGMENTS.map((s) => ({
+      "@type": "BusinessAudience",
+      name: s.name,
+      description: s.summary,
+      audienceType: s.buyers.join(", "),
+    })),
     areaServed: { "@type": "Place", name: "Worldwide" },
     serviceType: [...SERVICE_LINES],
     hasOfferCatalog: {
@@ -148,83 +195,13 @@ export function organizationNode() {
   };
 }
 
-export type TeamMember = {
-  name: string;
-  slug: string;
-  jobTitle: string;
-  /** Service lines this partner leads, published as `knowsAbout`. */
-  practice: string[];
-  /** Square headshot in /public, or null to show the initials placeholder. */
-  image: string | null;
-  bio: string;
-  /** Profile URLs (LinkedIn first). Keep the job title there the same as here. */
-  sameAs: string[];
-  /** Has a page at /authors/<slug> because it writes Insights articles. */
-  author: boolean;
-};
-
 /**
- * The partners. Shown in the homepage team section and published as Person
- * nodes that the Organization lists as members. Titles are "Partner" plus the
- * area each one leads, so a person can be matched to a service.
+ * Klaudio presents itself as one team, with no individual names on the site.
+ * The Insights articles are credited to the company, so every article's
+ * `author` points at the Organization node and the byline reads as below.
  */
-export const TEAM: TeamMember[] = [
-  {
-    name: "Abdullah Mahmood Rastgar",
-    slug: "abdullah-mahmood-rastgar",
-    jobTitle: "Partner, AI & Automation and AWS Cloud",
-    practice: ["AI & Automation", "AWS Cloud"],
-    image: "/team/abdullah-mahmood-rastgar.jpg",
-    bio: "Abdullah Mahmood Rastgar is a Partner at Klaudio LLC who leads its AI & Automation and AWS Cloud practices. Abdullah also writes the Klaudio LLC Insights series on how organizations choose, implement, and run their business systems.",
-    sameAs: ["https://www.linkedin.com/in/abdullah-rastgar-b0181a2b6/"],
-    author: true,
-  },
-  {
-    name: "Ahmed Sheikh",
-    slug: "ahmed-sheikh",
-    jobTitle: "Partner, Client Relations",
-    practice: [],
-    // TODO: add the headshot at /team/ahmed-sheikh.jpg and point to it here.
-    image: null,
-    bio: "Ahmed Sheikh is a Partner at Klaudio LLC who leads client relations, from the first conversation and discovery meetings through delivery and ongoing support.",
-    // TODO: add the LinkedIn profile URL.
-    sameAs: [],
-    author: false,
-  },
-];
-
-/** Author pages get their own URL as the node id; others live on the homepage. */
-export function personId(m: TeamMember) {
-  return m.author
-    ? `${SITE_URL}/authors/${m.slug}#person`
-    : `${SITE_URL}/#${m.slug}`;
-}
-
-export function personNode(m: TeamMember) {
-  return {
-    "@type": "Person",
-    "@id": personId(m),
-    name: m.name,
-    jobTitle: m.jobTitle,
-    ...(m.image ? { image: `${SITE_URL}${m.image}` } : {}),
-    ...(m.author ? { url: `${SITE_URL}/authors/${m.slug}` } : {}),
-    description: m.bio,
-    worksFor: { "@id": ORG_ID },
-    ...(m.practice.length ? { knowsAbout: m.practice } : {}),
-    ...(m.sameAs.length ? { sameAs: m.sameAs } : {}),
-  };
-}
-
-/**
- * Author of the Insights articles. Answer engines weigh who wrote a page, so
- * every article points its `author` at this one Person node.
- */
-export const AUTHOR = TEAM[0] as TeamMember & { image: string };
-export const AUTHOR_ID = personId(AUTHOR);
-
-export function authorNode() {
-  return personNode(AUTHOR);
-}
+export const AUTHOR_NAME = "the Klaudio LLC team";
+export const AUTHOR_ID = ORG_ID;
 
 /** The site node, so engines treat the four pages as one publication. */
 export function webSiteNode() {

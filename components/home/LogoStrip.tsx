@@ -13,12 +13,12 @@ import { useEffect, useRef, useState } from "react";
 type Platform = { name: string; slug: string };
 
 const platforms: Platform[] = [
-  { name: "Salesforce", slug: "salesforce" },
-  { name: "AWS", slug: "aws" },
   { name: "Shopify", slug: "shopify" },
   { name: "VTEX", slug: "vtex" },
+  { name: "AWS", slug: "aws" },
   { name: "n8n", slug: "n8n" },
   { name: "HubSpot", slug: "hubspot" },
+  { name: "Salesforce", slug: "salesforce" },
 ];
 
 function Logo({ name, slug }: Platform) {

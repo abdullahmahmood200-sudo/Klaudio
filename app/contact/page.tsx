@@ -4,6 +4,7 @@ import Link from "next/link";
 import Logo from "@/components/Logo";
 import Footer from "@/components/Footer";
 import MobileMenu from "@/components/MobileMenu";
+import { SEGMENTS } from "@/lib/site";
 
 const navLinks = [
   { label: "Services", href: "/services" },
@@ -15,13 +16,19 @@ const navLinks = [
 
 const selects = [
   {
+    label: "Business Type",
+    options: [...SEGMENTS.map((s) => s.name), "Other"],
+  },
+  {
     label: "Service of Interest",
     options: [
-      "AI, Automation & Data",
-      "Revenue Operations",
-      "Cloud",
-      "Financial Systems",
-      "Managed Services & Integrations",
+      "Shopify Store Build or Migration",
+      "VTEX Commerce",
+      "AI & Automation",
+      "Growth & Retention Marketing",
+      "AWS Cloud",
+      "Ecommerce Finance & Accounting",
+      "Ongoing Support & Integrations",
     ],
   },
   {
@@ -140,8 +147,8 @@ export default function ContactPage() {
                 textWrap: "pretty",
               }}
             >
-              Tell us about your goals and current systems. We&apos;ll get back
-              to you within one business day.
+              Tell us about your store, your current stack, and your growth
+              goals. We&apos;ll get back to you within one business day.
             </p>
 
             <form onSubmit={(e) => e.preventDefault()} style={{ textAlign: "left" }}>
@@ -162,25 +169,25 @@ export default function ContactPage() {
                   <input className="cf-input" type="tel" placeholder="+1 (555) 000-0000" />
                 </label>
                 <label style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                  <span style={labelStyle}>Company</span>
-                  <input className="cf-input" type="text" placeholder="Company Inc." />
+                  <span style={labelStyle}>Company / Brand</span>
+                  <input className="cf-input" type="text" placeholder="Brand Inc." />
                 </label>
                 <label style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                   <span style={labelStyle}>Job Title</span>
-                  <input className="cf-input" type="text" placeholder="Director of Operations" />
+                  <input className="cf-input" type="text" placeholder="Head of Growth" />
                 </label>
 
                 {selects.map((s) => (
                   <SelectField key={s.label} label={s.label} options={s.options} />
                 ))}
 
-                <label style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                <label style={{ gridColumn: "1 / -1", display: "flex", flexDirection: "column", gap: 8 }}>
                   <span style={labelStyle}>Current Technology Platforms</span>
-                  <input className="cf-input" type="text" placeholder="Salesforce, HubSpot, Azure, NetSuite…" />
+                  <input className="cf-input" type="text" placeholder="Shopify, Klaviyo, NetSuite, Amazon, TikTok Shop…" />
                 </label>
                 <label style={{ gridColumn: "1 / -1", display: "flex", flexDirection: "column", gap: 8 }}>
                   <span style={labelStyle}>Project Description</span>
-                  <textarea className="cf-area" placeholder="Tell us about your technology goals." />
+                  <textarea className="cf-area" placeholder="Tell us about your store and what you want to fix or build." />
                 </label>
               </div>
               <button type="submit" className="submit-btn">

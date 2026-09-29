@@ -9,7 +9,7 @@ import {
 } from "@/lib/site";
 
 const description =
-  "Tell Klaudio what you are trying to fix. Share your service of interest, timeline, and budget, and the team will come back with a scoped next step.";
+  "Tell Klaudio what your store needs. Share your service of interest, timeline, and budget, and the team will come back with a scoped next step.";
 
 export const metadata: Metadata = {
   title: "Contact",

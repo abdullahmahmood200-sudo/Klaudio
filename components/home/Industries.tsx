@@ -102,7 +102,7 @@ export default function Industries() {
             textWrap: "pretty",
           }}
         >
-          Built for the industries you operate in
+          Built for the way you sell online
         </h2>
         <p
           style={{
@@ -113,8 +113,8 @@ export default function Industries() {
             textWrap: "pretty",
           }}
         >
-          From regulated enterprises to fast‑moving startups, we tailor every
-          engagement to the realities of your sector.
+          E-commerce and digital commerce brands, from scaling DTC and headless
+          stores to omnichannel retail and B2B wholesale.
         </p>
       </header>
 
@@ -122,11 +122,11 @@ export default function Industries() {
         className="industries-slider"
         role="group"
         aria-roledescription="carousel"
-        aria-label="Industries we serve"
+        aria-label="Ecommerce segments we serve"
       >
         <button
           type="button"
-          aria-label="Previous industry"
+          aria-label="Previous segment"
           onClick={() => step(-1)}
           className="industries-arrow industries-arrow--prev"
         >
@@ -185,7 +185,7 @@ export default function Industries() {
 
         <button
           type="button"
-          aria-label="Next industry"
+          aria-label="Next segment"
           onClick={() => step(1)}
           className="industries-arrow industries-arrow--next"
         >
@@ -199,6 +199,17 @@ export default function Industries() {
             />
           </svg>
         </button>
+      </div>
+
+      {/* The detail sits under the card rather than over the photo, so the
+          image keeps its breathing room. Keyed so each change fades in. */}
+      <div className="industry-detail" aria-live="polite">
+        <p key={index} className="industry-detail-summary">
+          {industries[index].summary}
+        </p>
+        <p className="industry-detail-buyers">
+          For {industries[index].buyers.join(", ")}
+        </p>
       </div>
 
       <div className="industries-dots">

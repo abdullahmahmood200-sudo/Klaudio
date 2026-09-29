@@ -11,7 +11,7 @@ import { SITE_NAME } from "@/lib/site";
  * on any element with more than one child, so every stacked block below sets
  * `display: flex` and each line of copy is its own element rather than a <br>.
  */
-export const alt = `${SITE_NAME}, AI and technology consulting`;
+export const alt = `${SITE_NAME}, ecommerce technology and AI consulting`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -60,17 +60,17 @@ export default async function Image() {
               color: "#0f1a2e",
             }}
           >
-            <div style={{ display: "flex" }}>AI and technology</div>
-            <div style={{ display: "flex" }}>consulting</div>
+            <div style={{ display: "flex" }}>Ecommerce tech</div>
+            <div style={{ display: "flex" }}>and AI consulting</div>
           </div>
           <div
             style={{ ...column, fontSize: 28, color: "#586074", lineHeight: 1.4 }}
           >
             <div style={{ display: "flex" }}>
-              Salesforce, AWS, CRM, ecommerce and automation,
+              Shopify, VTEX, AI automation, and retention,
             </div>
             <div style={{ display: "flex" }}>
-              built to be adopted, measured, and maintained.
+              built to convert, scale, and keep customers.
             </div>
           </div>
         </div>

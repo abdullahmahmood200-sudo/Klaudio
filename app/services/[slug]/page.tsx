@@ -222,10 +222,10 @@ export default async function ServicePage({
       </section>
 
       <section className="svc-cta section-pad">
-        <h2 className="svc-cta-title">Tell us what you&apos;re trying to fix</h2>
+        <h2 className="svc-cta-title">Tell us what your store needs</h2>
         <p className="svc-cta-body">
-          Every engagement starts with a discovery call: your goals, your
-          current systems, and what good looks like. No platform pitch until we
+          Every engagement starts with a discovery call: your store, your
+          current stack, and your growth goals. No platform pitch until we
           understand the problem.
         </p>
         <Link href="/contact" className="cta-btn svc-cta-btn">

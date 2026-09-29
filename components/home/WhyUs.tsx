@@ -39,7 +39,7 @@ export default function WhyUs() {
           >
             Built around
             <br />
-            your business
+            your store
           </h2>
           <a
             href="#"

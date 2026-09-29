@@ -24,6 +24,13 @@ const nextConfig: NextConfig = {
         destination: "/services",
         permanent: true,
       },
+      {
+        // The site presents Klaudio as one team, with no individual author
+        // pages. Articles are credited to the company, which /about describes.
+        source: "/authors/:slug",
+        destination: "/about",
+        permanent: true,
+      },
     ];
   },
 };

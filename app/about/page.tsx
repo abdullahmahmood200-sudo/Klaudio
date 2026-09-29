@@ -2,26 +2,24 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Footer from "@/components/Footer";
 import JsonLd from "@/components/JsonLd";
-import Team from "@/components/home/Team";
 import TopBar from "@/components/insights/TopBar";
 import { processSteps, whyData } from "@/components/home/data";
 import { platforms } from "@/components/services/data";
 import {
   ADDRESS,
   FOUNDED,
-  INDUSTRIES,
   LEGAL,
   OG_DEFAULTS,
   ORG_ID,
   SITE_DESCRIPTION,
+  SEGMENTS,
   SITE_URL,
-  TEAM,
+  TARGET_INDUSTRY,
   breadcrumbNode,
   jsonLd,
-  personNode,
 } from "@/lib/site";
 
-const TITLE = "About Klaudio LLC | AI & Technology Consulting in Anchorage, Alaska";
+const TITLE = "About Klaudio LLC | Ecommerce Technology & AI Consulting";
 const DESCRIPTION = `${SITE_DESCRIPTION.replace(/\.$/, "")}. Founded in ${FOUNDED}.`;
 
 export const metadata: Metadata = {
@@ -61,7 +59,6 @@ export default function AboutPage() {
     ],
     ["Registered in", LEGAL.jurisdiction],
     ["Clients served", "Remotely, across the United States and internationally"],
-    ["Partners", TEAM.map((m) => m.name).join(" and ")],
     [
       "Contact",
       <Link key="c" href="/contact">
@@ -73,11 +70,7 @@ export default function AboutPage() {
   return (
     <div style={{ background: "#ffffff" }}>
       <JsonLd
-        data={jsonLd(
-          aboutNode,
-          ...TEAM.map(personNode),
-          breadcrumbNode("About", "/about"),
-        )}
+        data={jsonLd(aboutNode, breadcrumbNode("About", "/about"))}
       />
       <TopBar active="/about" />
 
@@ -116,8 +109,8 @@ export default function AboutPage() {
             What Klaudio LLC does
           </h2>
           <p className="about-p">
-            Klaudio LLC helps organizations choose, implement, and run the
-            systems they depend on, across six service lines, with managed
+            Klaudio LLC helps ecommerce brands build, automate, and scale
+            their online stores, across six service lines, with managed
             support after launch.
           </p>
           <ul className="svc-related-list about-services">
@@ -137,12 +130,18 @@ export default function AboutPage() {
             Who Klaudio LLC works with
           </h2>
           <p className="about-p">
-            Klaudio LLC works with organizations that need systems that work in
-            daily operations, in these industries:
+            Klaudio LLC serves one industry, {TARGET_INDUSTRY.toLowerCase()},
+            and within it four kinds of business:
           </p>
-          <ul className="about-pills">
-            {INDUSTRIES.map((name) => (
-              <li key={name}>{name}</li>
+          <ul className="about-principles">
+            {SEGMENTS.map((s) => (
+              <li key={s.slug} id={s.slug}>
+                <h3>{s.name}</h3>
+                <p>{s.summary}</p>
+                <p className="about-buyers">
+                  Usually working with {s.buyers.join(", ")}.
+                </p>
+              </li>
             ))}
           </ul>
         </section>
@@ -168,6 +167,19 @@ export default function AboutPage() {
           </ol>
         </section>
 
+        <section className="about-section" aria-labelledby="team">
+          <h2 id="team" className="about-h2">
+            The Klaudio LLC team
+          </h2>
+          <p className="about-p">
+            Klaudio LLC works as one team of Shopify and VTEX developers, AI and
+            automation engineers, growth and retention marketers, cloud
+            engineers, and ecommerce finance specialists. Every part of your
+            store is handled under one roof, from discovery through launch and
+            ongoing support, so nothing gets lost between agencies.
+          </p>
+        </section>
+
         <section className="about-section" aria-labelledby="principles">
           <h2 id="principles" className="about-h2">
             What Klaudio LLC believes
@@ -183,13 +195,12 @@ export default function AboutPage() {
         </section>
       </main>
 
-      <Team />
 
       <section className="svc-cta section-pad">
-        <h2 className="svc-cta-title">Tell us what you&apos;re trying to fix</h2>
+        <h2 className="svc-cta-title">Tell us what your store needs</h2>
         <p className="svc-cta-body">
-          Every engagement starts with a discovery call: your goals, your
-          current systems, and what good looks like. No platform pitch until we
+          Every engagement starts with a discovery call: your store, your
+          current stack, and your growth goals. No platform pitch until we
           understand the problem.
         </p>
         <Link href="/contact" className="cta-btn svc-cta-btn">

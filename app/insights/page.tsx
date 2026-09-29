@@ -6,19 +6,18 @@ import TopBar from "@/components/insights/TopBar";
 import { platforms } from "@/components/services/data";
 import { articles, formatDate, readingMinutes } from "@/lib/insights";
 import {
-  AUTHOR,
   AUTHOR_ID,
+  AUTHOR_NAME,
   OG_DEFAULTS,
   ORG_ID,
   SITE_URL,
-  authorNode,
   breadcrumbNode,
   jsonLd,
 } from "@/lib/site";
 
-const TITLE = "Insights on AI, Revenue Operations, Cloud, and Commerce";
+const TITLE = "Ecommerce Insights on Shopify, VTEX, AI, and Growth";
 const DESCRIPTION =
-  "Practical guides from Klaudio LLC on choosing, implementing, and running AI automation, CRM and revenue operations, AWS cloud, ecommerce, and financial systems.";
+  "Practical guides from Klaudio LLC on building and running an online store: Shopify and VTEX, AI automation, retention marketing, AWS cloud, and ecommerce finance.";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -58,7 +57,7 @@ export default function InsightsIndex() {
   return (
     <div style={{ background: "#ffffff" }}>
       <JsonLd
-        data={jsonLd(blog, authorNode(), breadcrumbNode("Insights", "/insights"))}
+        data={jsonLd(blog, breadcrumbNode("Insights", "/insights"))}
       />
       <TopBar />
 
@@ -77,8 +76,8 @@ export default function InsightsIndex() {
               rather than repeating on every card. */}
           <p className="insights-byline">
             Written by{" "}
-            <Link href={`/authors/${AUTHOR.slug}`} rel="author">
-              {AUTHOR.name}
+            <Link href="/about" rel="author">
+              {AUTHOR_NAME}
             </Link>
           </p>
         </header>

@@ -88,12 +88,12 @@ export default function Landing() {
             Klaudio
             <span className="sr-only">
               {" "}
-              LLC, AI and technology consulting firm
+              LLC, ecommerce technology and AI consulting firm
             </span>
           </h1>
 
           <p className="ap-line" data-reveal="line">
-            Consulting for the systems you actually run.
+            The tech behind stores that scale.
           </p>
 
           <Link href="/contact" className="ap-cta" data-reveal="cta">

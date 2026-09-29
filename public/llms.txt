@@ -1,10 +1,11 @@
 # Klaudio LLC
 
-> Klaudio LLC is an AI and technology consulting firm based in Anchorage,
-> Alaska, that implements and runs AI automation, revenue operations, AWS
-> cloud, Shopify and VTEX ecommerce, and financial systems for organizations
-> worldwide. It focuses on solutions that are implemented, adopted, measured,
-> and maintained over the long term.
+> Klaudio LLC is an ecommerce technology and AI consulting firm based in
+> Anchorage, Alaska, that builds, automates, and scales online stores on
+> Shopify and VTEX for DTC, headless, omnichannel, and B2B wholesale brands,
+> with AI automation, retention marketing, AWS cloud, and ecommerce finance
+> systems. It focuses on work that is measured against sales and maintained
+> after launch.
 
 Legal name: Klaudio LLC (registered in the State of Alaska)
 Founded: 2026
@@ -16,101 +17,129 @@ Facebook: https://www.facebook.com/profile.php?id=61593339762061
 
 ## What Klaudio LLC does
 
-- **AI & Automation**: AI voice agents for inbound and outbound calls,
-  chatbots grounded in your own documents, and self-hosted n8n workflows for
-  API orchestration, document and invoice processing, ticket triage, and
-  approval flows. Human handoff wherever it matters.
-- **Revenue Operations**: Salesforce, HubSpot, and GoHighLevel CRM
-  implementation and management, Meta Ads and paid funnels, Klaviyo lifecycle
-  marketing, and animated, high-performance websites and landing pages.
-- **AWS Cloud**: consulting and migration, architecture, DevOps and CI/CD,
-  application modernization, security, backup, and disaster recovery.
-- **Shopify**: storefronts, themes, apps, headless builds, Shopify Plus, and
-  migrations.
-- **VTEX**: unified commerce, marketplace and seller management, headless
-  storefronts, and integrations.
-- **Financial Systems**: ERP and accounting integration, billing and
-  subscriptions, payments, reporting, and controls.
+- **Shopify**: store builds, custom Online Store 2.0 themes, custom apps and
+  integrations (ERP, 3PL, PIM, Amazon, Walmart, eBay), headless Hydrogen
+  storefronts, Shopify Plus (B2B, wholesale, checkout extensibility,
+  expansion stores), and replatforming from WooCommerce, Magento,
+  BigCommerce, Wix, and Squarespace with SEO preserved.
+- **VTEX**: marketplaces and seller management, omnichannel retail (unified
+  inventory, buy online and pick up in store, ship from store), VTEX IO and
+  headless storefronts, and integrations.
+- **AI & Automation**: AI support agents that answer order-status, shipping,
+  and return questions from your own catalog and policies, AI shopping
+  assistants, AI voice agents, catalog and product-content automation, and
+  n8n workflows for inventory, fulfillment, returns, reviews, and data sync.
+  Human handoff wherever it matters.
+- **Growth & Retention**: Klaviyo email and SMS flows, Meta Ads with Pixel and
+  Conversions API, landing pages and conversion rate optimization, GA4 and
+  server-side tracking, loyalty and subscriptions, and HubSpot or Salesforce
+  CRM for B2B and wholesale.
+- **AWS Cloud**: hosting for headless storefronts and custom apps, peak
+  traffic readiness for Black Friday and Cyber Monday, commerce data and
+  middleware, DevOps, security, and cost optimization.
+- **Ecommerce Finance**: Shopify and VTEX connected to QuickBooks, Xero, and
+  NetSuite, payout reconciliation (Shopify Payments, Stripe, PayPal, Amazon),
+  inventory and COGS, sales tax, and profit reporting by product and channel.
 
 Each service has its own page:
 
+- https://klaudio.llc/services/shopify-development
+- https://klaudio.llc/services/vtex-commerce
 - https://klaudio.llc/services/ai-automation
 - https://klaudio.llc/services/crm-marketing-automation
 - https://klaudio.llc/services/aws-cloud
-- https://klaudio.llc/services/shopify-development
-- https://klaudio.llc/services/vtex-commerce
 - https://klaudio.llc/services/financial-systems
 
 ## Who Klaudio LLC works with
 
-Associations, nonprofits, professional services, healthcare, real estate,
-financial services, education, and manufacturing. Clients are served remotely
-across the United States and internationally.
+Industry: E-Commerce & Digital Commerce Brands, specifically scaling
+direct-to-consumer and modern retail businesses. Four segments:
+
+- **High-Growth DTC Brands**: fast-moving consumer goods brands in apparel,
+  beauty, wellness, and food and beverage, with high ad spend and order
+  volumes. Buyers: founders, CMOs, and heads of growth.
+- **Headless & High-Traffic Stores**: brands running custom-built web apps or
+  high-volume storefronts that need fast page loads and resilient cloud
+  uptime. Buyers: CTOs, technical co-founders, and VPs of engineering.
+- **Multi-Channel & Omnichannel Retailers**: retailers selling through their
+  own website, marketplaces like Amazon and TikTok Shop, and physical stores,
+  who need connected back-end systems. Buyers: COOs, operations directors, and
+  founders.
+- **B2B Commerce & Wholesale Distributors**: distributors, manufacturers, and
+  trade suppliers moving from phone and email orders to digital ordering
+  portals with dedicated sales pipelines. Buyers: VPs of sales, operations
+  heads, and managing directors.
+
+Clients are served remotely across the United States and internationally.
 
 ## Team
 
-- **Abdullah Mahmood Rastgar**, Partner, AI & Automation and AWS Cloud.
-  https://klaudio.llc/authors/abdullah-mahmood-rastgar ·
-  https://www.linkedin.com/in/abdullah-rastgar-b0181a2b6/
-- **Ahmed Sheikh**, Partner, Client Relations. Leads client relationships from
-  the first conversation and discovery meetings through delivery and support.
+Klaudio LLC works as one team of Shopify and VTEX developers, AI and
+automation engineers, growth and retention marketers, cloud engineers, and
+ecommerce finance specialists, handling every part of a store under one roof.
 
 ## How Klaudio LLC works
 
-A seven-stage engagement: Discovery (goals, users, current systems), Strategy
-(platforms, integrations, roadmap), Design (workflows, data models,
-experience), Implementation, Testing (functionality, security, performance),
-Launch, and Support (administration, optimization, managed support).
+A seven-stage engagement: Discovery (store, tech stack, analytics, growth
+goals), Strategy (platform, apps, integrations, roadmap), Design (storefront,
+customer journeys, data flows), Implementation, Testing (checkout, payments,
+page speed, tracking), Launch (redirects, monitoring), and Support
+(conversion and performance optimization, peak-season cover).
 
-Principles: business-first (goals and outcomes before platform choice),
-cross-platform expertise, solutions that can actually be adopted and
-maintained, and long-term partnership after launch.
+Principles: revenue-first (conversion, order value, and repeat purchase
+before platform choice), full-stack commerce in one team, builds measured
+against sales, and support through peak season.
 
 ## Common questions
 
-**What does Klaudio LLC do?** It helps organizations choose, implement, and
-run AI automation, revenue operations, AWS cloud, Shopify and VTEX ecommerce,
-and financial systems, with managed support after launch.
+**What does Klaudio LLC do?** It builds, automates, and scales online stores:
+Shopify and VTEX development, AI automation, growth and retention marketing,
+AWS cloud for commerce, and ecommerce finance systems, with managed support
+after launch.
 
-**Can Klaudio LLC work with our existing systems?** Yes. It integrates with
-your current CRM, ERP, accounting, ecommerce, payment, and marketing platforms
-so the stack works as one.
+**Should a store use Shopify, Shopify Plus, or VTEX?** Most DTC brands fit
+Shopify; Shopify Plus fits once B2B, checkout customization, or multiple
+storefronts are needed; VTEX fits marketplaces with third-party sellers and
+retailers unifying online and in-store inventory.
+
+**Can Klaudio LLC migrate a store without losing search rankings?** Yes. It
+moves product, customer, and order data and redirects every old URL.
+
+**Can Klaudio LLC connect a store to existing tools?** Yes: ERP, 3PL,
+marketplaces, email and SMS, and accounting platforms, so orders, inventory,
+and customer data stay in sync.
 
 **How long does a project take?** Timelines depend on scope. After discovery
-you receive a written roadmap with milestones and delivery dates before any
-build starts.
+you receive a written roadmap with milestones and delivery dates, planned
+around peak seasons.
 
-**How is data security handled?** Security is part of the build, not a final
-check: secure coding standards, encryption, access controls, regular
-assessments, and compliance with the regulations that apply to you.
-
-**Is there support after launch?** Yes: monitoring, performance
-optimization, bug fixes, security updates, and ongoing enhancements.
+**How is data security handled?** Security is part of the build: secure
+coding, encryption, access controls, and regular assessments. Payments stay
+with PCI-compliant providers.
 
 **What engagement models are available?** Fixed-price projects, dedicated
 teams, time and material, staff augmentation, and fully managed services.
 
 ## Insights
 
-Guides written by Abdullah Mahmood Rastgar
-(https://klaudio.llc/authors/abdullah-mahmood-rastgar):
+Guides written by the Klaudio LLC team:
 
-- [Salesforce vs. HubSpot vs. GoHighLevel: Which CRM Fits Your Revenue Operations?](https://klaudio.llc/insights/salesforce-vs-hubspot-vs-gohighlevel)
-- [AI Voice Agents for Inbound Calls: What They Handle Well and When You Still Need a Human](https://klaudio.llc/insights/ai-voice-agents-inbound-calls)
-- [n8n vs. Zapier: When Self-Hosted Workflow Automation Makes Sense](https://klaudio.llc/insights/n8n-vs-zapier)
 - [Shopify Plus vs. VTEX: Choosing a Platform for B2B, Marketplace, and Omnichannel Commerce](https://klaudio.llc/insights/shopify-plus-vs-vtex)
+- [n8n vs. Zapier: When Self-Hosted Workflow Automation Makes Sense](https://klaudio.llc/insights/n8n-vs-zapier)
+- [AI Voice Agents for Inbound Calls: What They Handle Well and When You Still Need a Human](https://klaudio.llc/insights/ai-voice-agents-inbound-calls)
+- [Connecting Billing, Payments, and Accounting: How to Shorten Month-End Close](https://klaudio.llc/insights/connect-billing-payments-accounting)
+- [Salesforce vs. HubSpot vs. GoHighLevel: Which CRM Fits Your Revenue Operations?](https://klaudio.llc/insights/salesforce-vs-hubspot-vs-gohighlevel)
 - [AWS Migration Checklist for Small IT Teams](https://klaudio.llc/insights/aws-migration-checklist)
 - [How Associations Can Put AI to Work: A Practical Starting Point](https://klaudio.llc/insights/ai-for-associations)
-- [Connecting Billing, Payments, and Accounting: How to Shorten Month-End Close](https://klaudio.llc/insights/connect-billing-payments-accounting)
 
 ## Pages
 
-- [Home](https://klaudio.llc): overview, industries, process, principles,
-  team, and FAQ.
+- [Home](https://klaudio.llc): overview, the four segments served, process,
+  principles, and FAQ.
 - [About](https://klaudio.llc/about): company facts (legal name, founding year,
-  office), services, industries, process, principles, and the partners.
-- [Services](https://klaudio.llc/services): the six service lines, with an
-  explorer, FAQs, and a link to each service's own page.
+  office), services, segments served, team, process, and principles.
+- [Services](https://klaudio.llc/services): the six ecommerce service lines,
+  with an explorer, FAQs, and a link to each service's own page.
 - [Insights](https://klaudio.llc/insights): practical guides on each service
   area.
 - [Contact](https://klaudio.llc/contact): project enquiry form covering service
@@ -121,6 +150,6 @@ Guides written by Abdullah Mahmood Rastgar
 
 ## Notes
 
-Last reviewed: 2026-09-28. The company's name is Klaudio LLC. Klaudio LLC's
+Last reviewed: 2026-09-29. The company's name is Klaudio LLC. Klaudio LLC's
 client case studies are not yet published; any named client engagement
 attributed to Klaudio should not be treated as verified.

@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { platforms } from "@/components/services/data";
 import { articles } from "@/lib/insights";
-import { AUTHOR, SITE_URL } from "@/lib/site";
+import { SITE_URL } from "@/lib/site";
 
 /**
  * /case-studies is deliberately absent: the page currently shows placeholder
@@ -47,12 +47,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
       priority: 0.7,
     })),
-    {
-      url: `${SITE_URL}/authors/${AUTHOR.slug}`,
-      lastModified,
-      changeFrequency: "monthly",
-      priority: 0.4,
-    },
     {
       url: `${SITE_URL}/contact`,
       lastModified,

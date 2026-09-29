@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { OG_DEFAULTS, SITE_NAME } from "@/lib/site";
 
 const description =
-  "Klaudio LLC's consulting services: AI voice agents and n8n automation, revenue operations on Salesforce, HubSpot, and GoHighLevel, AWS cloud, Shopify and VTEX commerce, financial systems, and managed support.";
+  "Klaudio LLC's ecommerce services: Shopify and VTEX development, AI support agents and n8n automation, Klaviyo and Meta Ads growth marketing, AWS cloud for commerce, ecommerce accounting systems, and managed support.";
 
-const title = `Services | AI, Revenue Operations, AWS & Ecommerce Consulting | ${SITE_NAME}`;
+const title = `Ecommerce Services | Shopify, VTEX, AI Automation & Growth | ${SITE_NAME}`;
 
 export const metadata: Metadata = {
   // A plain string title here would stop the root template reaching the six

@@ -61,7 +61,7 @@ export default function IndustrySolutions() {
             textWrap: "pretty",
           }}
         >
-          Industry Solutions We Offer
+          Ecommerce Solutions We Offer
         </h2>
 
         <p
@@ -73,7 +73,8 @@ export default function IndustrySolutions() {
             textWrap: "pretty",
           }}
         >
-          Deep industry knowledge, turned into systems your customers feel.
+          Storefronts, automation, and retention systems your customers feel,
+          from the first visit to the fifth order.
         </p>
 
         <Link href="/contact" className="cta-btn solutions-cta">
@@ -83,8 +84,8 @@ export default function IndustrySolutions() {
 
       <div className="solutions-media">
         <Image
-          src="/Manufacturing.avif"
-          alt="Engineers reviewing operations on the plant floor"
+          src="/industries/order-fulfillment.avif"
+          alt="An online store owner packing a customer order"
           fill
           sizes="(max-width: 860px) 100vw, 54vw"
           style={{ objectFit: "cover" }}

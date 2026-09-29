@@ -1,11 +1,11 @@
 /**
  * Content for the /services page.
  *
- * Sourced from the client's Salesforce/AWS content doc plus the Shopify, VTEX,
- * and FAQ docs. The source bullet lists were trimmed hard: each platform keeps
- * the offerings that describe distinct work, and the near-identical
- * Shopify/VTEX bullets (migrations, headless, SEO, managed services) were
- * split so the two panels don't read as the same page twice.
+ * Every service is framed for ecommerce brands, and the two commerce
+ * platforms lead. Slugs predate the ecommerce focus and are kept so existing
+ * links and rankings survive. The near-identical Shopify/VTEX bullets
+ * (migrations, headless, SEO) are split so the two panels don't read as the
+ * same page twice.
  */
 
 export type Offering = { title: string; items: string[] };
@@ -24,322 +24,78 @@ export type Platform = {
   headline: string;
   blurb: string;
   offerings: Offering[];
-  /** Optional pill row under the offerings (Salesforce clouds). */
+  /** Optional pill row under the offerings (tools and platforms). */
   extra?: { label: string; items: string[] };
 };
 
 export const platforms: Platform[] = [
   {
-    key: "ai",
-    slug: "ai-automation",
-    seoTitle: "AI Automation Services | Voice Agents, Chatbots & n8n",
-    metaDescription:
-      "AI voice agents, document-grounded chatbots, and self-hosted n8n workflows built on your own systems, with human handoff where it matters. Klaudio designs, builds, and runs them.",
-    title: "AI & Automation",
-    sub: "Voice agents, chatbots, n8n",
-    img: "/Ai%20&%20Automation.avif",
-    headline: "AI agents that carry real workload",
-    blurb:
-      "Voice agents that answer and make calls, chatbots that qualify and support, and n8n workflows that move the data between them, built on your systems, with a human handoff wherever it matters.",
-    offerings: [
-      {
-        title: "AI Voice Operators",
-        items: [
-          "AI receptionist for inbound calls",
-          "AI SDRs for outbound prospecting",
-          "Personal AI agents for scheduling & tasks",
-        ],
-      },
-      {
-        title: "Online Booking & Appointment Reminders",
-        items: [
-          "Self-serve online booking",
-          "Automated appointment reminders",
-          "Synced to your calendar & CRM",
-        ],
-      },
-      {
-        title: "Invoicing & Payment Reminders",
-        items: [
-          "Automated invoice generation",
-          "Payment reminder sequences",
-          "Synced with your accounting system",
-        ],
-      },
-      {
-        title: "Lead Capture & Instant Follow-Up",
-        items: [
-          "Forms that capture leads 24/7",
-          "Instant automated follow-up",
-          "Lead routing into your CRM",
-        ],
-      },
-      {
-        title: "Email & SMS Marketing Sequences",
-        items: [
-          "Automated drip campaigns",
-          "SMS follow-up sequences",
-          "Synced with your CRM & customer data",
-        ],
-      },
-      {
-        title: "AI Customer Support Chatbots",
-        items: [
-          "Always-on customer support",
-          "Answers grounded in your docs",
-          "Escalation to a live agent",
-        ],
-      },
-      {
-        title: "Automated Payroll & Tax Filing",
-        items: [
-          "Automated payroll runs",
-          "Tax calculation & filing",
-          "Compliance-ready records",
-        ],
-      },
-      {
-        title: "Inventory Tracking & Low-Stock Alerts",
-        items: [
-          "Real-time inventory tracking",
-          "Low-stock alerts",
-          "Synced across sales channels",
-        ],
-      },
-      {
-        title: "Review & Feedback Collection",
-        items: [
-          "Automated review requests",
-          "Feedback form follow-ups",
-          "Reputation monitoring",
-        ],
-      },
-      {
-        title: "Cross-Platform Data Syncing",
-        items: [
-          "Two-way sync across CRM, billing & marketing tools",
-          "Eliminates manual re-entry",
-          "Compliant handling of customer data",
-        ],
-      },
-    ],
-    extra: {
-      label: "Tools we build on",
-      items: ["n8n", "Claude", "Vapi", "ElevenLabs", "Twilio", "Zapier"],
-    },
-  },
-  {
-    key: "crm",
-    slug: "crm-marketing-automation",
-    seoTitle: "Revenue Operations | Salesforce, GHL, HubSpot & Klaviyo",
-    metaDescription:
-      "Revenue operations built on the platform that fits: Salesforce CRM, GoHighLevel, HubSpot, Meta Ads, and Klaviyo, connected to animated web builds so pipelines, paid funnels, and lifecycle campaigns run off one system.",
-    title: "Revenue Operations",
-    sub: "Salesforce, GHL, HubSpot, Meta, Klaviyo",
-    img: "/CRM%20&%20Marketing.avif",
-    headline: "One customer record, campaigns that follow it",
-    blurb:
-      "Whether you're on Salesforce, GoHighLevel, or HubSpot, we build the CRM, paid funnel, and lifecycle systems that sales and marketing teams actually use, then automate the journeys, scoring, and reporting that turn more conversations into repeatable revenue.",
-    offerings: [
-      {
-        title: "Salesforce CRM Integration & Management",
-        items: [
-          "Custom pipeline architecture",
-          "Enterprise data sync",
-          "Sales team enablement",
-        ],
-      },
-      {
-        title: "GoHighLevel (GHL) All-in-One Engine",
-        items: [
-          "Unified communication inbox",
-          "Automated missed-call text-back",
-          "Local lead conversion systems",
-        ],
-      },
-      {
-        title: "HubSpot Revenue Architecture",
-        items: [
-          "Inbound lead capture",
-          "Deal pipeline tracking",
-          "Automated multi-channel email workflows",
-        ],
-      },
-      {
-        title: "Meta Ads & Paid Funnels",
-        items: [
-          "Paid traffic campaigns",
-          "High-converting lead forms",
-          "Pixel & CAPI tracking setup",
-        ],
-      },
-      {
-        title: "Animated Web Development",
-        items: [
-          "Modern, high-performance builds",
-          "Interactive animations",
-          "Fast load times",
-        ],
-      },
-      {
-        title: "Klaviyo Retention & Lifecycle Marketing",
-        items: [
-          "Automated revenue flows",
-          "Behavioral segmentation",
-          "Customer retention campaigns",
-        ],
-      },
-    ],
-    extra: {
-      label: "Platforms we work with",
-      items: [
-        "Sales Cloud",
-        "Service Cloud",
-        "Marketing Cloud",
-        "GoHighLevel",
-        "HubSpot",
-        "Meta Ads",
-        "Klaviyo",
-        "GA4",
-      ],
-    },
-  },
-  {
-    key: "aws",
-    slug: "aws-cloud",
-    seoTitle: "AWS Cloud Consulting, Migration & DevOps",
-    metaDescription:
-      "AWS cloud consulting, migration, DevOps, security, and managed services. Klaudio designs and runs environments that cut operational cost and stay resilient as you scale.",
-    title: "AWS Cloud",
-    sub: "Migration, DevOps, modernization",
-    img: "/Cloud.avif",
-    headline: "Cloud solutions that scale with your business",
-    blurb:
-      "From cloud consulting and migration to DevOps, security, and managed services, we design and run AWS environments that improve agility, reduce operational cost, and stay resilient as you grow.",
-    offerings: [
-      {
-        title: "Consulting & migration",
-        items: [
-          "Cloud strategy",
-          "Environment assessment",
-          "Workload migration",
-          "Database migration",
-        ],
-      },
-      {
-        title: "Infrastructure & architecture",
-        items: [
-          "Scalable architecture",
-          "High availability",
-          "Well-architected reviews",
-          "Cost optimization",
-        ],
-      },
-      {
-        title: "DevOps & CI/CD",
-        items: [
-          "Deployment pipelines",
-          "Infrastructure as code",
-          "Containers",
-          "Continuous integration",
-        ],
-      },
-      {
-        title: "Application modernization",
-        items: [
-          "Serverless computing",
-          "Microservices",
-          "Containerization",
-          "Legacy refactoring",
-        ],
-      },
-      {
-        title: "Security & compliance",
-        items: [
-          "Identity management",
-          "Encryption",
-          "Network security",
-          "Continuous monitoring",
-        ],
-      },
-      {
-        title: "Data, backup & recovery",
-        items: [
-          "Analytics & AI services",
-          "Automated backups",
-          "Disaster recovery planning",
-          "Proactive monitoring",
-        ],
-      },
-    ],
-  },
-  {
     key: "shopify",
     slug: "shopify-development",
-    seoTitle: "Shopify & Shopify Plus Development Agency",
+    seoTitle: "Shopify & Shopify Plus Development Agency for Ecommerce Brands",
     metaDescription:
-      "Shopify and Shopify Plus storefronts, custom themes, private apps, migrations, headless builds, and ongoing managed support from a team that stays after launch.",
+      "Shopify and Shopify Plus development for ecommerce brands: custom themes, apps, headless Hydrogen storefronts, B2B, replatforming from WooCommerce or Magento, and conversion-focused support after launch.",
     title: "Shopify",
     sub: "Storefronts, themes, apps, Plus",
-    img: "/Manufacturing.avif",
+    img: "/industries/online-store.avif",
     headline: "Build, scale, and grow on Shopify",
     blurb:
-      "Launching a new store, migrating from another platform, or extending an existing Shopify ecosystem, we build storefronts, themes, and apps that convert and keep loading fast.",
+      "Launching a new brand, replatforming from WooCommerce or Magento, or scaling on Shopify Plus, we build storefronts, themes, and apps that load fast, convert on mobile, and keep working through peak season.",
     offerings: [
       {
         title: "Store development",
         items: [
-          "Setup & configuration",
-          "Custom store development",
-          "Product & collection management",
-          "Payments & shipping",
-          "Multi-currency & language",
+          "Store setup & configuration",
+          "Product, variant & collection setup",
+          "Payments, shipping & taxes",
+          "Multi-currency & Shopify Markets",
+          "Subscriptions & bundles",
         ],
       },
       {
         title: "Theme development",
         items: [
-          "Custom themes",
-          "Shopify 2.0",
-          "Responsive UI/UX",
-          "Speed optimization",
+          "Custom Online Store 2.0 themes",
+          "Mobile-first product & collection pages",
+          "Speed & Core Web Vitals",
           "Accessibility",
+          "Conversion rate optimization",
         ],
       },
       {
-        title: "App development",
+        title: "App development & integrations",
         items: [
-          "Private & public apps",
-          "App extensions",
-          "API development",
-          "ERP & CRM integrations",
+          "Custom & private apps",
+          "Theme app extensions",
+          "ERP, 3PL & PIM integrations",
+          "Marketplace sync (Amazon, TikTok Shop, Walmart)",
         ],
       },
       {
         title: "Headless commerce",
         items: [
-          "Hydrogen development",
+          "Hydrogen & Oxygen",
           "Storefront API",
-          "React & Next.js",
+          "React & Next.js front ends",
           "Progressive web apps",
         ],
       },
       {
         title: "Shopify Plus",
         items: [
-          "B2B & wholesale",
-          "Multi-store management",
-          "Checkout customization",
+          "B2B & wholesale ordering portals",
+          "Multi-store & expansion stores",
+          "Checkout extensibility",
           "Shopify Flow & Functions",
         ],
       },
       {
-        title: "Migrations",
+        title: "Replatforming",
         items: [
           "WooCommerce & Magento",
-          "BigCommerce & Wix",
+          "BigCommerce, Wix & Squarespace",
           "Product, customer & order data",
-          "SEO preservation",
+          "301 redirects & SEO preservation",
         ],
       },
     ],
@@ -347,21 +103,21 @@ export const platforms: Platform[] = [
   {
     key: "vtex",
     slug: "vtex-commerce",
-    seoTitle: "VTEX Commerce Implementation & Marketplace Builds",
+    seoTitle: "VTEX Commerce Implementation, Marketplaces & Omnichannel",
     metaDescription:
-      "VTEX implementation, unified commerce, marketplace and seller management, headless storefronts, and integrations with your ERP, payments, and fulfilment systems.",
+      "VTEX implementation for retailers and marketplaces: seller management, headless VTEX IO storefronts, unified online and in-store inventory, and integrations with your ERP, payments, and fulfillment.",
     title: "VTEX",
-    sub: "Unified commerce and marketplaces",
-    img: "/Associations.avif",
-    headline: "Unified commerce experiences with VTEX",
+    sub: "Marketplaces and omnichannel retail",
+    img: "/industries/warehouse.avif",
+    headline: "Unified commerce and marketplaces on VTEX",
     blurb:
-      "Launch a marketplace, modernize your platform, or go omnichannel. Our VTEX team delivers API-first commerce that connects online and offline channels on one inventory.",
+      "Launch a marketplace, bring your stores and online sales onto one inventory, or modernize an enterprise catalog. Our VTEX team delivers API-first commerce that connects every channel you sell through.",
     offerings: [
       {
         title: "Store development",
         items: [
           "Setup & configuration",
-          "Catalog configuration",
+          "Catalog & SKU architecture",
           "Checkout customization",
           "Multi-language & currency",
         ],
@@ -388,9 +144,9 @@ export const platforms: Platform[] = [
         title: "Omnichannel",
         items: [
           "Unified inventory",
-          "Click & collect",
+          "Buy online, pick up in store",
           "Endless aisle",
-          "Store fulfillment",
+          "Ship from store",
         ],
       },
       {
@@ -399,7 +155,7 @@ export const platforms: Platform[] = [
           "ERP & CRM",
           "OMS & PIM",
           "Payment gateways",
-          "Shipping providers",
+          "Carriers & 3PLs",
         ],
       },
       {
@@ -414,70 +170,307 @@ export const platforms: Platform[] = [
     ],
   },
   {
-    key: "financial",
-    slug: "financial-systems",
-    seoTitle: "Financial Systems Consulting | Billing, ERP & Reporting",
+    key: "ai",
+    slug: "ai-automation",
+    seoTitle: "AI Automation for Ecommerce | Support Agents, Chatbots & n8n",
     metaDescription:
-      "Billing, ERP, and financial reporting systems that close on one set of numbers: revenue recognition, reconciliation, approval workflows, and finance integrations.",
-    title: "Financial Systems",
-    sub: "Billing, ERP, reporting",
-    img: "/Financial%20Systems.avif",
-    headline: "Finance running on one set of numbers",
+      "AI support agents that answer order-status, shipping, and return questions, plus n8n automations for inventory, fulfillment, returns, and reviews. Klaudio builds and runs them for ecommerce brands.",
+    title: "AI & Automation",
+    sub: "Support agents, chatbots, n8n",
+    img: "/Ai%20&%20Automation.avif",
+    headline: "AI that runs the busywork behind your store",
     blurb:
-      "Billing, accounting, payments, and reporting connected into a single source of truth, so the close is shorter, the reconciliation is automated, and the board deck matches the ledger.",
+      "AI agents that answer \"where is my order\" before it becomes a ticket, and n8n workflows that move orders, inventory, and customer data between your store, your 3PL, and the rest of your stack, with a human handoff wherever it matters.",
     offerings: [
       {
-        title: "ERP & accounting integration",
+        title: "AI Customer Support Agents",
         items: [
-          "NetSuite, QuickBooks & Xero sync",
+          "Order status & tracking answers",
+          "Returns, exchanges & shipping policy",
+          "Grounded in your catalog & help center",
+          "Handoff to your support team",
+        ],
+      },
+      {
+        title: "AI Shopping Assistants",
+        items: [
+          "Product recommendations & sizing help",
+          "Pre-purchase questions on product pages",
+          "Bundle & upsell suggestions",
+        ],
+      },
+      {
+        title: "AI Voice Agents",
+        items: [
+          "Inbound order & support calls",
+          "Phone orders & reorders",
+          "Callbacks for abandoned carts",
+        ],
+      },
+      {
+        title: "Catalog & Content Automation",
+        items: [
+          "AI product descriptions & SEO copy",
+          "Bulk product data cleanup",
+          "Image alt text & tagging",
+        ],
+      },
+      {
+        title: "Inventory & Low-Stock Alerts",
+        items: [
+          "Real-time stock sync across channels",
+          "Low-stock & reorder alerts",
+          "Back-in-stock notifications",
+        ],
+      },
+      {
+        title: "Order & Fulfillment Automation",
+        items: [
+          "Order routing to 3PLs & warehouses",
+          "Fraud & high-risk order holds",
+          "Shipping & delay notifications",
+        ],
+      },
+      {
+        title: "Returns & Exchanges",
+        items: [
+          "Self-serve return requests",
+          "Automated labels & refunds",
+          "Exchange-first flows that save revenue",
+        ],
+      },
+      {
+        title: "Review & UGC Collection",
+        items: [
+          "Post-purchase review requests",
+          "Photo & video review follow-ups",
+          "Negative review alerts",
+        ],
+      },
+      {
+        title: "Cross-Platform Data Syncing",
+        items: [
+          "Two-way sync across store, ERP & marketing tools",
+          "Amazon & TikTok Shop order and listing sync",
+          "No more manual CSV exports",
+        ],
+      },
+    ],
+    extra: {
+      label: "Tools we build on",
+      items: ["n8n", "Claude", "Gorgias", "Vapi", "ElevenLabs", "Twilio", "Zapier"],
+    },
+  },
+  {
+    key: "crm",
+    slug: "crm-marketing-automation",
+    seoTitle: "Ecommerce Growth & Retention Marketing | Klaviyo, Meta Ads & CRO",
+    metaDescription:
+      "Ecommerce growth and retention marketing: Klaviyo email and SMS flows, Meta Ads with Pixel and Conversions API tracking, high-converting landing pages, and HubSpot or Salesforce for B2B and wholesale.",
+    title: "Growth & Retention",
+    sub: "Klaviyo, Meta Ads, CRO, CRM",
+    img: "/CRM%20&%20Marketing.avif",
+    headline: "Turn first orders into repeat customers",
+    blurb:
+      "We build the acquisition and retention engine behind your store: paid social with tracking you can trust, landing pages that convert, and Klaviyo flows that bring customers back, so growth comes from lifetime value, not just ad spend.",
+    offerings: [
+      {
+        title: "Klaviyo Email & SMS",
+        items: [
+          "Welcome, abandoned cart & browse flows",
+          "Post-purchase & winback flows",
+          "Behavioral & RFM segmentation",
+          "Campaign calendars",
+        ],
+      },
+      {
+        title: "Meta Ads & Paid Social",
+        items: [
+          "Prospecting & retargeting campaigns",
+          "Catalog & dynamic product ads",
+          "Pixel & Conversions API setup",
+        ],
+      },
+      {
+        title: "Landing Pages & CRO",
+        items: [
+          "High-converting product landing pages",
+          "A/B testing",
+          "Fast, animated builds",
+        ],
+      },
+      {
+        title: "Analytics & Attribution",
+        items: [
+          "GA4 ecommerce tracking",
+          "Server-side tracking",
+          "Customer lifetime value reporting",
+        ],
+      },
+      {
+        title: "Loyalty & Subscriptions",
+        items: [
+          "Loyalty & referral programs",
+          "Subscribe-and-save offers",
+          "Churn & winback campaigns",
+        ],
+      },
+      {
+        title: "B2B & Wholesale CRM",
+        items: [
+          "HubSpot & Salesforce for wholesale accounts",
+          "Store-to-CRM data sync",
+          "B2B ordering portals, pipeline & reorders",
+        ],
+      },
+    ],
+    extra: {
+      label: "Platforms we work with",
+      items: [
+        "Klaviyo",
+        "Meta Ads",
+        "GA4",
+        "Google Merchant Center",
+        "HubSpot",
+        "Salesforce",
+        "GoHighLevel",
+      ],
+    },
+  },
+  {
+    key: "aws",
+    slug: "aws-cloud",
+    seoTitle: "AWS Cloud for Ecommerce | Headless Hosting, Scaling & DevOps",
+    metaDescription:
+      "AWS cloud for ecommerce brands: hosting for headless storefronts and custom apps, auto-scaling for Black Friday traffic, data pipelines, DevOps, security, and cost optimization.",
+    title: "AWS Cloud",
+    sub: "Headless hosting, scaling, DevOps",
+    img: "/Cloud.avif",
+    headline: "Infrastructure that holds up on Black Friday",
+    blurb:
+      "When your store outgrows a single platform, with headless front ends, custom apps, middleware, or your own data warehouse, we design and run the AWS environment behind it so it scales for peak traffic and costs less the rest of the year.",
+    offerings: [
+      {
+        title: "Headless & app hosting",
+        items: [
+          "Headless storefront hosting",
+          "Custom Shopify & VTEX app backends",
+          "CDN & edge caching",
+          "Image & media delivery",
+        ],
+      },
+      {
+        title: "Peak traffic readiness",
+        items: [
+          "Auto-scaling architecture",
+          "Load testing before BFCM",
+          "High availability",
+          "Cost optimization",
+        ],
+      },
+      {
+        title: "Commerce data & integrations",
+        items: [
+          "Order & inventory middleware",
+          "Event-driven integrations",
+          "Ecommerce data warehouse",
+          "Analytics & AI services",
+        ],
+      },
+      {
+        title: "DevOps & CI/CD",
+        items: [
+          "Deployment pipelines",
+          "Infrastructure as code",
+          "Containers",
+          "Preview environments",
+        ],
+      },
+      {
+        title: "Security & compliance",
+        items: [
+          "Identity management",
+          "Encryption",
+          "PCI DSS-aware architecture",
+          "Continuous monitoring",
+        ],
+      },
+      {
+        title: "Migration, backup & recovery",
+        items: [
+          "Workload & database migration",
+          "Automated backups",
+          "Disaster recovery planning",
+          "Proactive monitoring",
+        ],
+      },
+    ],
+  },
+  {
+    key: "financial",
+    slug: "financial-systems",
+    seoTitle: "Ecommerce Accounting Systems | Shopify to QuickBooks, Xero & NetSuite",
+    metaDescription:
+      "Ecommerce finance systems: Shopify, Amazon, Stripe, and PayPal payouts reconciled into QuickBooks, Xero, or NetSuite, with sales tax, COGS, inventory valuation, and margin reporting.",
+    title: "Ecommerce Finance",
+    sub: "Payouts, accounting, margins",
+    img: "/Financial%20Systems.avif",
+    headline: "Know your real margin on every order",
+    blurb:
+      "Store, marketplace, and payment data flowing into your accounting system automatically, so payouts reconcile themselves, sales tax is handled, and you can see profit by product and channel, not just revenue.",
+    offerings: [
+      {
+        title: "Store-to-accounting integration",
+        items: [
+          "Shopify & VTEX to QuickBooks, Xero & NetSuite",
+          "Order, refund & fee journal entries",
           "Chart of accounts mapping",
-          "Journal entry automation",
-          "Multi-entity consolidation",
+          "Multi-store & multi-entity consolidation",
         ],
       },
       {
-        title: "Billing & subscriptions",
+        title: "Payout reconciliation",
         items: [
-          "Invoicing automation",
-          "Subscription & usage billing",
-          "Dunning & retries",
-          "Revenue recognition",
+          "Shopify Payments, Stripe & PayPal",
+          "Amazon & marketplace settlements",
+          "Fees, refunds & chargebacks",
+          "Automated bank matching",
         ],
       },
       {
-        title: "Payments",
+        title: "Inventory & COGS",
         items: [
-          "Gateway integration",
-          "Multi-currency support",
-          "Automated reconciliation",
-          "Fraud & risk rules",
+          "Landed cost tracking",
+          "Inventory valuation",
+          "COGS by SKU",
+          "Purchase order sync",
         ],
       },
       {
-        title: "Reporting & forecasting",
+        title: "Sales tax & compliance",
         items: [
-          "Real-time finance dashboards",
-          "Cash flow reporting",
-          "Budget vs. actual",
-          "Board & investor reporting",
-        ],
-      },
-      {
-        title: "Controls & compliance",
-        items: [
-          "Approval workflows",
+          "Sales tax & VAT automation",
+          "Nexus tracking",
+          "Multi-currency accounting",
           "Audit trails",
-          "Role-based access",
-          "Policy enforcement",
         ],
       },
       {
-        title: "Data quality",
+        title: "Profit reporting",
         items: [
-          "Reconciliation automation",
-          "Close checklists",
-          "Anomaly alerts",
-          "Historical data cleanup",
+          "Contribution margin by product & channel",
+          "Cash flow & inventory planning",
+          "Real-time finance dashboards",
+          "Investor & lender reporting",
+        ],
+      },
+      {
+        title: "Subscriptions & B2B billing",
+        items: [
+          "Subscription revenue tracking",
+          "Wholesale invoicing & net terms",
+          "Dunning & failed payment retries",
+          "Revenue recognition",
         ],
       },
     ],
@@ -488,26 +481,26 @@ export type Faq = { q: string; a: string };
 
 export const faqs: Faq[] = [
   {
-    q: "How can your solutions help our business grow?",
-    a: "We streamline operations, cut manual cost, and improve customer experience, so the technology you already pay for starts supporting growth instead of absorbing it.",
+    q: "How can your solutions help our store grow?",
+    a: "We lift conversion rate, average order value, and repeat purchases, and we cut the manual work behind orders, inventory, and support, so the apps you already pay for start driving sales instead of absorbing time.",
   },
   // "Existing systems" and "timelines" live in the homepage FAQ; these two
   // cover different ground so the pages do not repeat each other.
   {
     q: "How do we get started?",
-    a: "Book a free consultation through the contact page. The first step is a discovery call about your goals, your current systems, and what good looks like, and you receive a roadmap with milestones before any build work starts.",
+    a: "Book a free consultation through the contact page. The first step is a discovery call about your store, your current apps and integrations, and your growth goals, and you receive a roadmap with milestones before any build work starts.",
   },
   {
     q: "Which service should we start with?",
-    a: "Start with the problem costing you the most time or revenue. If you are not sure which that is, discovery identifies it, and the right first step is sometimes a single automation or integration rather than a full platform change.",
+    a: "Start with the problem costing you the most sales or time, such as a slow storefront, a leaky checkout, or support tickets piling up. If you are not sure which that is, discovery identifies it, and the right first step is sometimes a single automation or integration rather than a full replatform.",
   },
   {
     q: "How do you handle data security and compliance?",
-    a: "Security is part of the build, not a final check: secure coding standards, encryption, access controls, regular assessments, and compliance with the regulations that apply to you.",
+    a: "Security is part of the build, not a final check: secure coding standards, encryption, access controls, and regular assessments. Payments stay with PCI-compliant providers, and customer data is handled in line with the privacy rules that apply to you, such as GDPR and CCPA.",
   },
   {
     q: "Do you provide support after launch?",
-    a: "Yes. Post-launch support covers monitoring, performance optimization, bug fixes, security updates, and ongoing enhancements.",
+    a: "Yes. Post-launch support covers monitoring, speed and conversion optimization, bug fixes, app and security updates, and extra cover for peak seasons like Black Friday and Cyber Monday.",
   },
   {
     q: "What engagement models do you offer?",

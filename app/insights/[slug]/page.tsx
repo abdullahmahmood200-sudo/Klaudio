@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Footer from "@/components/Footer";
@@ -15,12 +14,13 @@ import {
   readingMinutes,
 } from "@/lib/insights";
 import {
-  AUTHOR,
   AUTHOR_ID,
+  AUTHOR_NAME,
   OG_DEFAULTS,
   ORG_ID,
+  SITE_DESCRIPTION,
+  SITE_NAME,
   SITE_URL,
-  authorNode,
   jsonLd,
 } from "@/lib/site";
 
@@ -53,7 +53,7 @@ export async function generateMetadata({
     title: a.title,
     description: a.description,
     alternates: { canonical: `/insights/${a.slug}` },
-    authors: [{ name: AUTHOR.name, url: `/authors/${AUTHOR.slug}` }],
+    authors: [{ name: SITE_NAME, url: "/about" }],
     openGraph: {
       ...OG_DEFAULTS,
       type: "article",
@@ -62,7 +62,7 @@ export async function generateMetadata({
       url: `/insights/${a.slug}`,
       publishedTime: a.published,
       modifiedTime: a.updated,
-      authors: [`${SITE_URL}/authors/${AUTHOR.slug}`],
+      authors: [`${SITE_URL}/about`],
     },
   };
 }
@@ -128,7 +128,7 @@ export default async function ArticlePage({
 
   return (
     <div style={{ background: "#ffffff" }}>
-      <JsonLd data={jsonLd(articleNode, authorNode(), breadcrumb)} />
+      <JsonLd data={jsonLd(articleNode, breadcrumb)} />
       <TopBar />
 
       <nav className="svc-crumb section-pad" aria-label="Breadcrumb">
@@ -147,8 +147,8 @@ export default async function ArticlePage({
           <h1 className="insight-title">{a.title}</h1>
           <p className="insight-byline">
             By{" "}
-            <Link href={`/authors/${AUTHOR.slug}`} rel="author">
-              {AUTHOR.name}
+            <Link href="/about" rel="author">
+              {AUTHOR_NAME}
             </Link>
             <span aria-hidden> · </span>
             Published <time dateTime={a.published}>{formatDate(a.published)}</time>
@@ -194,24 +194,14 @@ export default async function ArticlePage({
               </section>
             ))}
 
-            <aside className="insight-author" aria-label="About the author">
-              <Image
-                src={AUTHOR.image}
-                alt={AUTHOR.name}
-                width={88}
-                height={88}
-                className="insight-author-photo"
-              />
-              <div>
-                <p className="insight-author-label">About the author</p>
-                <p className="insight-author-name">
-                  <Link href={`/authors/${AUTHOR.slug}`} rel="author">
-                    {AUTHOR.name}
-                  </Link>
-                </p>
-                <p className="insight-author-role">{AUTHOR.jobTitle}</p>
-                <p className="insight-author-bio">{AUTHOR.bio}</p>
-              </div>
+            <aside className="insight-author" aria-label="About Klaudio LLC">
+              <p className="insight-author-label">Written by</p>
+              <p className="insight-author-name">
+                <Link href="/about" rel="author">
+                  {SITE_NAME}
+                </Link>
+              </p>
+              <p className="insight-author-bio">{SITE_DESCRIPTION}</p>
             </aside>
           </div>
         </div>

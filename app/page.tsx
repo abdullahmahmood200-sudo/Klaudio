@@ -6,12 +6,11 @@ import IndustrySolutions from "@/components/home/IndustrySolutions";
 import Process from "@/components/home/Process";
 import WhyUs from "@/components/home/WhyUs";
 import HomeFaq from "@/components/home/HomeFaq";
-import Team from "@/components/home/Team";
 import Footer from "@/components/Footer";
 import JsonLd from "@/components/JsonLd";
 import { faqPageNode } from "@/components/FaqList";
 import { homeFaqs } from "@/components/home/data";
-import { ORG_ID, SITE_URL, TEAM, jsonLd, personNode } from "@/lib/site";
+import { ORG_ID, SITE_URL, jsonLd } from "@/lib/site";
 
 /** Mirrors the visible homepage FAQ, question for question. */
 const faqNode = {
@@ -25,7 +24,7 @@ export default function Home() {
       className="page-shell"
       style={{ display: "flex", minHeight: "100dvh", background: "#ffffff" }}
     >
-      <JsonLd data={jsonLd(faqNode, ...TEAM.map(personNode))} />
+      <JsonLd data={jsonLd(faqNode)} />
       <SideNav />
       <main
         style={{
@@ -42,7 +41,6 @@ export default function Home() {
         <IndustrySolutions />
         <Process />
         <WhyUs />
-        <Team moreLink />
         <HomeFaq />
         <Footer />
       </main>
