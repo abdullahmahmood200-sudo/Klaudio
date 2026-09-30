@@ -62,8 +62,13 @@ export default function ScrollFX() {
     // y-tween here would put a transform on it for two seconds. That makes it
     // the containing block for its own `position: fixed` children — the corner
     // mark — which then rides the tween up instead of staying pinned.
+    // The legal pages (Terms, Privacy) and the Insights index are built from
+    // articles/lists rather than <section>s, so their blocks are listed
+    // explicitly. The privacy callout sits inside .legal-layout, which already
+    // reveals, so it is skipped to avoid animating twice.
     const targets = gsap.utils.toArray<HTMLElement>(
-      "section:not(.lp-hero), .cube-shell, footer"
+      "section:not(.lp-hero):not(.legal-callout), .cube-shell, footer, " +
+        ".legal-hero, .legal-layout, .insights-hero, .insights-list > li"
     );
     const tweens = targets.map((el) =>
       gsap.fromTo(
