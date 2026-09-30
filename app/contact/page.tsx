@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import Logo from "@/components/Logo";
 import Footer from "@/components/Footer";
@@ -16,10 +17,12 @@ const navLinks = [
 
 const selects = [
   {
+    name: "businessType",
     label: "Business Type",
     options: [...SEGMENTS.map((s) => s.name), "Other"],
   },
   {
+    name: "service",
     label: "Service of Interest",
     options: [
       "Shopify Store Build or Migration",
@@ -32,14 +35,17 @@ const selects = [
     ],
   },
   {
+    name: "timeline",
     label: "Estimated Timeline",
     options: ["Immediately", "1–3 months", "3–6 months", "6+ months"],
   },
   {
+    name: "budget",
     label: "Estimated Budget",
     options: ["Under $10k", "$10k – $50k", "$50k – $100k", "$100k+"],
   },
   {
+    name: "contactMethod",
     label: "Preferred Contact Method",
     options: ["Email", "Phone", "Video call"],
   },
@@ -53,6 +59,26 @@ const labelStyle: React.CSSProperties = {
 };
 
 export default function ContactPage() {
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+
+  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const form = e.currentTarget;
+    setStatus("sending");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(Object.fromEntries(new FormData(form))),
+      });
+      if (!res.ok) throw new Error();
+      form.reset();
+      setStatus("sent");
+    } catch {
+      setStatus("error");
+    }
+  }
+
   return (
     <div
       className="page-shell"
@@ -151,49 +177,57 @@ export default function ContactPage() {
               goals. We&apos;ll get back to you within one business day.
             </p>
 
-            <form onSubmit={(e) => e.preventDefault()} style={{ textAlign: "left" }}>
+            <form onSubmit={onSubmit} style={{ textAlign: "left" }}>
               <div
                 className="contact-grid"
                 style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "26px 34px" }}
               >
                 <label style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                   <span style={labelStyle}>Full Name</span>
-                  <input className="cf-input" type="text" placeholder="Jane Cooper" />
+                  <input className="cf-input" name="name" type="text" required placeholder="Jane Cooper" />
                 </label>
                 <label style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                   <span style={labelStyle}>Business Email</span>
-                  <input className="cf-input" type="email" placeholder="jane@company.com" />
+                  <input className="cf-input" name="email" type="email" required placeholder="jane@company.com" />
                 </label>
                 <label style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                   <span style={labelStyle}>Phone Number</span>
-                  <input className="cf-input" type="tel" placeholder="+1 (555) 000-0000" />
+                  <input className="cf-input" name="phone" type="tel" placeholder="+1 (555) 000-0000" />
                 </label>
                 <label style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                   <span style={labelStyle}>Company / Brand</span>
-                  <input className="cf-input" type="text" placeholder="Brand Inc." />
+                  <input className="cf-input" name="company" type="text" placeholder="Brand Inc." />
                 </label>
                 <label style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                   <span style={labelStyle}>Job Title</span>
-                  <input className="cf-input" type="text" placeholder="Head of Growth" />
+                  <input className="cf-input" name="jobTitle" type="text" placeholder="Head of Growth" />
                 </label>
 
                 {selects.map((s) => (
-                  <SelectField key={s.label} label={s.label} options={s.options} />
+                  <SelectField key={s.name} name={s.name} label={s.label} options={s.options} />
                 ))}
 
                 <label style={{ gridColumn: "1 / -1", display: "flex", flexDirection: "column", gap: 8 }}>
                   <span style={labelStyle}>Current Technology Platforms</span>
-                  <input className="cf-input" type="text" placeholder="Shopify, Klaviyo, NetSuite, Amazon, TikTok Shop…" />
+                  <input className="cf-input" name="platforms" type="text" placeholder="Shopify, Klaviyo, NetSuite, Amazon, TikTok Shop…" />
                 </label>
                 <label style={{ gridColumn: "1 / -1", display: "flex", flexDirection: "column", gap: 8 }}>
                   <span style={labelStyle}>Project Description</span>
-                  <textarea className="cf-area" placeholder="Tell us about your store and what you want to fix or build." />
+                  <textarea className="cf-area" name="description" placeholder="Tell us about your store and what you want to fix or build." />
                 </label>
               </div>
-              <button type="submit" className="submit-btn">
-                Submit
+              <button type="submit" className="submit-btn" disabled={status === "sending"}>
+                {status === "sending" ? "Sending…" : "Submit"}
               </button>
+              <div role="status" aria-live="polite" style={{ marginTop: 16, fontSize: 14 }}>
+                {status === "error" && (
+                  <span style={{ color: "#b3261e" }}>
+                    Something went wrong. Please try again or email us directly.
+                  </span>
+                )}
+              </div>
             </form>
+            {status === "sent" && <ThankYou onClose={() => setStatus("idle")} />}
           </div>
         </section>
 
@@ -203,12 +237,57 @@ export default function ContactPage() {
   );
 }
 
-function SelectField({ label, options }: { label: string; options: string[] }) {
+function ThankYou({ onClose }: { onClose: () => void }) {
+  const words = ["Thank", "you."];
+  let i = 0;
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [onClose]);
+
+  return (
+    <div className="ty-overlay" onClick={onClose}>
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-label="Message sent"
+      className="ty-wrap"
+      onClick={(e) => e.stopPropagation()}
+    >
+      <h2 className="ty-title" aria-label="Thank you.">
+        {words.map((w, wi) => (
+          <span key={wi} className="ty-word" aria-hidden="true">
+            {[...w].map((c) => (
+              <span key={i} className="ty-char" style={{ animationDelay: `${0.1 + i++ * 0.07}s` }}>
+                {c}
+              </span>
+            ))}
+          </span>
+        ))}
+      </h2>
+      <span className="ty-rule" />
+      <p className="ty-sub">
+        We got your message and will reply within one business day.
+      </p>
+      <button type="button" className="ty-again" onClick={onClose} autoFocus>
+        Done
+      </button>
+      <button type="button" className="ty-x" aria-label="Close" onClick={onClose}>
+        ×
+      </button>
+    </div>
+    </div>
+  );
+}
+
+function SelectField({ name, label, options }: { name: string; label: string; options: string[] }) {
   return (
     <label style={{ display: "flex", flexDirection: "column", gap: 8 }}>
       <span style={labelStyle}>{label}</span>
       <div style={{ position: "relative" }}>
-        <select className="cf-select" defaultValue={options[0]}>
+        <select className="cf-select" name={name} defaultValue={options[0]}>
           {options.map((o) => (
             <option key={o}>{o}</option>
           ))}

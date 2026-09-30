@@ -15,6 +15,10 @@
     "directory": ".open-next/assets",
     "binding": "ASSETS"
   },
+  "vars": {
+    "HUBSPOT_FORM_GUID": "eeaa0222-a170-4487-b9a8-865b37d8c15a",
+    "HUBSPOT_PORTAL_ID": "247558400"
+  },
   "services": [
     {
       "binding": "WORKER_SELF_REFERENCE",

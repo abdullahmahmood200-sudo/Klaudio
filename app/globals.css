@@ -87,7 +87,7 @@ a:hover {
   top: 0;
   left: 0;
   pointer-events: none;
-  z-index: 100;
+  z-index: 2000; /* above every overlay, including the contact thank-you popup */
   opacity: 0;
   visibility: hidden;
   will-change: transform;
@@ -2627,4 +2627,130 @@ input[type="range"].cube-slider::-moz-range-thumb {
 }
 .home-faq-item p a:hover {
   border-bottom-color: var(--accent);
+}
+
+/* Contact form thank-you: per-letter typographic reveal */
+.ty-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(15, 26, 46, 0.45);
+  backdrop-filter: blur(6px);
+  animation: ty-fade 0.3s ease forwards;
+  opacity: 0;
+}
+.ty-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 640px;
+  padding: 56px 32px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 30px 80px rgba(15, 26, 46, 0.25);
+}
+.ty-title {
+  margin: 0;
+  display: flex;
+  gap: 0.28em;
+  font-size: clamp(44px, 10vw, 84px);
+  line-height: 1;
+  font-weight: 500;
+  letter-spacing: -0.05em;
+  color: #0f1a2e;
+}
+.ty-word {
+  display: inline-flex;
+}
+.ty-char {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0.5em) rotate(6deg);
+  filter: blur(10px);
+  animation: ty-rise 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+.ty-word:last-child .ty-char:last-child {
+  color: var(--accent);
+}
+/* after the reveal, letters keep a gentle wave so the screen stays alive */
+.ty-char {
+  animation:
+    ty-rise 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards,
+    ty-wave 3.2s ease-in-out 1.6s infinite;
+}
+.ty-rule {
+  display: block;
+  width: 120px;
+  height: 2px;
+  margin: 28px 0 22px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: ty-line 0.8s 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+.ty-sub {
+  margin: 0;
+  max-width: 420px;
+  font-size: 16px;
+  line-height: 1.6;
+  font-weight: 300;
+  color: #586074;
+  opacity: 0;
+  animation: ty-fade 0.7s 1.2s ease forwards;
+}
+.ty-again {
+  margin-top: 28px;
+  padding: 12px 34px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  opacity: 0;
+  animation: ty-fade 0.7s 1.6s ease forwards;
+}
+.ty-x {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 50%;
+  background: #f1f3f7;
+  color: #586074;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+}
+.ty-x:hover { background: #e6eaf1; }
+@keyframes ty-rise {
+  to { opacity: 1; transform: none; filter: blur(0); }
+}
+@keyframes ty-wave {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-0.06em); }
+}
+@keyframes ty-line {
+  to { transform: scaleX(1); }
+}
+@keyframes ty-fade {
+  to { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ty-char { animation: none; opacity: 1; transform: none; filter: none; }
+  .ty-rule, .ty-sub, .ty-again {
+    animation-duration: 0.01s;
+    animation-delay: 0s;
+  }
 }

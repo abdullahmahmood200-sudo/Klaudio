@@ -7,14 +7,15 @@ import gsap from "gsap";
  * Contextual label cursor — a small accent dot glides after the real cursor
  * (GSAP trailing lag). Over meaningful zones it blooms into a pill with a
  * verb describing the interaction: "View" on service cards, "Drag" on the
- * sliders / cube stage, "Rotate" on the case list, "Send" on submit, "Open"
- * on route links. Generic links just grow the dot slightly.
+ * sliders / cube stage, "Rotate" on the case list, "Send" on submit, "Close"
+ * on the thank-you popup buttons, "Open" on route links. Generic links just grow the dot slightly.
  *
  * Desktop pointers only; the native cursor stays visible underneath.
  */
 
 // First match wins, so put the most specific zones on top.
 const zones: { sel: string; label: string }[] = [
+  { sel: ".ty-again, .ty-x", label: "Close" },
   { sel: ".footer-wordmark", label: "Top" },
   { sel: ".service-card", label: "View" },
   { sel: ".submit-btn", label: "Send" },
@@ -32,7 +33,7 @@ const genericInteractive =
 // The footer's CTA band is a full-bleed accent panel and the closing wordmark
 // is accent-filled type, so both need the inverted dot too.
 const darkSurfaces =
-  ".ap-cta, .cta-btn, .submit-btn, .mm-popup, .svc-faq[data-open] .svc-faq-icon, .footer-cta, .footer-wordmark";
+  ".ap-cta, .cta-btn, .submit-btn, .ty-again, .mm-popup, .svc-faq[data-open] .svc-faq-icon, .footer-cta, .footer-wordmark";
 
 export default function ContextCursor() {
   const ref = useRef<HTMLDivElement>(null);
