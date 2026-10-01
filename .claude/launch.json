@@ -7,6 +7,18 @@
       "runtimeArgs": ["run", "dev"],
       "port": 3000,
       "autoPort": true
+    },
+    {
+      "name": "klaudio-cf-worker",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["wrangler", "dev", "--port", "8787"],
+      "port": 8787
+    },
+    {
+      "name": "beecomb",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "D:\\beecomb", "run", "dev", "--", "-p", "3001"],
+      "port": 3001
     }
   ]
 }
