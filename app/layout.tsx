@@ -4,6 +4,7 @@ import "./globals.css";
 import ScrollFX from "@/components/ScrollFX";
 import ContextCursor from "@/components/ContextCursor";
 import JsonLd from "@/components/JsonLd";
+import MetaPixel from "@/components/MetaPixel";
 import {
   SITE_DESCRIPTION,
   SITE_NAME,
@@ -91,6 +92,7 @@ export default function RootLayout({
         <JsonLd data={jsonLd(organizationNode(), webSiteNode())} />
         <ScrollFX />
         <ContextCursor />
+        <MetaPixel />
         {children}
       </body>
     </html>
