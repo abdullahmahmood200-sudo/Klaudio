@@ -5,7 +5,7 @@ import Logo from "@/components/Logo";
 import Link from "next/link";
 import Footer from "@/components/Footer";
 import MobileMenu from "@/components/MobileMenu";
-import { platforms, faqs } from "@/components/services/data";
+import { platforms, serviceCards, faqs } from "@/components/services/data";
 import ServiceDetail from "@/components/services/ServiceDetail";
 import JsonLd from "@/components/JsonLd";
 import { ORG_ID, SITE_URL, breadcrumbNode, jsonLd } from "@/lib/site";
@@ -63,7 +63,7 @@ export default function ServicesPage() {
   // The hovered panel expands (CSS); clicking one swaps the detail block below.
   const [sel, setSel] = useState(0);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
-  const active = platforms[sel];
+  const active = serviceCards[sel];
 
   return (
     <div style={{ background: "#ffffff" }}>
@@ -140,7 +140,7 @@ export default function ServicesPage() {
           .svc-panel-row), so it stays reachable while the detail scrolls. */}
       <section className="section-pad svc-panel-row" style={{ padding: "0 64px 64px" }}>
         <div className="service-cards svc-panels">
-          {platforms.map((p, i) => (
+          {serviceCards.map((p, i) => (
             <div
               key={p.key}
               className="service-card"
@@ -180,11 +180,11 @@ export default function ServicesPage() {
 
       {/* ------------------------------------------------------ detail block */}
       <section className="svc-detail section-pad">
-        <ServiceDetail platform={active} />
+        <ServiceDetail platform={active.platform} parts={active.parts} />
 
-        {/* Every service also has its own page. The explorer above only ever
-            puts one platform in the HTML, so these links are what makes the
-            other seven reachable — to a visitor and to a crawler alike. */}
+        {/* Every platform also has its own page. The explorer above only ever
+            puts one card in the HTML, so these links are what makes the
+            others reachable — to a visitor and to a crawler alike. */}
         <nav className="svc-all-links" aria-label="All services">
           <span className="svc-all-links-label">Explore each service</span>
           <ul>

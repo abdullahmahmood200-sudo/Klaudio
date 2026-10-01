@@ -477,6 +477,48 @@ export const platforms: Platform[] = [
   },
 ];
 
+/**
+ * A card on the /services explorer. Most cards are one platform; the
+ * Ecommerce card groups Shopify and VTEX, matching the homepage, and its
+ * detail shows both platforms' offerings, each linking to its own page.
+ */
+export type ServiceCard = {
+  key: string;
+  title: string;
+  sub: string;
+  img: string;
+  /** Drives the detail header. For a group, a synthesized summary platform. */
+  platform: Platform;
+  /** Set for a group: the platforms whose offerings the detail lists. */
+  parts?: Platform[];
+};
+
+const byKey = (key: string) => platforms.find((p) => p.key === key)!;
+const ECOMMERCE_KEYS = ["shopify", "vtex"];
+
+export const serviceCards: ServiceCard[] = [
+  {
+    key: "ecommerce",
+    title: "Ecommerce",
+    sub: "Shopify, Shopify Plus, VTEX",
+    img: "/industries/online-store.avif",
+    platform: {
+      ...byKey("shopify"),
+      key: "ecommerce",
+      title: "Ecommerce",
+      headline: "Build, scale, and grow your online store",
+      blurb:
+        "Storefronts, apps, headless builds, marketplaces, and replatforming on Shopify and VTEX. We recommend the platform that fits your catalog and channels, then build a store that loads fast, converts on mobile, and holds up through peak season.",
+      offerings: [],
+      extra: undefined,
+    },
+    parts: ECOMMERCE_KEYS.map(byKey),
+  },
+  ...platforms
+    .filter((p) => !ECOMMERCE_KEYS.includes(p.key))
+    .map((p) => ({ key: p.key, title: p.title, sub: p.sub, img: p.img, platform: p })),
+];
+
 export type Faq = { q: string; a: string };
 
 export const faqs: Faq[] = [

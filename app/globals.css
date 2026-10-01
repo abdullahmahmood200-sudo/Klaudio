@@ -1278,6 +1278,35 @@ input[type="range"].cube-slider::-moz-range-thumb {
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 16px;
 }
+/* Grouped card (Ecommerce): one block per platform, each with a link to its page. */
+.svc-part {
+  margin-top: 40px;
+}
+.svc-part-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 0 0 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #e6eaf1;
+}
+.svc-part-title {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: #0f1a2e;
+}
+.svc-part-link {
+  font-size: 14px;
+  color: var(--accent);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.svc-part-link:hover {
+  text-decoration: underline;
+}
 .svc-group {
   background: #ffffff;
   border: 1px solid #e6eaf1;

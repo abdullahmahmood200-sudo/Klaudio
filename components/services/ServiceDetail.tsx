@@ -13,10 +13,13 @@ export default function ServiceDetail({
   platform,
   as = "h2",
   showEyebrow = true,
+  parts,
 }: {
   platform: Platform;
   as?: "h1" | "h2";
   showEyebrow?: boolean;
+  /** For a grouped card (Ecommerce): list each platform's offerings under its own heading. */
+  parts?: Platform[];
 }) {
   const Heading = as;
 
@@ -70,18 +73,23 @@ export default function ServiceDetail({
         </Link>
       </div>
 
-      <div className="svc-groups">
-        {platform.offerings.map((o) => (
-          <div key={o.title} className="svc-group">
-            <h3 className="svc-group-title">{o.title}</h3>
-            <ul className="svc-list">
-              {o.items.map((it) => (
-                <li key={it}>{it}</li>
-              ))}
-            </ul>
-          </div>
-        ))}
-      </div>
+      {parts ? (
+        parts.map((part) => (
+          <section key={part.key} className="svc-part" aria-labelledby={`part-${part.key}`}>
+            <div className="svc-part-head">
+              <h3 id={`part-${part.key}`} className="svc-part-title">
+                {part.title}
+              </h3>
+              <Link href={`/services/${part.slug}`} className="svc-part-link">
+                {part.title} page →
+              </Link>
+            </div>
+            <OfferingGroups platform={part} level="h4" />
+          </section>
+        ))
+      ) : (
+        <OfferingGroups platform={platform} level="h3" />
+      )}
 
       {platform.extra && (
         <div className="svc-extra">
@@ -96,5 +104,29 @@ export default function ServiceDetail({
         </div>
       )}
     </>
+  );
+}
+
+function OfferingGroups({
+  platform,
+  level,
+}: {
+  platform: Platform;
+  level: "h3" | "h4";
+}) {
+  const Title = level;
+  return (
+    <div className="svc-groups">
+      {platform.offerings.map((o) => (
+        <div key={o.title} className="svc-group">
+          <Title className="svc-group-title">{o.title}</Title>
+          <ul className="svc-list">
+            {o.items.map((it) => (
+              <li key={it}>{it}</li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
   );
 }
