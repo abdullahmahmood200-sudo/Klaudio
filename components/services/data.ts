@@ -269,7 +269,7 @@ export const platforms: Platform[] = [
       "Ecommerce growth and retention marketing: Klaviyo email and SMS flows, Meta Ads with Pixel and Conversions API tracking, high-converting landing pages, and HubSpot or Salesforce for B2B and wholesale.",
     title: "Growth & Retention",
     sub: "Klaviyo, Meta Ads, CRO, CRM",
-    img: "/CRM%20&%20Marketing.avif",
+    img: "/Growth%20&%20Retention.avif",
     headline: "Turn first orders into repeat customers",
     blurb:
       "We build the acquisition and retention engine behind your store: paid social with tracking you can trust, landing pages that convert, and Klaviyo flows that bring customers back, so growth comes from lifetime value, not just ad spend.",
@@ -501,7 +501,7 @@ export const serviceCards: ServiceCard[] = [
     key: "ecommerce",
     title: "Ecommerce",
     sub: "Shopify, Shopify Plus, VTEX",
-    img: "/industries/online-store.avif",
+    img: "/CRM%20&%20Marketing.avif",
     platform: {
       ...byKey("shopify"),
       key: "ecommerce",

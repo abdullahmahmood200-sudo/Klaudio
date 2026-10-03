@@ -18,7 +18,7 @@ export const services: Service[] = [
     slug: "shopify-development",
     blurb:
       "Build and scale your store on Shopify and VTEX: custom themes, apps, headless storefronts, marketplaces, and replatforming that keep pages fast and checkout converting.",
-    img: "/industries/online-store.avif",
+    img: "/CRM%20&%20Marketing.avif",
   },
   {
     title: "AI & Automation",
@@ -32,7 +32,7 @@ export const services: Service[] = [
     slug: "crm-marketing-automation",
     blurb:
       "Klaviyo email and SMS flows, Meta Ads with server-side tracking, and landing pages that turn first orders into repeat customers and lift lifetime value.",
-    img: "/CRM%20&%20Marketing.avif",
+    img: "/Growth%20&%20Retention.avif",
   },
   {
     title: "AWS Cloud",
